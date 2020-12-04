@@ -30,8 +30,7 @@ public class Login extends Application {
 		
 		TextField txtLogin = new TextField();
 		PasswordField txtSenha = new PasswordField();
-		
-		//FileInputStream fis = new FileInputStream("E:\\JavaWorkspace\\Hotel\\images\\Logo.png"); //mudar isso para colocar a imagem com o caminho do projeto
+
 		InputStream is = getClass().getResourceAsStream("/images/Logo.png");
 		Image imagem = new Image(is);
 		ImageView imageView = new ImageView(imagem);
