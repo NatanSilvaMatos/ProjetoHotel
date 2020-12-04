@@ -1,6 +1,7 @@
 package boundary;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -17,8 +18,6 @@ import javafx.stage.Stage;
 
 public class Login extends Application {
 	
-	
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		Pane pane = new Pane();
@@ -32,8 +31,9 @@ public class Login extends Application {
 		TextField txtLogin = new TextField();
 		PasswordField txtSenha = new PasswordField();
 		
-		FileInputStream fis = new FileInputStream("E:\\JavaWorkspace\\Hotel\\images\\Logo.png");
-		Image imagem = new Image(fis);
+		//FileInputStream fis = new FileInputStream("E:\\JavaWorkspace\\Hotel\\images\\Logo.png"); //mudar isso para colocar a imagem com o caminho do projeto
+		InputStream is = getClass().getResourceAsStream("/images/Logo.png");
+		Image imagem = new Image(is);
 		ImageView imageView = new ImageView(imagem);
 		imageView.setFitHeight(300);
 		imageView.setFitWidth(300);
@@ -77,11 +77,6 @@ public class Login extends Application {
 		pane.getChildren().add(rbFuncionario);
 		pane.getChildren().add(imageView);
 	
-	
-		
-		
-		
-		
 		stage.setScene(scn);
 		
 		stage.setTitle("Login");
