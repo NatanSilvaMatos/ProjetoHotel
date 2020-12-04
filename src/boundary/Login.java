@@ -40,10 +40,10 @@ public class Login extends Application {
 		imageView.setLayoutX(20);
 		imageView.setLayoutY(3);
 		
-		
-		btnEntrar.setLayoutX(370);
-		btnEntrar.setLayoutY(420);
-		btnEntrar.setAlignment(Pos.CENTER_RIGHT);
+		btnEntrar.setLayoutX(347);
+		btnEntrar.setLayoutY(450);
+		btnEntrar.setPrefWidth(100);
+		btnEntrar.prefHeight(15);
 		
 		lblLogin.setLayoutX(380);
 		lblLogin.setLayoutY(220);
@@ -54,16 +54,18 @@ public class Login extends Application {
 		lblSenha.setLayoutX(380);
 		lblSenha.setLayoutY(320);
 		
-		txtLogin.setLayoutX(320);
+		txtLogin.setLayoutX(270);
 		txtLogin.setLayoutY(250);
+		txtLogin.setPrefWidth(250);
 		
-		txtSenha.setLayoutX(320);
+		txtSenha.setLayoutX(270);
 		txtSenha.setLayoutY(350);
+		txtSenha.setPrefWidth(250);
 		
-		rbHospede.setLayoutX(550);
+		rbHospede.setLayoutX(600);
 		rbHospede.setLayoutY(290);
 		
-		rbFuncionario.setLayoutX(550);
+		rbFuncionario.setLayoutX(600);
 		rbFuncionario.setLayoutY(330);
 			
 		pane.getChildren().add(lblLogin);
@@ -84,8 +86,7 @@ public class Login extends Application {
 		
 		stage.setTitle("Login");
 		stage.show();
-		
-		
+			
 	}
 	
 	
