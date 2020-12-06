@@ -9,12 +9,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class MinhasReservas extends Application {
+public class TodasReservas extends Application {
 	private Pane pane = new Pane();
 	private Scene scene = new Scene(pane,800,600);
 	private Button voltar = new Button("Voltar");
 	private TableView<String> table = new TableView<String>();
-
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -30,26 +31,27 @@ public class MinhasReservas extends Application {
 		columnCategoria.setMinWidth(120);
 		columnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		
-		TableColumn<String,String> columnDataEstadia = new TableColumn<>("DATA ESTADIA");
-		columnDataEstadia.setMinWidth(120);
-		columnDataEstadia.setCellValueFactory(new PropertyValueFactory<>("dataEstadia"));
+		TableColumn<String,String> columnDisponibilidade = new TableColumn<>("DISPONIBILIDADE");
+		columnDisponibilidade.setMinWidth(120);
+		columnDisponibilidade.setCellValueFactory(new PropertyValueFactory<>("disponibilidade"));
 		
 		TableColumn<String,String> columnPrecoDiaria = new TableColumn<>("PRECO(DIARIA)");
 		columnPrecoDiaria.setMinWidth(120);
-		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		
-		TableColumn<String,String> columnPago = new TableColumn<>("PAGO");
-		columnPago.setMinWidth(100);
-		columnPago.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		TableColumn<String,String> columnCPFHospede = new TableColumn<>("CPF HOSPEDE");
+		columnCPFHospede.setMinWidth(120);
+		columnCPFHospede.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		
-		table.getColumns().addAll(columnQuarto,columnAndar,columnCategoria,columnDataEstadia,columnPrecoDiaria,columnPago);
-		table.setLayoutX(50);
+		table.getColumns().addAll(columnQuarto,columnAndar,columnCategoria,columnDisponibilidade,columnPrecoDiaria,columnCPFHospede);
+		table.setLayoutX(40);
 		table.setLayoutY(70);
 		
 		voltar.setLayoutX(350);
 		voltar.setLayoutY(500);
 		voltar.setPrefWidth(100);
-				
+		
+		
 		pane.getChildren().addAll(table, voltar);
 		stage.setScene(scene);
 		stage.show();
@@ -57,10 +59,7 @@ public class MinhasReservas extends Application {
 	}
 	
 	public static void main(String[] args) {
-		Application.launch(MinhasReservas.class,args);
+		Application.launch(TodasReservas.class,args);
 	}
-	
-
-	
 
 }
