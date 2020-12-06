@@ -65,15 +65,8 @@ public class Login extends Application {
 		rbFuncionario.setLayoutX(250);
 		rbFuncionario.setLayoutY(390);
 
-		pane.getChildren().add(lblLogin);
-		pane.getChildren().add(lblSenha);
-		pane.getChildren().add(btnEntrar);
-		pane.getChildren().add(txtLogin);
-		pane.getChildren().add(txtSenha);
-		pane.getChildren().add(rbHospede);
-		pane.getChildren().add(rbFuncionario);
-		pane.getChildren().add(imageView);
-
+		pane.getChildren().addAll(lblLogin,lblSenha,btnEntrar,txtLogin,txtSenha,rbHospede,rbFuncionario,imageView);
+		
 		stage.setScene(scn);
 		stage.setResizable(false);
 		stage.setTitle("BEM-VINDO AO HOTEL DO COLEVATÃO");

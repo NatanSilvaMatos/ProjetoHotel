@@ -2,6 +2,7 @@ package boundary;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -23,12 +24,13 @@ public class Cadastro extends Application {
 	private Label lblCPF = new Label("CPF:");
 	private Label lblSenha = new Label("SENHA:");
 	private Pane pane = new Pane();
+	private Button cadastrar = new Button("Cadastrar");
+	private Button gerarSenha = new Button("Gerar Senha");
 	private Scene scene = new Scene(pane,800,600);
 	
 	
 	@Override
-	public void start(Stage stage) throws Exception {
-		
+	public void start(Stage stage) throws Exception {		
 		lblNome.setLayoutX(30);
 		lblNome.setLayoutY(70);
 		
@@ -61,13 +63,33 @@ public class Cadastro extends Application {
 		
 		txtTelefone.setLayoutX(30);
 		txtTelefone.setLayoutY(500);
-		txtTelefone.setPrefWidth(250);
 		
+		lblCPF.setLayoutX(500);
+		lblCPF.setLayoutY(70);
+		
+		txtCPF.setLayoutX(500);
+		txtCPF.setLayoutY(100);
+		
+		lblSenha.setLayoutX(500);
+		lblSenha.setLayoutY(170);
+		
+		txtSenha.setLayoutX(500);
+		txtSenha.setLayoutY(200);
+		txtSenha.setPrefWidth(250);
+		
+		gerarSenha.setLayoutX(580);
+		gerarSenha.setLayoutY(250);
+		
+		cadastrar.setLayoutX(350);
+		cadastrar.setLayoutY(500);
+		cadastrar.setPrefWidth(120);
+			
 					
 		pane.setStyle("-fx-background-color: white;");
 		pane.getChildren().addAll(lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
-		lblTelefone,txtTelefone);
+		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
 		stage.setScene(scene);
+		stage.setTitle("Cadastro");
 		stage.show();
 	}
 	
