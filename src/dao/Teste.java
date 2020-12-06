@@ -4,7 +4,7 @@ import java.sql.*;
 import java.sql.Statement;
 //teste
 public class Teste {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		ConexaoBanco c = new ConexaoBanco();
 		Connection con = c.getConnection();
 		try {
@@ -18,5 +18,5 @@ public class Teste {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

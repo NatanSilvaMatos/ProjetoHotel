@@ -29,7 +29,7 @@ public class Login extends Application {
 		TextField txtLogin = new TextField();
 		PasswordField txtSenha = new PasswordField();
 
-		InputStream is = getClass().getResourceAsStream("/images/Logo.png");
+		InputStream is = getClass().getResourceAsStream("/img/logo.png");
 		Image imagem = new Image(is);
 		ImageView imageView = new ImageView(imagem);
 		imageView.setFitHeight(300);
