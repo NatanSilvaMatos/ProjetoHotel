@@ -113,7 +113,7 @@ public void delete(int cod) {
     }
 }
 
-
+//
 /*private Funcionario daoToEntity(ResultSet resultSet) throws SQLException {
     Funcionario funcionario = new Funcionario();
     funcionario.setRegistroFuncionario(resultSet.getInt("id_funcionario"));
