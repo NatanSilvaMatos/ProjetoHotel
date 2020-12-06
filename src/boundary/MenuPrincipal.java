@@ -25,6 +25,7 @@ public class MenuPrincipal extends Application {
 	public void start(Stage stage) throws Exception {
 		pane.setTop(barraMenu);
 		barraMenu.getMenus().addAll(menu);
+		pane.setStyle("-fx-background-color: white;");
 		menu.getItems().addAll(novaReserva,novoHospede,todasAsReservas,quartosDisponiveis,minhasReservas,pagamentos,sair);
 		stage.setScene(scene);
 		stage.setTitle("Menu Principal");
