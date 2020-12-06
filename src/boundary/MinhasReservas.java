@@ -36,11 +36,11 @@ public class MinhasReservas extends Application {
 		
 		TableColumn<String,String> columnPrecoDiaria = new TableColumn<>("PRECO(DIARIA)");
 		columnPrecoDiaria.setMinWidth(120);
-		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		
 		TableColumn<String,String> columnPago = new TableColumn<>("PAGO");
 		columnPago.setMinWidth(100);
-		columnPago.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		columnPago.setCellValueFactory(new PropertyValueFactory<>("pago"));
 		
 		table.getColumns().addAll(columnQuarto,columnAndar,columnCategoria,columnDataEstadia,columnPrecoDiaria,columnPago);
 		table.setLayoutX(50);
