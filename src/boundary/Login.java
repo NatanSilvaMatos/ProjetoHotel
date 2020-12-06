@@ -25,7 +25,6 @@ public class Login extends Application {
 		Button btnEntrar = new Button("Entrar");
 		RadioButton rbHospede = new RadioButton("Hóspede");
 		RadioButton rbFuncionario = new RadioButton("Funcionário");
-		Label lbllbl = new Label();
 		
 		TextField txtLogin = new TextField();
 		PasswordField txtSenha = new PasswordField();
