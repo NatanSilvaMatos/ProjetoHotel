@@ -19,23 +19,16 @@ public class MenuPrincipal extends Application {
 	private MenuItem quartosDisponiveis = new MenuItem("Quartos Disponiveis");
 	private MenuItem minhasReservas = new MenuItem("Minhas Reservas");
 	private MenuItem pagamentos = new MenuItem("Pagamentos");
+	private MenuItem sair = new MenuItem("Sair");
 	
-	
-	
-
 	@Override
 	public void start(Stage stage) throws Exception {
-		
-		
 		pane.setTop(barraMenu);
 		barraMenu.getMenus().addAll(menu);
-		menu.getItems().addAll(novaReserva,novoHospede,todasAsReservas,quartosDisponiveis,minhasReservas,pagamentos);
+		menu.getItems().addAll(novaReserva,novoHospede,todasAsReservas,quartosDisponiveis,minhasReservas,pagamentos,sair);
 		stage.setScene(scene);
 		stage.setTitle("Menu Principal");
 		stage.show();
-		
-		
-		
 	}
 	
 	
