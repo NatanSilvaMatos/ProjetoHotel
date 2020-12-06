@@ -16,4 +16,8 @@ public class PagamentoControl {
 //        obsFuncionarios.addAll(funcDao.getAll());
 		return obsPagamentos;
 	}
+
+	public Hospede getHospede(String cpf) {
+		return null;
+	}
 }

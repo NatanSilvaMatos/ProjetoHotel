@@ -1,6 +1,5 @@
 package control;
 
-import entity.Funcionario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import entity.Quarto;
@@ -20,5 +19,12 @@ public class QuartoControl {
 		ObservableList<Quarto> obsQuartos = FXCollections.observableArrayList();
 //        obsFuncionarios.addAll(funcDao.getAll());
 		return obsQuartos;
+	}
+
+	public void ocupar(Quarto quarto) {
+
+	}
+
+	public void desocupar(Quarto quarto) {
 	}
 }
