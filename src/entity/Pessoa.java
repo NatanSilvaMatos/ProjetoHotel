@@ -1,25 +1,36 @@
 package entity;
 
 public class Pessoa {
+	private int cod;
 	private int cpf;
 	private String email;
 	private String nome;
 	private String endereco;
 	private int telefone;
-	private int rg;
+	private String senha;
 	private Cartao cartoes[];
 
 	Pessoa() {
 	}
 
-	Pessoa(int cpf, String email, String nome, String endereco, int telefone, int rg, Cartao cartoes[]) {
+	Pessoa(int cpf, String email, String nome, String endereco, int telefone, String senha, Cartao cartoes[]) {
 		this.cpf = cpf;
 		this.email = email;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.telefone = telefone;
-		this.rg = rg;
+		this.senha = senha;
 		this.cartoes = cartoes;
+	}
+	
+	
+
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
 	}
 
 	public int getCpf() {
@@ -62,12 +73,12 @@ public class Pessoa {
 		this.telefone = telefone;
 	}
 
-	public int getRg() {
-		return rg;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setRg(int rg) {
-		this.rg = rg;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public Cartao[] getCartoes() {
