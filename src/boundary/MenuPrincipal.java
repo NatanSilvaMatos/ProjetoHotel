@@ -28,6 +28,7 @@ public class MenuPrincipal extends Application {
 		pane.setStyle("-fx-background-color: white;");
 		menu.getItems().addAll(novaReserva,novoHospede,todasAsReservas,quartosDisponiveis,minhasReservas,pagamentos,sair);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.setTitle("Menu Principal");
 		stage.show();
 	}

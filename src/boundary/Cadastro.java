@@ -83,12 +83,12 @@ public class Cadastro extends Application {
 		cadastrar.setLayoutX(350);
 		cadastrar.setLayoutY(500);
 		cadastrar.setPrefWidth(120);
-			
-					
+										
 		pane.setStyle("-fx-background-color: white;");
 		pane.getChildren().addAll(lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
 		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.setTitle("Cadastro");
 		stage.show();
 	}
