@@ -32,7 +32,7 @@ public class Login extends Application {
 		ImageView imageView = new ImageView(imagem);
 		imageView.setFitHeight(300);
 		imageView.setFitWidth(300);
-		imageView.setLayoutX(20);
+		imageView.setLayoutX(250);
 		imageView.setLayoutY(3);
 			
 		btnEntrar.setLayoutX(347);
@@ -73,7 +73,7 @@ public class Login extends Application {
 		pane.getChildren().add(imageView);
 	
 		stage.setScene(scn);
-		
+		stage.setResizable(false);
 		stage.setTitle("Login");
 		stage.show();
 			
