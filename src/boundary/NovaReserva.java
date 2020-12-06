@@ -49,7 +49,7 @@ public class NovaReserva extends Application{
 		lblCedula.setLayoutX(50);
 		lblCedula.setLayoutY(320);
 		
-		txtPrecoDiaria.setLayoutX(50);
+		txtPrecoDiaria.setLayoutX(70);
 		txtPrecoDiaria.setLayoutY(320);
 		txtPrecoDiaria.setEditable(false);
 		txtPrecoDiaria.setPrefWidth(125);

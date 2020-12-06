@@ -24,6 +24,7 @@ public class Login extends Application {
 	private RadioButton rbFuncionario = new RadioButton("Funcionário");
 	private TextField txtLogin = new TextField();
 	private PasswordField txtSenha = new PasswordField();
+	private ToggleGroup groupCategoriaUsuario = new ToggleGroup();
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -53,8 +54,7 @@ public class Login extends Application {
 		txtSenha.setLayoutX(90);
 		txtSenha.setLayoutY(320);
 		txtSenha.setPrefWidth(250);
-
-		ToggleGroup groupCategoriaUsuario = new ToggleGroup();
+	
 		rbHospede.setToggleGroup(groupCategoriaUsuario);
 		rbHospede.setSelected(true);
 		rbFuncionario.setToggleGroup(groupCategoriaUsuario);
