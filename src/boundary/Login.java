@@ -34,7 +34,7 @@ public class Login extends Application {
 		imageView.setFitWidth(300);
 		imageView.setLayoutX(20);
 		imageView.setLayoutY(3);
-		
+			
 		btnEntrar.setLayoutX(347);
 		btnEntrar.setLayoutY(450);
 		btnEntrar.setPrefWidth(100);
