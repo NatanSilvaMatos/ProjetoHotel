@@ -15,20 +15,18 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Login extends Application {
+	private Pane pane = new Pane();
+	private Scene scn = new Scene(pane,800,600);
+	private Label lblLogin = new Label("Login");
+	private Label lblSenha = new Label("Senha");
+	private Button btnEntrar = new Button("Entrar");
+	private RadioButton rbHospede = new RadioButton("Hóspede");
+	private RadioButton rbFuncionario = new RadioButton("Funcionário");
+	private TextField txtLogin = new TextField();
+	private PasswordField txtSenha = new PasswordField();
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		Pane pane = new Pane();
-		Scene scn = new Scene(pane,800,600);
-		Label lblLogin = new Label("Login");
-		Label lblSenha = new Label("Senha");
-		Button btnEntrar = new Button("Entrar");
-		RadioButton rbHospede = new RadioButton("Hóspede");
-		RadioButton rbFuncionario = new RadioButton("Funcionário");
-		
-		TextField txtLogin = new TextField();
-		PasswordField txtSenha = new PasswordField();
-
 		InputStream is = getClass().getResourceAsStream("/img/logo.png");
 		Image imagem = new Image(is);
 		ImageView imageView = new ImageView(imagem);
