@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Dez-2020 às 01:56
+-- Tempo de geração: 06-Dez-2020 às 04:31
 -- Versão do servidor: 10.3.15-MariaDB
 -- versão do PHP: 7.3.6
 
@@ -62,7 +62,8 @@ CREATE TABLE `funcionario` (
   `email_func` varchar(40) NOT NULL,
   `endereco_func` varchar(40) NOT NULL,
   `telefone_func` int(11) NOT NULL,
-  `senha_func` varchar(20) NOT NULL
+  `senha_func` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,7 +79,29 @@ CREATE TABLE `hospede` (
   `email` varchar(40) NOT NULL,
   `endereco` varchar(40) NOT NULL,
   `telefone` int(11) NOT NULL,
-  `senha_hosp` varchar(20) NOT NULL
+  `senha_hosp` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `hospede`
+--
+
+INSERT INTO `hospede` (`cod_hosp`, `cpf`, `nome`, `email`, `endereco`, `telefone`, `senha_hosp`, `status`) VALUES
+(1, 2147483647, 'teste', 'teste', 'teste', 11111111, '698dc19d489c4e4db73e', 1),
+(2, 1111111112, 'teste', 'teste', 'teste', 11111111, 'teste', 1),
+(3, 2111111112, 'teste', 'teste', 'teste', 11111111, '6ïYƒÈ½Aîí8ßýK', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pagamento`
+--
+
+CREATE TABLE `pagamento` (
+  `numero_quar` int(11) NOT NULL,
+  `cod_alug` int(11) NOT NULL,
+  `num_Dias` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -93,18 +116,6 @@ CREATE TABLE `quarto` (
   `disponibilidade` int(11) NOT NULL,
   `categoria` int(11) NOT NULL,
   `preço` decimal(5,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `quarto_aluguel`
---
-
-CREATE TABLE `quarto_aluguel` (
-  `numero_quar` int(11) NOT NULL,
-  `cod_alug` int(11) NOT NULL,
-  `num_Dias` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -141,17 +152,17 @@ ALTER TABLE `hospede`
   ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
+-- Índices para tabela `pagamento`
+--
+ALTER TABLE `pagamento`
+  ADD KEY `numero_quar` (`numero_quar`),
+  ADD KEY `cod_alug` (`cod_alug`);
+
+--
 -- Índices para tabela `quarto`
 --
 ALTER TABLE `quarto`
   ADD PRIMARY KEY (`numero_quar`);
-
---
--- Índices para tabela `quarto_aluguel`
---
-ALTER TABLE `quarto_aluguel`
-  ADD KEY `numero_quar` (`numero_quar`),
-  ADD KEY `cod_alug` (`cod_alug`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -179,7 +190,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `hospede`
 --
 ALTER TABLE `hospede`
-  MODIFY `cod_hosp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_hosp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `quarto`
@@ -205,11 +216,11 @@ ALTER TABLE `cartao`
   ADD CONSTRAINT `cartao_ibfk_1` FOREIGN KEY (`cod_hosp`) REFERENCES `hospede` (`cod_hosp`);
 
 --
--- Limitadores para a tabela `quarto_aluguel`
+-- Limitadores para a tabela `pagamento`
 --
-ALTER TABLE `quarto_aluguel`
-  ADD CONSTRAINT `quarto_aluguel_ibfk_1` FOREIGN KEY (`numero_quar`) REFERENCES `quarto` (`numero_quar`),
-  ADD CONSTRAINT `quarto_aluguel_ibfk_2` FOREIGN KEY (`cod_alug`) REFERENCES `aluguel` (`cod_alug`);
+ALTER TABLE `pagamento`
+  ADD CONSTRAINT `pagamento_ibfk_1` FOREIGN KEY (`numero_quar`) REFERENCES `quarto` (`numero_quar`),
+  ADD CONSTRAINT `pagamento_ibfk_2` FOREIGN KEY (`cod_alug`) REFERENCES `aluguel` (`cod_alug`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
