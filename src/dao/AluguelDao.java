@@ -107,7 +107,7 @@ public class AluguelDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}-*/
 
 
 	private Aluguel BancoEntity(ResultSet resultSet) throws SQLException {
