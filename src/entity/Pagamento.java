@@ -1,11 +1,12 @@
 package entity;
 
 public class Pagamento {
+	private int cod;
 	private Quarto quarto;
 	private Aluguel aluguel;
 	private int numDias;
 
-	public Pagamento(Quarto quarto, Aluguel aluguel, int numDias) {
+	public Pagamento(Quarto quarto, Aluguel aluguel, int numDias) {		
 		this.quarto = quarto;
 		this.aluguel = aluguel;
 		this.numDias = numDias;
@@ -13,6 +14,15 @@ public class Pagamento {
 	
 	public Pagamento() {
 		
+	}	
+	
+
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
 	}
 
 	public Quarto getQuarto() {

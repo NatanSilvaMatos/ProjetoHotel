@@ -17,7 +17,7 @@ public class AluguelDao {
 	public List<Aluguel> Pesquisa() {
 		List<Aluguel> Alugueis = new ArrayList<>();
 		Connection con = c.getConnection();
-		String queryPessoa = "SELECT * FROM funcionario;";
+		String queryPessoa = "SELECT * FROM aluguel;";
 		try {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
 			ResultSet resultSet = ps.executeQuery();
