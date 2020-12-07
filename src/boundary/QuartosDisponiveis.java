@@ -1,6 +1,5 @@
 package boundary;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,12 +11,10 @@ import javafx.stage.Stage;
 
 public class QuartosDisponiveis {
 	private Pane pane = new Pane();
-	//private Scene scene = new Scene(pane,800,600);
 	private Label lblQuartos = new Label("QUARTOS DISPONIVEIS");
 	private TableView<String> table = new TableView<String>();
 
 	@SuppressWarnings("unchecked")
-	//@Override
 	public QuartosDisponiveis() {
 		TableColumn<String,String> columnQuarto = new TableColumn<>("N.QUARTO");
 		columnQuarto.setMinWidth(150);
@@ -41,17 +38,14 @@ public class QuartosDisponiveis {
 		
 		lblQuartos.setLayoutX(90);
 		lblQuartos.setLayoutY(30);
+		lblQuartos.setStyle("-fx-font-weight: bold");
 				
 		pane.getChildren().addAll(table, lblQuartos);
-		//stage.setScene(scene);
-		//stage.show();		
+		
 	}
 
 	public Pane getPane() {
 		return pane;
 	}
 
-	//public static void main(String[] args) {
-		//Application.launch(QuartosDisponiveis.class,args);
-	//}
 }

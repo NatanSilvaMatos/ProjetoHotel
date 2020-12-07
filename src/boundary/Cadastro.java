@@ -1,14 +1,17 @@
 package boundary;
 
-import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Cadastro {
+public class Cadastro implements EventHandler<ActionEvent> {
 	private TextField txtNome = new TextField();
 	private TextField txtEmail = new TextField();
 	private TextField txtEndereco = new TextField();
@@ -16,6 +19,7 @@ public class Cadastro {
 	private TextField txtTelefone = new TextField();
 	private TextField txtCPF= new TextField();
 	private TextField txtSenha = new TextField();
+	private Label lblCadastro = new Label("CADASTRO");
 	private Label lblNome = new Label("NOME:");
 	private Label lblEmail = new Label("EMAIL:");
 	private Label lblEndereco = new Label("ENDERECO:");
@@ -26,14 +30,16 @@ public class Cadastro {
 	private Pane pane = new Pane();
 	private Button cadastrar = new Button("Cadastrar");
 	private Button gerarSenha = new Button("Gerar Senha");
-	private Scene scene = new Scene(pane,800,600);
 	
 	
-	//@Override
 	public Cadastro() {		
+		lblCadastro.setLayoutX(30);
+		lblCadastro.setLayoutY(30);
+		lblCadastro.setStyle("-fx-font-weight: bold");
+		
 		lblNome.setLayoutX(30);
 		lblNome.setLayoutY(70);
-		
+			
 		txtNome.setLayoutX(30);
 		txtNome.setLayoutY(100);
 		txtNome.setPrefWidth(250);
@@ -75,6 +81,7 @@ public class Cadastro {
 		
 		txtSenha.setLayoutX(500);
 		txtSenha.setLayoutY(200);
+		txtSenha.setEditable(false);
 		txtSenha.setPrefWidth(250);
 		
 		gerarSenha.setLayoutX(580);
@@ -83,21 +90,31 @@ public class Cadastro {
 		cadastrar.setLayoutX(350);
 		cadastrar.setLayoutY(500);
 		cadastrar.setPrefWidth(120);
+		cadastrar.setOnAction(this);
 										
 		pane.setStyle("-fx-background-color: white;");
-		pane.getChildren().addAll(lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
+		pane.getChildren().addAll(lblCadastro, lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
 		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
-		//stage.setScene(scene);
-		//stage.setResizable(false);
-		//stage.setTitle("Cadastro");
-		//stage.show();
 	}
 
 	public Pane getPane() {
 		return pane;
 	}
-	//public static void main(String[] args) {
-		//Application.launch(Cadastro.class,args);
-	//}
+	
+	@Override
+	public void handle(ActionEvent e) {
+		if(e.getTarget() == cadastrar) {
+			if(txtNome.getText().isEmpty() || txtEmail.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumeroResidencia.getText().isEmpty() ||
+			txtTelefone.getText().isEmpty() || txtCPF.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Erro");
+				alert.setHeaderText("Estão faltando campos a serem preenchidos");
+				alert.setContentText("Preencha todos os campos");
+				alert.showAndWait();
+			}
+			
+		}
+		
+	}
 
 }

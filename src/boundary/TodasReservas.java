@@ -1,6 +1,8 @@
 package boundary;
 
-import javafx.application.Application;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,15 +12,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class TodasReservas  {
+public class TodasReservas implements EventHandler<ActionEvent> {
 	private Pane pane = new Pane();
-	//private Scene scene = new Scene(pane,800,600);
 	private Label lblTodasAsReservas = new Label("TODAS AS RESERVAS");
 	private TableView<String> table = new TableView<String>();
 	
 	
 	@SuppressWarnings("unchecked")
-	//@Override
 	public TodasReservas() {
 		TableColumn<String,String> columnQuarto = new TableColumn<>("N.QUARTO");
 		columnQuarto.setMinWidth(120);
@@ -50,20 +50,18 @@ public class TodasReservas  {
 		
 		lblTodasAsReservas.setLayoutX(40);
 		lblTodasAsReservas.setLayoutY(30);
+		lblTodasAsReservas.setStyle("-fx-font-weight: bold");
 		
 		pane.getChildren().addAll(table,lblTodasAsReservas);
-		//stage.setScene(scene);
-		//stage.show();
 		
 	}
-
 	public Pane getPane() {
 		return pane;
 	}
+	@Override
+	public void handle(ActionEvent arg0) {
+		
+		
+	}
 	
-	
-	//public static void main(String[] args) {
-		//Application.launch(TodasReservas.class,args);
-	//}
-
 }

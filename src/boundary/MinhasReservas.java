@@ -1,6 +1,6 @@
 package boundary;
 
-import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 public class MinhasReservas {
 	private Pane pane = new Pane();
 	private Label lblReserva = new Label("MINHAS RESERVAS");
-	//private Scene scene = new Scene(pane,800,600);
 	private TableView<String> table = new TableView<String>();
 	
 
@@ -49,24 +48,16 @@ public class MinhasReservas {
 		
 		lblReserva.setLayoutX(50);
 		lblReserva.setLayoutY(30);
+		lblReserva.setStyle("-fx-font-weight: bold");
 		
 			
 				
 		pane.getChildren().addAll(table,lblReserva);
-		//stage.setScene(scene);
-		//stage.show();		
 		
 	}
 	
 	public Pane getPane() {
 		return pane;
 	}
-
-	//public static void main(String[] args) {
-		//Application.launch(MinhasReservas.class,args);
-	//}
-	
-
-	
 
 }
