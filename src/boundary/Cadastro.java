@@ -1,14 +1,17 @@
 package boundary;
 
-import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Cadastro {
+public class Cadastro implements EventHandler<ActionEvent> {
 	private TextField txtNome = new TextField();
 	private TextField txtEmail = new TextField();
 	private TextField txtEndereco = new TextField();
@@ -29,7 +32,6 @@ public class Cadastro {
 	private Button gerarSenha = new Button("Gerar Senha");
 	
 	
-	//@Override
 	public Cadastro() {		
 		lblCadastro.setLayoutX(30);
 		lblCadastro.setLayoutY(30);
@@ -79,6 +81,7 @@ public class Cadastro {
 		
 		txtSenha.setLayoutX(500);
 		txtSenha.setLayoutY(200);
+		txtSenha.setEditable(false);
 		txtSenha.setPrefWidth(250);
 		
 		gerarSenha.setLayoutX(580);
@@ -87,21 +90,31 @@ public class Cadastro {
 		cadastrar.setLayoutX(350);
 		cadastrar.setLayoutY(500);
 		cadastrar.setPrefWidth(120);
+		cadastrar.setOnAction(this);
 										
 		pane.setStyle("-fx-background-color: white;");
 		pane.getChildren().addAll(lblCadastro, lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
 		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
-		//stage.setScene(scene);
-		//stage.setResizable(false);
-		//stage.setTitle("Cadastro");
-		//stage.show();
 	}
 
 	public Pane getPane() {
 		return pane;
 	}
-	//public static void main(String[] args) {
-		//Application.launch(Cadastro.class,args);
-	//}
+	
+	@Override
+	public void handle(ActionEvent e) {
+		if(e.getTarget() == cadastrar) {
+			if(txtNome.getText().isEmpty() || txtEmail.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumeroResidencia.getText().isEmpty() ||
+			txtTelefone.getText().isEmpty() || txtCPF.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Erro");
+				alert.setHeaderText("Estão faltando campos a serem preenchidos");
+				alert.setContentText("Preencha todos os campos");
+				alert.showAndWait();
+			}
+			
+		}
+		
+	}
 
 }

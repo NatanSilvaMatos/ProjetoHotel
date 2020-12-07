@@ -1,6 +1,6 @@
 package boundary;
 
-import javafx.application.Application;
+
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 public class NovaReserva {
 	private Pane pane = new Pane();
-	//private Scene scene = new Scene(pane,800,600);
 	private Label lblCPF = new Label("CPF HOSPEDE:");
 	private Label lblNumQuarto = new Label("NUMERO DO QUARTO:");
 	private Label lblPrecoDiaria = new Label("PRECO(DIARIA)");
@@ -100,16 +99,9 @@ public class NovaReserva {
 		pane.getChildren().addAll(lblCPF,txtCPF,lblNumQuarto,txtNumQuarto,lblPrecoDiaria,lblCedula,txtPrecoDiaria,lblAndar,txtAndar,lblCategoria,cbCategoria,
 		lblDisponibilidade, cbDisponibilidade, confirmarReserva, lblNovaReserva, pesquisarCpf,pesquisarNumQuarto);
 		
-		//stage.setScene(scene);
-		//stage.setResizable(false);
-		//stage.show();
 	}
 
 	public Pane getPane() {
 		return pane;
 	}
-
-	//public static void main(String[] args) {
-		//Application.launch(NovaReserva.class,args);
-	//}
 }

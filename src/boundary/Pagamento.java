@@ -1,6 +1,5 @@
 package boundary;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +11,7 @@ import javafx.stage.Stage;
 
 public class Pagamento{
 	private Pane pane = new Pane();
-	//private Scene scene = new Scene(pane,800,600);
+
 	private Label lblCPF = new Label("CPF HOSPEDE:");
 	private Label lblCartao = new Label("CARTAO:");
 	private Label lblCodSeguranca = new Label("COD. SEGURANCA:");
@@ -30,7 +29,6 @@ public class Pagamento{
 	private Button confirmarPagamento = new Button("Confirmar Pagamento");
 	private ToggleGroup groupTipoPagamento = new ToggleGroup();
 		
-	//@Override
 	public Pagamento() {	
 		lblPagamento.setLayoutX(50);
 		lblPagamento.setLayoutY(40);
@@ -88,15 +86,8 @@ public class Pagamento{
 		
 		pane.getChildren().addAll(lblPagamento,lblCPF,txtCPF,lblCartao,txtCartao,lblCodSeguranca,txtCodSeguranca, lblPrecoTotal,lblCedula,txtPrecoTotal,lblTipoPagamento,
 		rbDebito,rbCredito,rbDinheiro, confirmarPagamento);
-		//stage.setScene(scene);
-		//stage.show();
-		
-		
 		
 	}
-	//public static void main(String[] args) {
-		//Application.launch(Pagamento.class,args);
-	//}
 
 	public Pane getPane() {
 		return pane;
