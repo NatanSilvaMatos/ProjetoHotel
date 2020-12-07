@@ -66,8 +66,6 @@ public class MenuPrincipal extends Application implements EventHandler<ActionEve
 		if(e.getTarget() == novaReserva) {
 			pane.setCenter(telaNovaReserva.getPane());
 		}
-		
-		
 	}
 	
 	

@@ -41,6 +41,7 @@ public class QuartosDisponiveis {
 		
 		lblQuartos.setLayoutX(90);
 		lblQuartos.setLayoutY(30);
+		lblQuartos.setStyle("-fx-font-weight: bold");
 				
 		pane.getChildren().addAll(table, lblQuartos);
 		//stage.setScene(scene);

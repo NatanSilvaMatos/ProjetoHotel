@@ -28,6 +28,8 @@ public class NovaReserva {
 	private ComboBox<String> cbCategoria = new ComboBox<String>(); 
 	private ComboBox<String> cbDisponibilidade = new ComboBox<String>();
 	private Button confirmarReserva = new Button("Confirmar Reserva");
+	private Button pesquisarCpf = new Button("Pesquisar");
+	private Button pesquisarNumQuarto = new Button("Pesquisar Quarto");
 	private String[] categorias = {"Premium","Presidencial","Comum"};
 	private String[] disponibilidade = {"Locado","Disponivel"};
 
@@ -35,6 +37,7 @@ public class NovaReserva {
 	public NovaReserva() {		
 		lblNovaReserva.setLayoutX(50);
 		lblNovaReserva.setLayoutY(30);
+		lblNovaReserva.setStyle("-fx-font-weight: bold");
 		
 		lblCPF.setLayoutX(50);
 		lblCPF.setLayoutY(90);
@@ -42,11 +45,17 @@ public class NovaReserva {
 		txtCPF.setLayoutX(50);
 		txtCPF.setLayoutY(120);
 		
+		pesquisarCpf.setLayoutX(220);
+		pesquisarCpf.setLayoutY(120);
+		
 		lblNumQuarto.setLayoutX(50);
 		lblNumQuarto.setLayoutY(190);
 				
 		txtNumQuarto.setLayoutX(50);
 		txtNumQuarto.setLayoutY(220);
+		
+		pesquisarNumQuarto.setLayoutX(220);
+		pesquisarNumQuarto.setLayoutY(220);
 		
 		lblPrecoDiaria.setLayoutX(50);
 		lblPrecoDiaria.setLayoutY(290);
@@ -73,7 +82,7 @@ public class NovaReserva {
 		cbCategoria.setLayoutY(220);
 		cbCategoria.setItems(FXCollections.observableArrayList(categorias));
 		cbCategoria.getSelectionModel().select(categorias[0]);
-		cbCategoria.setPrefWidth(150);		
+		cbCategoria.setPrefWidth(150);	
 		
 		lblDisponibilidade.setLayoutX(500);
 		lblDisponibilidade.setLayoutY(290);
@@ -89,7 +98,7 @@ public class NovaReserva {
 		confirmarReserva.setPrefWidth(170);
 				
 		pane.getChildren().addAll(lblCPF,txtCPF,lblNumQuarto,txtNumQuarto,lblPrecoDiaria,lblCedula,txtPrecoDiaria,lblAndar,txtAndar,lblCategoria,cbCategoria,
-		lblDisponibilidade, cbDisponibilidade, confirmarReserva, lblNovaReserva);
+		lblDisponibilidade, cbDisponibilidade, confirmarReserva, lblNovaReserva, pesquisarCpf,pesquisarNumQuarto);
 		
 		//stage.setScene(scene);
 		//stage.setResizable(false);

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class Pagamento{
 	private Pane pane = new Pane();
-	private Scene scene = new Scene(pane,800,600);
+	//private Scene scene = new Scene(pane,800,600);
 	private Label lblCPF = new Label("CPF HOSPEDE:");
 	private Label lblCartao = new Label("CARTAO:");
 	private Label lblCodSeguranca = new Label("COD. SEGURANCA:");
@@ -34,6 +34,7 @@ public class Pagamento{
 	public Pagamento() {	
 		lblPagamento.setLayoutX(50);
 		lblPagamento.setLayoutY(40);
+		lblPagamento.setStyle("-fx-font-weight: bold");
 		
 		lblCPF.setLayoutX(50);
 		lblCPF.setLayoutY(90);

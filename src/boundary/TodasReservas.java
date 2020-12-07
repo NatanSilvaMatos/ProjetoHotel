@@ -50,13 +50,13 @@ public class TodasReservas  {
 		
 		lblTodasAsReservas.setLayoutX(40);
 		lblTodasAsReservas.setLayoutY(30);
+		lblTodasAsReservas.setStyle("-fx-font-weight: bold");
 		
 		pane.getChildren().addAll(table,lblTodasAsReservas);
 		//stage.setScene(scene);
 		//stage.show();
 		
 	}
-
 	public Pane getPane() {
 		return pane;
 	}

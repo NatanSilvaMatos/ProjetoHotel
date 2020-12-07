@@ -49,6 +49,7 @@ public class MinhasReservas {
 		
 		lblReserva.setLayoutX(50);
 		lblReserva.setLayoutY(30);
+		lblReserva.setStyle("-fx-font-weight: bold");
 		
 			
 				

@@ -16,6 +16,7 @@ public class Cadastro {
 	private TextField txtTelefone = new TextField();
 	private TextField txtCPF= new TextField();
 	private TextField txtSenha = new TextField();
+	private Label lblCadastro = new Label("CADASTRO");
 	private Label lblNome = new Label("NOME:");
 	private Label lblEmail = new Label("EMAIL:");
 	private Label lblEndereco = new Label("ENDERECO:");
@@ -26,14 +27,17 @@ public class Cadastro {
 	private Pane pane = new Pane();
 	private Button cadastrar = new Button("Cadastrar");
 	private Button gerarSenha = new Button("Gerar Senha");
-	private Scene scene = new Scene(pane,800,600);
 	
 	
 	//@Override
 	public Cadastro() {		
+		lblCadastro.setLayoutX(30);
+		lblCadastro.setLayoutY(30);
+		lblCadastro.setStyle("-fx-font-weight: bold");
+		
 		lblNome.setLayoutX(30);
 		lblNome.setLayoutY(70);
-		
+			
 		txtNome.setLayoutX(30);
 		txtNome.setLayoutY(100);
 		txtNome.setPrefWidth(250);
@@ -85,7 +89,7 @@ public class Cadastro {
 		cadastrar.setPrefWidth(120);
 										
 		pane.setStyle("-fx-background-color: white;");
-		pane.getChildren().addAll(lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
+		pane.getChildren().addAll(lblCadastro, lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
 		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
 		//stage.setScene(scene);
 		//stage.setResizable(false);
