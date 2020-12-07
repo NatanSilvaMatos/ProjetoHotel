@@ -10,7 +10,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Pagamento extends Application{
+public class Pagamento{
 	private Pane pane = new Pane();
 	private Scene scene = new Scene(pane,800,600);
 	private Label lblCPF = new Label("CPF HOSPEDE:");
@@ -19,6 +19,7 @@ public class Pagamento extends Application{
 	private Label lblCedula = new Label("R$");
 	private Label lblTipoPagamento = new Label("TIPO PAGAMENTO:");
 	private Label lblPrecoTotal = new Label("TOTAL:");
+	private Label lblPagamento = new Label("PAGAMENTO");
 	private TextField txtCPF = new TextField();
 	private TextField txtCartao = new TextField();
 	private TextField txtCodSeguranca = new TextField();
@@ -29,8 +30,11 @@ public class Pagamento extends Application{
 	private Button confirmarPagamento = new Button("Confirmar Pagamento");
 	private ToggleGroup groupTipoPagamento = new ToggleGroup();
 		
-	@Override
-	public void start(Stage stage) throws Exception {	
+	//@Override
+	public Pagamento() {	
+		lblPagamento.setLayoutX(50);
+		lblPagamento.setLayoutY(40);
+		
 		lblCPF.setLayoutX(50);
 		lblCPF.setLayoutY(90);
 		
@@ -81,14 +85,19 @@ public class Pagamento extends Application{
 		confirmarPagamento.setLayoutY(500);
 		confirmarPagamento.setPrefWidth(170);
 		
-		pane.getChildren().addAll(lblCPF,txtCPF,lblCartao,txtCartao,lblCodSeguranca,txtCodSeguranca, lblPrecoTotal,lblCedula,txtPrecoTotal,lblTipoPagamento,
+		pane.getChildren().addAll(lblPagamento,lblCPF,txtCPF,lblCartao,txtCartao,lblCodSeguranca,txtCodSeguranca, lblPrecoTotal,lblCedula,txtPrecoTotal,lblTipoPagamento,
 		rbDebito,rbCredito,rbDinheiro, confirmarPagamento);
-		stage.setScene(scene);
-		stage.show();
+		//stage.setScene(scene);
+		//stage.show();
+		
+		
 		
 	}
-	public static void main(String[] args) {
-		Application.launch(Pagamento.class,args);
+	//public static void main(String[] args) {
+		//Application.launch(Pagamento.class,args);
+	//}
+
+	public Pane getPane() {
+		return pane;
 	}
-	
 }

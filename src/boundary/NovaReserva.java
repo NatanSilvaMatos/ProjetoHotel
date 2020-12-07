@@ -10,9 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class NovaReserva extends Application{
+public class NovaReserva {
 	private Pane pane = new Pane();
-	private Scene scene = new Scene(pane,800,600);
+	//private Scene scene = new Scene(pane,800,600);
 	private Label lblCPF = new Label("CPF HOSPEDE:");
 	private Label lblNumQuarto = new Label("NUMERO DO QUARTO:");
 	private Label lblPrecoDiaria = new Label("PRECO(DIARIA)");
@@ -20,17 +20,22 @@ public class NovaReserva extends Application{
 	private Label lblCategoria = new Label("CATEGORIA");
 	private Label lblDisponibilidade = new Label("DISPONIBILIDADE");
 	private Label lblCedula = new Label("R$");
+	private Label lblNovaReserva = new Label("NOVA RESERVA");
 	private TextField txtCPF = new TextField();
 	private TextField txtNumQuarto = new TextField();
 	private TextField txtPrecoDiaria = new TextField();
 	private TextField txtAndar = new TextField();
-	private TextField txtDisponibilidade = new TextField();
 	private ComboBox<String> cbCategoria = new ComboBox<String>(); 
+	private ComboBox<String> cbDisponibilidade = new ComboBox<String>();
 	private Button confirmarReserva = new Button("Confirmar Reserva");
 	private String[] categorias = {"Premium","Presidencial","Comum"};
+	private String[] disponibilidade = {"Locado","Disponivel"};
 
-	@Override
-	public void start(Stage stage) throws Exception {		
+	//@Override
+	public NovaReserva() {		
+		lblNovaReserva.setLayoutX(50);
+		lblNovaReserva.setLayoutY(30);
+		
 		lblCPF.setLayoutX(50);
 		lblCPF.setLayoutY(90);
 		
@@ -59,6 +64,7 @@ public class NovaReserva extends Application{
 		
 		txtAndar.setLayoutX(500);
 		txtAndar.setLayoutY(120);
+		txtAndar.setEditable(false);
 		
 		lblCategoria.setLayoutX(500);
 		lblCategoria.setLayoutY(190);
@@ -72,23 +78,29 @@ public class NovaReserva extends Application{
 		lblDisponibilidade.setLayoutX(500);
 		lblDisponibilidade.setLayoutY(290);
 		
-		txtDisponibilidade.setLayoutX(500);
-		txtDisponibilidade.setLayoutY(320);
+		cbDisponibilidade.setLayoutX(500);
+		cbDisponibilidade.setLayoutY(320);
+		cbDisponibilidade.setItems(FXCollections.observableArrayList(disponibilidade));
+		cbDisponibilidade.getSelectionModel().select(disponibilidade[0]);
+		cbDisponibilidade.setPrefWidth(150);
 		
 		confirmarReserva.setLayoutX(300);
 		confirmarReserva.setLayoutY(500);
 		confirmarReserva.setPrefWidth(170);
 				
 		pane.getChildren().addAll(lblCPF,txtCPF,lblNumQuarto,txtNumQuarto,lblPrecoDiaria,lblCedula,txtPrecoDiaria,lblAndar,txtAndar,lblCategoria,cbCategoria,
-		lblDisponibilidade, txtDisponibilidade, confirmarReserva);
+		lblDisponibilidade, cbDisponibilidade, confirmarReserva, lblNovaReserva);
 		
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
+		//stage.setScene(scene);
+		//stage.setResizable(false);
+		//stage.show();
 	}
 
-	
-	public static void main(String[] args) {
-		Application.launch(NovaReserva.class,args);
+	public Pane getPane() {
+		return pane;
 	}
+
+	//public static void main(String[] args) {
+		//Application.launch(NovaReserva.class,args);
+	//}
 }

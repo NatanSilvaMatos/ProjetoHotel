@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Cadastro extends Application {
+public class Cadastro {
 	private TextField txtNome = new TextField();
 	private TextField txtEmail = new TextField();
 	private TextField txtEndereco = new TextField();
@@ -29,8 +29,8 @@ public class Cadastro extends Application {
 	private Scene scene = new Scene(pane,800,600);
 	
 	
-	@Override
-	public void start(Stage stage) throws Exception {		
+	//@Override
+	public Cadastro() {		
 		lblNome.setLayoutX(30);
 		lblNome.setLayoutY(70);
 		
@@ -87,17 +87,17 @@ public class Cadastro extends Application {
 		pane.setStyle("-fx-background-color: white;");
 		pane.getChildren().addAll(lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
 		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.setTitle("Cadastro");
-		stage.show();
+		//stage.setScene(scene);
+		//stage.setResizable(false);
+		//stage.setTitle("Cadastro");
+		//stage.show();
 	}
-	
-	
-	public static void main(String[] args) {
-		Application.launch(Cadastro.class,args);
+
+	public Pane getPane() {
+		return pane;
 	}
-	
-	
-	
+	//public static void main(String[] args) {
+		//Application.launch(Cadastro.class,args);
+	//}
+
 }

@@ -3,21 +3,22 @@ package boundary;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class MinhasReservas extends Application {
+public class MinhasReservas {
 	private Pane pane = new Pane();
-	private Scene scene = new Scene(pane,800,600);
-	private Button voltar = new Button("Voltar");
+	private Label lblReserva = new Label("MINHAS RESERVAS");
+	//private Scene scene = new Scene(pane,800,600);
 	private TableView<String> table = new TableView<String>();
+	
 
 	@SuppressWarnings("unchecked")
-	@Override
-	public void start(Stage stage) throws Exception {
+	public MinhasReservas() {
 		TableColumn<String,String> columnQuarto = new TableColumn<>("N.QUARTO");
 		columnQuarto.setMinWidth(120);
 		columnQuarto.setCellValueFactory(new PropertyValueFactory<>("numero"));
@@ -46,18 +47,24 @@ public class MinhasReservas extends Application {
 		table.setLayoutX(50);
 		table.setLayoutY(70);
 		
-		voltar.setLayoutX(350);
-		voltar.setLayoutY(500);
-		voltar.setPrefWidth(100);
+		lblReserva.setLayoutX(50);
+		lblReserva.setLayoutY(30);
+		
+			
 				
-		pane.getChildren().addAll(table, voltar);
-		stage.setScene(scene);
-		stage.show();		
+		pane.getChildren().addAll(table,lblReserva);
+		//stage.setScene(scene);
+		//stage.show();		
+		
 	}
 	
-	public static void main(String[] args) {
-		Application.launch(MinhasReservas.class,args);
+	public Pane getPane() {
+		return pane;
 	}
+
+	//public static void main(String[] args) {
+		//Application.launch(MinhasReservas.class,args);
+	//}
 	
 
 	
