@@ -3,7 +3,7 @@ package entity;
 public class Hospede extends Pessoa {
 	private Cartao cartao[];
 	
-	Hospede(){
+	public Hospede(){
 	}
 	
 	public Cartao[] getCartao() {

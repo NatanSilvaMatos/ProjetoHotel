@@ -8,19 +8,19 @@ public class Pessoa {
 	private String endereco;
 	private int telefone;
 	private String senha;
-	private Cartao cartoes[];
+	private int status;
 
 	Pessoa() {
 	}
 
-	Pessoa(int cpf, String email, String nome, String endereco, int telefone, String senha, Cartao cartoes[]) {
+	Pessoa(int cpf, String email, String nome, String endereco, int telefone, String senha, int status) {
 		this.cpf = cpf;
 		this.email = email;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.senha = senha;
-		this.cartoes = cartoes;
+		this.status = status;
 	}
 	
 	
@@ -81,12 +81,12 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-	public Cartao[] getCartoes() {
-		return cartoes;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setCartoes(Cartao[] cartoes) {
-		this.cartoes = cartoes;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }
