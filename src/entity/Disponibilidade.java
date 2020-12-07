@@ -1,5 +1,5 @@
 package entity;
 
 public enum Disponibilidade {
-	DISPONIVEL, LOCADO, RESERVADO;
+	DISPONIVEL, LOCADO;
 }

@@ -10,6 +10,9 @@ public class Quarto {
 	public Quarto(int numero) {
 		this.numero = numero;
 	}
+	
+	public Quarto() {
+	}
 
 	public int getNumero() {
 		return numero;

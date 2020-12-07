@@ -14,12 +14,14 @@ import entity.Hospede;
 public class CartaoDebitoDao {
 	private ConexaoBanco c = new ConexaoBanco();	
 
-	public List<Cartao> Pesquisa() {
+	public List<Cartao> Pesquisa(Hospede hospede) {
 		List<Cartao> cartoes = new ArrayList<>();
-		Connection con = c.getConnection();
-		String querycartao = "SELECT * FROM funcionario;";
+		Connection con = c.getConnection();		
+		String querycartao = "SELECT c.cod_cart, c.numero_cart, c.cvv, c.tipo, c.status from cartao c "
+				+ "INNER JOIN hospede h on c.cod_hosp = h.cod_hosp WHERE c.cod_hosp = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(querycartao);
+			ps.setInt(1, hospede.getCod());
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -41,9 +43,8 @@ public class CartaoDebitoDao {
 		try {
 
 			Connection con = c.getConnection();
-			String queryhospede = "Insert Into cartao(cod_hosp, nomero_cart, cvv, tipo) VALUES( ?, ?, ?, ?)";
+			String queryhospede = "Insert Into cartao(cod_hosp, numero_cart, cvv, tipo) VALUES( ?, ?, ?, ?);";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
-
 			ps.setInt(1, hospede.getCod());
 			ps.setInt(2, cartao.getNumero());
 			ps.setInt(3, cartao.getCvv());

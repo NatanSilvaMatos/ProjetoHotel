@@ -41,8 +41,7 @@ public class HospedeDao {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
 			ps.setInt(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
-
-
+			
 			hospede = BancoEntity(resultSet);
 			
 			con.close();
@@ -81,13 +80,14 @@ public class HospedeDao {
 				+ " WHERE cod_hosp = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, hospede.getCod());
-			ps.setInt(2, hospede.getCpf());
-			ps.setString(3, hospede.getNome());
-			ps.setString(4, hospede.getEmail());
-			ps.setString(5, hospede.getEndereco());
-			ps.setInt(6, hospede.getTelefone());
-			ps.setString(7, hospede.getSenha());
+			ps.setInt(1, hospede.getCpf());
+			ps.setString(2, hospede.getNome());
+			ps.setString(3, hospede.getEmail());
+			ps.setString(4, hospede.getEndereco());
+			ps.setInt(5, hospede.getTelefone());
+			ps.setString(6, hospede.getSenha());
+			ps.setInt(7, hospede.getCod());
+
 
 			ps.execute();
 			con.close();
@@ -111,15 +111,25 @@ public class HospedeDao {
 
 	private Hospede BancoEntity(ResultSet resultSet) throws SQLException {
 		Hospede hospede = new Hospede();
-		System.out.println(resultSet.getInt("cod_hosp"));
-		hospede.setCod((resultSet.getInt("cod_hosp")));
+		if (resultSet.next()) {
+			hospede.setCod(resultSet.getInt(1));
+			hospede.setCpf(resultSet.getInt(2));
+			hospede.setNome(resultSet.getString(3));
+			hospede.setEmail(resultSet.getString(4));
+			hospede.setEndereco(resultSet.getString(5));
+			hospede.setTelefone(resultSet.getInt(6));
+			hospede.setSenha(resultSet.getString(7));
+			hospede.setStatus(resultSet.getInt(8));
+
+		}
+		/*hospede.setCod(resultSet.getInt("cod_hosp"));
 		hospede.setCpf(resultSet.getInt("cpf"));
 		hospede.setNome(resultSet.getString("nome"));
 		hospede.setEmail(resultSet.getString("email"));
 		hospede.setEndereco(resultSet.getString("endereco"));
 		hospede.setTelefone(resultSet.getInt("telefone"));
-		hospede.setSenha(resultSet.getString("senha"));
-		hospede.setStatus(resultSet.getInt("status"));
+		hospede.setSenha(resultSet.getString("senha_hosp"));
+		hospede.setStatus(resultSet.getInt("status"));*/
 
 		return hospede;
 	}

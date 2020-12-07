@@ -18,6 +18,7 @@ public class Teste {
 		List<Hospede> hospedes = new ArrayList<>();
 
 		//funcionario.setCod("cod_func")));
+		hospede.setCod(6);
 		hospede.setCpf(311111122);
 		hospede.setNome("teste2");
 		hospede.setEmail("teste2");
@@ -25,10 +26,14 @@ public class Teste {
 		hospede.setTelefone(11111111);
 		hospede.setSenha("teste");
 		hospede.setStatus(1);
-		//hospedes = h.Pesquisa()
-		h.update(hospede);
+		hospedes = h.Pesquisa();
+		//System.out.println(hospedes.);
+		//h.update(hospede);
 		//h.Insert(hospede);
-		//c.Insert(h.PesquisaCpf(hospede.getCpf()), cartao);
+		cartao.setNumero(12345);
+		cartao.setCvv(123);
+		cartao.setStatus(1);
+		c.Insert(h.PesquisaCpf(hospede.getCpf()), cartao);
 		/*Statement st = con.createStatement();
 		String sql = "INSERT INTO hospede (cpf, nome, email, endereco, telefone, senha_hosp) "
 				+ "VALUES ('2111111112', 'teste', 'teste', 'teste', '11111111', AES_ENCRYPT('teste', 'chave'))";
