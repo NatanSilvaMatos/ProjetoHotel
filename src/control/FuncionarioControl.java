@@ -2,23 +2,26 @@ package control;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import dao.FuncionarioDao;
 import entity.Funcionario;
 
 public class FuncionarioControl {
 
-	public void adicionar(Funcionario funcionario) {
+	FuncionarioDao funcDao = new FuncionarioDao();
 
+	public void adicionar(Funcionario funcionario) {
+		funcDao.Insert(funcionario);
 	}
 
 	public ObservableList<Funcionario> getListaAtivos() {
 		ObservableList<Funcionario> obsFuncionarios = FXCollections.observableArrayList();
-//        obsFuncionarios.addAll(funcDao.getAll());
+		obsFuncionarios.addAll(funcDao.Pesquisa());
 		return obsFuncionarios;
 	}
 
 	public ObservableList<Funcionario> getLista() {
 		ObservableList<Funcionario> obsFuncionarios = FXCollections.observableArrayList();
-//        obsFuncionarios.addAll(funcDao.getAll());
+		obsFuncionarios.addAll(funcDao.Pesquisa());
 		return obsFuncionarios;
 	}
 }
