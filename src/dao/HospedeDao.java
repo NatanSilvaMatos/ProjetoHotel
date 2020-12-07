@@ -52,6 +52,25 @@ public class HospedeDao {
 		return null;
 	}
 	
+	public Hospede PesquisaCod(int cod) {
+		Hospede hospede = new Hospede();
+		Connection con = c.getConnection();
+		String queryPessoa = "SELECT * FROM hospede WHERE cod_hosp = ?;";
+		try {
+			PreparedStatement ps = con.prepareStatement(queryPessoa);
+			ps.setInt(1, cod);
+			ResultSet resultSet = ps.executeQuery();
+			
+			hospede = BancoEntity(resultSet);
+			
+			con.close();
+			return hospede;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void Insert(Hospede hospede) {
 		try {
 

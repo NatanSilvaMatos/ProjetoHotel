@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Dez-2020 às 04:31
+-- Tempo de geração: 07-Dez-2020 às 04:23
 -- Versão do servidor: 10.3.15-MariaDB
 -- versão do PHP: 7.3.6
 
@@ -46,8 +46,18 @@ CREATE TABLE `cartao` (
   `cod_hosp` int(11) NOT NULL,
   `numero_cart` int(11) NOT NULL,
   `cvv` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL
+  `tipo` varchar(7) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cartao`
+--
+
+INSERT INTO `cartao` (`cod_cart`, `cod_hosp`, `numero_cart`, `cvv`, `tipo`, `status`) VALUES
+(1, 1, 12345, 123, '0', 1),
+(2, 6, 12345, 123, 'Debito', 1),
+(3, 6, 12345, 123, 'Debito', 1);
 
 -- --------------------------------------------------------
 
@@ -63,8 +73,15 @@ CREATE TABLE `funcionario` (
   `endereco_func` varchar(40) NOT NULL,
   `telefone_func` int(11) NOT NULL,
   `senha_func` varchar(20) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `funcionario`
+--
+
+INSERT INTO `funcionario` (`cod_func`, `cpf_func`, `nome_func`, `email_func`, `endereco_func`, `telefone_func`, `senha_func`, `status`) VALUES
+(1, 2111111112, 'teste', 'teste', 'teste', 11111111, 'teste', 1);
 
 -- --------------------------------------------------------
 
@@ -80,7 +97,7 @@ CREATE TABLE `hospede` (
   `endereco` varchar(40) NOT NULL,
   `telefone` int(11) NOT NULL,
   `senha_hosp` varchar(20) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -90,7 +107,9 @@ CREATE TABLE `hospede` (
 INSERT INTO `hospede` (`cod_hosp`, `cpf`, `nome`, `email`, `endereco`, `telefone`, `senha_hosp`, `status`) VALUES
 (1, 2147483647, 'teste', 'teste', 'teste', 11111111, '698dc19d489c4e4db73e', 1),
 (2, 1111111112, 'teste', 'teste', 'teste', 11111111, 'teste', 1),
-(3, 2111111112, 'teste', 'teste', 'teste', 11111111, '6ïYƒÈ½Aîí8ßýK', 1);
+(3, 2111111112, 'teste', 'teste', 'teste', 11111111, '6ïYƒÈ½Aîí8ßýK', 1),
+(4, 2111111122, 'teste', 'teste', 'teste', 11111111, 'teste', 1),
+(6, 311111122, 'teste2', 'teste2', 'teste2', 11111111, 'teste', 1);
 
 -- --------------------------------------------------------
 
@@ -115,8 +134,16 @@ CREATE TABLE `quarto` (
   `andar` int(11) NOT NULL,
   `disponibilidade` int(11) NOT NULL,
   `categoria` int(11) NOT NULL,
-  `preço` decimal(5,2) DEFAULT NULL
+  `preco` decimal(5,2) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `quarto`
+--
+
+INSERT INTO `quarto` (`numero_quar`, `andar`, `disponibilidade`, `categoria`, `preco`, `status`) VALUES
+(1, 1, 1, 1, '100.00', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -155,8 +182,8 @@ ALTER TABLE `hospede`
 -- Índices para tabela `pagamento`
 --
 ALTER TABLE `pagamento`
-  ADD KEY `numero_quar` (`numero_quar`),
-  ADD KEY `cod_alug` (`cod_alug`);
+  ADD KEY `cod_alug` (`cod_alug`),
+  ADD KEY `pagamento_ibfk_1` (`numero_quar`);
 
 --
 -- Índices para tabela `quarto`
@@ -178,25 +205,19 @@ ALTER TABLE `aluguel`
 -- AUTO_INCREMENT de tabela `cartao`
 --
 ALTER TABLE `cartao`
-  MODIFY `cod_cart` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `cod_func` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_func` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `hospede`
 --
 ALTER TABLE `hospede`
-  MODIFY `cod_hosp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `quarto`
---
-ALTER TABLE `quarto`
-  MODIFY `numero_quar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_hosp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para despejos de tabelas

@@ -18,7 +18,7 @@ public class Teste {
 		List<Hospede> hospedes = new ArrayList<>();
 
 		//funcionario.setCod("cod_func")));
-		hospede.setCod(6);
+		/*hospede.setCod(6);
 		hospede.setCpf(311111122);
 		hospede.setNome("teste2");
 		hospede.setEmail("teste2");
@@ -40,6 +40,15 @@ public class Teste {
 		int i = st.executeUpdate(sql);
 		System.out.printf("Insert executado %d linhas foram afetadas%n", i);
 		con.close();*/
+		Quarto quarto = new Quarto();
+		QuartoDao q = new QuartoDao();
+		quarto.setNumero(1);
+		quarto.setAndar(1);
+		quarto.setDisponibilidade(Disponibilidade.DISPONIVEL);
+		quarto.setCategoria(Categoria.COMUM);
+		quarto.setPreco(100.0);
+		q.Insert(quarto);
+		
 		System.out.println("Conexão fechada");
 	}
 	

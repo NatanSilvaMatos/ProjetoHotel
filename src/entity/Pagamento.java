@@ -1,20 +1,26 @@
 package entity;
 
 public class Pagamento {
-	private Hospede hospede;
+	private Quarto quarto;
 	private Aluguel aluguel;
+	private int numDias;
 
-	public Pagamento(Hospede hospede, Aluguel aluguel) {
-		this.hospede = hospede;
+	public Pagamento(Quarto quarto, Aluguel aluguel, int numDias) {
+		this.quarto = quarto;
 		this.aluguel = aluguel;
-	}	
-
-	public Hospede getHospede() {
-		return hospede;
+		this.numDias = numDias;
+	}
+	
+	public Pagamento() {
+		
 	}
 
-	public void setHospede(Hospede hospede) {
-		this.hospede = hospede;
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 
 	public Aluguel getAluguel() {
@@ -24,5 +30,15 @@ public class Pagamento {
 	public void setAluguel(Aluguel aluguel) {
 		this.aluguel = aluguel;
 	}
+
+	public int getNumDias() {
+		return numDias;
+	}
+
+	public void setNumDias(int numDias) {
+		this.numDias = numDias;
+	}	
+
+	
 	
 }

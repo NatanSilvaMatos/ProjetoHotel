@@ -53,6 +53,26 @@ public class FuncionarioDao {
 		}
 		return null;
 	}
+	
+	public Funcionario PesquisaCod(int cod) {
+		Funcionario funcionario = new Funcionario();
+		Connection con = c.getConnection();
+		String queryPessoa = "SELECT * FROM funcionario WHERE cod_func = ?;";
+		try {
+			PreparedStatement ps = con.prepareStatement(queryPessoa);
+			ps.setInt(1, cod);
+			ResultSet resultSet = ps.executeQuery();
+
+
+				funcionario = BancoEntity(resultSet);
+			
+			con.close();
+			return funcionario;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void Insert(Funcionario funcionario) {
 		try {

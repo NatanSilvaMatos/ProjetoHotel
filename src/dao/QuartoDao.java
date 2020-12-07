@@ -9,68 +9,75 @@ import java.util.List;
 
 import entity.Categoria;
 import entity.Disponibilidade;
-import entity.Funcionario;
 import entity.Quarto;
 
 public class QuartoDao {
 	private ConexaoBanco c = new ConexaoBanco();	
 
-	public List<Funcionario> Pesquisa() {
-		List<Funcionario> funcionarios = new ArrayList<>();
+	public List<Quarto> Pesquisa() {
+		List<Quarto> quartos = new ArrayList<>();
 		Connection con = c.getConnection();
-		String queryPessoa = "SELECT * FROM funcionario;";
+		String query = "SELECT * FROM quarto;";
 		try {
-			PreparedStatement ps = con.prepareStatement(queryPessoa);
+			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 
-				Funcionario funcionario = BancoEntity(resultSet);
+				Quarto quarto = BancoEntity(resultSet);
 
-				funcionarios.add(funcionario);
+				quartos.add(quarto);
 			}
 			con.close();
-			return funcionarios;
+			return quartos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public Funcionario PesquisaCpf(int cpf) {
-		Funcionario funcionario = new Funcionario();
+	public Quarto PesquisaNumQuarto(int num) {
+		Quarto quarto = new Quarto();
 		Connection con = c.getConnection();
-		String queryPessoa = "SELECT * FROM funcionario WHERE cpf_func = ?;";
+		String query = "SELECT * FROM quarto WHERE numero_quar = ?;";
 		try {
-			PreparedStatement ps = con.prepareStatement(queryPessoa);
-			ps.setInt(1, cpf);
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, num);
 			ResultSet resultSet = ps.executeQuery();
 
 
-				funcionario = BancoEntity(resultSet);
+				quarto = BancoEntity(resultSet);
 			
 			con.close();
-			return funcionario;
+			return quarto;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public void Insert(Funcionario funcionario) {
+	public void Insert(Quarto quarto) {
 		try {
 
 			Connection con = c.getConnection();
-			String queryhospede = "Insert Into funcionario(cpf_func, nome_func, email_func, endereco_func, "
-					+ "telefone_func, senha_func) " + "VALUES( ?, ?, ?, ?, ?, ?)";
+			String queryhospede = "Insert Into quarto(numero_quar, andar, disponibilidade, categoria, preco) "
+					 + "VALUES( ?, ?, ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
-
-			ps.setInt(1, funcionario.getCpf());
-			ps.setString(2, funcionario.getNome());
-			ps.setString(3, funcionario.getEmail());
-			ps.setString(4, funcionario.getEndereco());
-			ps.setInt(5, funcionario.getTelefone());
-			ps.setString(6, funcionario.getSenha());
+			ps.setInt(1, quarto.getNumero());
+			ps.setInt(2, quarto.getAndar());
+			if(quarto.getDisponibilidade()==Disponibilidade.DISPONIVEL) {
+				ps.setInt(3, 1);
+			}else if(quarto.getDisponibilidade()==Disponibilidade.LOCADO) {
+				ps.setInt(3, 2);
+			}		
+			if(quarto.getCategoria()==Categoria.COMUM) {
+				ps.setInt(4, 1);
+			}else if(quarto.getCategoria()==Categoria.PREMIUM) {
+				ps.setInt(4, 2);
+			}else if(quarto.getCategoria()==Categoria.PRESIDENCIAL) {
+				ps.setInt(4, 3);
+			}
+			ps.setDouble(5, quarto.getPreco());
 
 
 			ps.executeQuery();
@@ -80,21 +87,29 @@ public class QuartoDao {
 		}
 	}
 
-	public void Update(Funcionario funcionario) {
+	public void Update(Quarto quarto) {
 		Connection con = c.getConnection();
-		String query = "UPDATE funcionario SET cpf_func = ?, nome_func = ?, email_func = ?, endereco_func = ?,"
-				+ " telefone_func = ?, senha_func_func = ? WHERE cod_func = ?";
+		String query = "UPDATE funcionario SET andar = ?, disponibilidade = ?, categoria = ?,"
+				+ " preco = ?, status = ? WHERE numero_quar = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, funcionario.getCpf());
-			ps.setString(2, funcionario.getNome());
-			ps.setString(3, funcionario.getEmail());
-			ps.setString(4, funcionario.getEndereco());
-			ps.setInt(5, funcionario.getTelefone());
-			ps.setString(6, funcionario.getSenha());
-			ps.setInt(7, funcionario.getCod());
-
-
+			ps.setInt(1, quarto.getAndar());
+			if(quarto.getDisponibilidade()==Disponibilidade.DISPONIVEL) {
+				ps.setInt(2, 1);
+			}else if(quarto.getDisponibilidade()==Disponibilidade.LOCADO) {
+				ps.setInt(2, 2);
+			}		
+			if(quarto.getCategoria()==Categoria.COMUM) {
+				ps.setInt(3, 1);
+			}else if(quarto.getCategoria()==Categoria.PREMIUM) {
+				ps.setInt(3, 2);
+			}else if(quarto.getCategoria()==Categoria.PRESIDENCIAL) {
+				ps.setInt(3, 3);
+			}
+			ps.setDouble(4, quarto.getPreco());
+			ps.setInt(5, quarto.getStatus());
+			ps.setInt(6, quarto.getNumero());
+			
 			ps.execute();
 			con.close();
 		} catch (SQLException e) {

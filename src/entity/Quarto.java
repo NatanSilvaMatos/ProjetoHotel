@@ -6,6 +6,7 @@ public class Quarto {
 	private Disponibilidade disponibilidade;
 	private Categoria categoria;
 	private double preco;
+	private int status;
 
 	public Quarto(int numero) {
 		this.numero = numero;
@@ -53,5 +54,14 @@ public class Quarto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 
 }
