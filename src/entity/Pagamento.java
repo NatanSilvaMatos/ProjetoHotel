@@ -4,8 +4,10 @@ public class Pagamento {
 	private Hospede hospede;
 	private Aluguel aluguel;
 
-	Pagamento() {
-	}
+	public Pagamento(Hospede hospede, Aluguel aluguel) {
+		this.hospede = hospede;
+		this.aluguel = aluguel;
+	}	
 
 	public Hospede getHospede() {
 		return hospede;

@@ -10,7 +10,8 @@ public class Pessoa {
 	private String senha;
 	private int status;
 
-	Pessoa() {
+	public Pessoa() {
+		// TODO Auto-generated constructor stub
 	}
 
 	Pessoa(int cpf, String email, String nome, String endereco, int telefone, String senha, int status) {
@@ -23,8 +24,6 @@ public class Pessoa {
 		this.status = status;
 	}
 	
-	
-
 	public int getCod() {
 		return cod;
 	}

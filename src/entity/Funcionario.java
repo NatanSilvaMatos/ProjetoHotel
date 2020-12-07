@@ -1,9 +1,8 @@
 package entity;
 
-public class Funcionario extends Pessoa{
-	
-	public Funcionario(){
+public class Funcionario extends Pessoa {
+
+	public Funcionario() {
 	}
-	
-	
+
 }
