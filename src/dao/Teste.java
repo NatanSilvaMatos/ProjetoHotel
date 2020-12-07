@@ -25,7 +25,7 @@ public class Teste {
 		hospede.setTelefone(11111111);
 		hospede.setSenha("teste");
 		hospede.setStatus(1);
-		//hospedes = h.Pesquisa();
+		//hospedes = h.Pesquisa()
 		h.update(hospede);
 		//h.Insert(hospede);
 		//c.Insert(h.PesquisaCpf(hospede.getCpf()), cartao);
