@@ -12,8 +12,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-public class Pagamento implements EventHandler<ActionEvent>{
+public class Pagamento {
 	private Pane pane = new Pane();
 
 	private Label lblCPF = new Label("CPF HOSPEDE:");
@@ -34,101 +35,100 @@ public class Pagamento implements EventHandler<ActionEvent>{
 	private Button pesquisarCpf = new Button("Pesquisar");
 	private ToggleGroup groupTipoPagamento = new ToggleGroup();
 	private Alert alert = new Alert(AlertType.WARNING);
-		
-	public Pagamento() {	
+
+	public Pagamento() {
 		lblPagamento.setLayoutX(50);
 		lblPagamento.setLayoutY(40);
 		lblPagamento.setStyle("-fx-font-weight: bold");
-		
+
 		lblCPF.setLayoutX(50);
 		lblCPF.setLayoutY(90);
-		
+
 		txtCPF.setLayoutX(50);
 		txtCPF.setLayoutY(120);
-		
+
 		pesquisarCpf.setLayoutX(220);
 		pesquisarCpf.setLayoutY(120);
-		
+
 		lblCartao.setLayoutX(50);
 		lblCartao.setLayoutY(190);
-				
+
 		txtCartao.setLayoutX(50);
 		txtCartao.setLayoutY(220);
-		
+
 		lblCodSeguranca.setLayoutX(50);
 		lblCodSeguranca.setLayoutY(290);
-				
+
 		txtCodSeguranca.setLayoutX(50);
 		txtCodSeguranca.setLayoutY(320);
 		txtCodSeguranca.setPrefWidth(100);
-		
+
 		lblPrecoTotal.setLayoutX(50);
 		lblPrecoTotal.setLayoutY(390);
-		
+
 		lblCedula.setLayoutX(50);
 		lblCedula.setLayoutY(420);
-		
+
 		txtPrecoTotal.setLayoutX(70);
 		txtPrecoTotal.setLayoutY(420);
 		txtPrecoTotal.setEditable(false);
 		txtPrecoTotal.setPrefWidth(125);
-		
+
 		lblTipoPagamento.setLayoutX(500);
 		lblTipoPagamento.setLayoutY(90);
-		
+
 		rbDebito.setLayoutX(500);
 		rbDebito.setLayoutY(140);
 		rbDebito.setToggleGroup(groupTipoPagamento);
 		rbDebito.setSelected(true);
-		
-		
+
 		rbCredito.setLayoutX(500);
 		rbCredito.setToggleGroup(groupTipoPagamento);
 		rbCredito.setLayoutY(180);
-		
+
 		rbDinheiro.setLayoutX(500);
 		rbDinheiro.setToggleGroup(groupTipoPagamento);
 		rbDinheiro.setLayoutY(220);
-		rbDinheiro.setOnAction(this);
-		
+
 		confirmarPagamento.setLayoutX(300);
 		confirmarPagamento.setLayoutY(500);
 		confirmarPagamento.setPrefWidth(170);
-		confirmarPagamento.setOnAction(this);
-		
+
 		alert.setTitle("Erro");
-		
-		pane.getChildren().addAll(lblPagamento,lblCPF,txtCPF,pesquisarCpf,lblCartao,txtCartao,lblCodSeguranca,txtCodSeguranca, lblPrecoTotal,lblCedula,txtPrecoTotal,
-		lblTipoPagamento,rbDebito,rbCredito,rbDinheiro, confirmarPagamento);
-		
+
+		pane.getChildren().addAll(lblPagamento, lblCPF, txtCPF, pesquisarCpf, lblCartao, txtCartao, lblCodSeguranca,
+				txtCodSeguranca, lblPrecoTotal, lblCedula, txtPrecoTotal, lblTipoPagamento, rbDebito, rbCredito,
+				rbDinheiro, confirmarPagamento);
+
+		rbDinheiro.setOnAction((event) -> {
+			txtCartao.clear();
+			txtCartao.setEditable(false);
+			txtCodSeguranca.clear();
+			txtCodSeguranca.setEditable(false);
+		});
+
+		rbDebito.setOnAction((event) -> {
+			txtCartao.setEditable(true);
+			txtCodSeguranca.setEditable(true);
+		});
+
+		rbCredito.setOnAction((event) -> {
+			txtCartao.setEditable(true);
+			txtCodSeguranca.setEditable(true);
+		});
+
+		confirmarPagamento.setOnAction((event) -> {
+			if (txtCPF.getText().isEmpty()) {
+				alert.setHeaderText("O campo de CPF não foi preenchido");
+				alert.setContentText("Preencha o campo de CPF para prosseguir");
+				alert.showAndWait();
+			}
+		});
+
 	}
 
 	public Pane getPane() {
 		return pane;
 	}
 
-	@Override
-	public void handle(ActionEvent e) {
-		if(e.getTarget() == confirmarPagamento) {
-			if(txtCPF.getText().isEmpty()) {
-				alert.setHeaderText("O campo de CPF não foi preenchido");
-				alert.setContentText("Preencha o campo de CPF para prosseguir");
-				alert.showAndWait();
-			}
-		}	
-		if(e.getTarget() == rbDinheiro) {
-			txtCartao.clear();
-			txtCartao.setEditable(false);
-			txtCodSeguranca.clear();
-			txtCodSeguranca.setEditable(false);
-		}
-		if(e.getTarget() == rbCredito || e.getTarget() == rbDebito) {
-			txtCartao.setEditable(true);
-			txtCodSeguranca.setEditable(true);
-		}
-		
-		
-	}
-	
-	
 }
