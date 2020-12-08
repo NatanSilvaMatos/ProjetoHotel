@@ -10,62 +10,65 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class MenuPrincipal extends Application implements EventHandler<ActionEvent> {
+public class MenuPrincipal extends Application {
 	private BorderPane pane = new BorderPane();
 	private Scene scene = new Scene(pane, 800, 600); 
 	private MenuBar barraMenu = new MenuBar();
 	private Menu menu = new Menu("Menu");
-	private MenuItem novaReserva = new MenuItem("Nova Reserva");
+	private MenuItem novoAluguel = new MenuItem("Novo Aluguel");
 	private MenuItem novoCadastro = new MenuItem("Cadastro");
-	private MenuItem todasAsReservas = new MenuItem("Todas as Reservas");
+	private MenuItem todosOsAlugueis = new MenuItem("Alugueis");
 	private MenuItem quartosDisponiveis = new MenuItem("Quartos Disponiveis");
 	private MenuItem minhasReservas = new MenuItem("Minhas Reservas");
 	private MenuItem pagamentos = new MenuItem("Pagamentos");
 	private MenuItem sair = new MenuItem("Sair");
 	private QuartosDisponiveis telaQuartosDisponiveis = new QuartosDisponiveis();
-	private TodasReservas telaTodasReservas = new TodasReservas();
+	private Alugueis telaTodosAlugueis = new Alugueis();
 	private Cadastro telaCadastro = new Cadastro();
-	private NovaReserva telaNovaReserva = new NovaReserva();
+	private NovoAluguel telaNovoAluguel = new NovoAluguel();
 	private Pagamento telaPagamento = new Pagamento();
-	private MinhasReservas telaMinhasReservas = new MinhasReservas();
+	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
 	
 	@Override
 	public void start(Stage stage) throws Exception {
 		pane.setTop(barraMenu);
 		barraMenu.getMenus().addAll(menu);
-		menu.setOnAction(this);
 		pane.setStyle("-fx-background-color: white;");
-		menu.getItems().addAll(novaReserva,novoCadastro,todasAsReservas,quartosDisponiveis,minhasReservas,pagamentos,sair);
+		menu.getItems().addAll(novoAluguel,novoCadastro,todosOsAlugueis,quartosDisponiveis,minhasReservas,pagamentos,sair);
 		pane.setCenter(telaQuartosDisponiveis.getPane());
 		stage.setScene(scene);
+		
+		todosOsAlugueis.setOnAction((event) -> {
+			pane.setCenter(telaTodosAlugueis.getPane());
+		});
+		
+		sair.setOnAction((event) -> {
+			System.exit(0);
+		});
+		
+		novoCadastro.setOnAction((event) -> {
+			pane.setCenter(telaCadastro.getPane());
+		});
+		
+		pagamentos.setOnAction((event) -> {
+			pane.setCenter(telaPagamento.getPane());
+		});
+		
+		quartosDisponiveis.setOnAction((event) -> {
+			pane.setCenter(telaQuartosDisponiveis.getPane());
+		});
+		
+		minhasReservas.setOnAction((event) -> {
+			pane.setCenter(telaMinhasReservas.getPane());
+		});
+		
+		novoAluguel.setOnAction((event) -> {
+			pane.setCenter(telaNovoAluguel.getPane());
+		});
+				
 		stage.setResizable(false);
 		stage.setTitle("Menu Principal");
 		stage.show();
-	}
-
-	@Override
-	public void handle(ActionEvent e) {
-		if(e.getTarget() == todasAsReservas) {
-			pane.setCenter(telaTodasReservas.getPane());
-		}
-		if(e.getTarget() == sair) {
-			System.exit(0);
-		}
-		if(e.getTarget() == novoCadastro) {
-			pane.setCenter(telaCadastro.getPane());
-		}
-		if(e.getTarget() == pagamentos) {
-			pane.setCenter(telaPagamento.getPane());
-		}
-		if(e.getTarget() == quartosDisponiveis) {
-			pane.setCenter(telaQuartosDisponiveis.getPane());
-		}
-		if(e.getTarget() == minhasReservas) {
-			pane.setCenter(telaMinhasReservas.getPane());
-		}
-		if(e.getTarget() == novaReserva) {
-			pane.setCenter(telaNovaReserva.getPane());
-		}
 	}
 	
 	

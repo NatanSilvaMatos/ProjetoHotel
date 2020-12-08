@@ -14,7 +14,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class NovaReserva implements EventHandler<ActionEvent> {
+public class NovoAluguel {
 	private Pane pane = new Pane();
 	private Label lblCPF = new Label("CPF HOSPEDE:");
 	private Label lblNumQuarto = new Label("NUMERO DO QUARTO:");
@@ -23,14 +23,14 @@ public class NovaReserva implements EventHandler<ActionEvent> {
 	private Label lblCategoria = new Label("CATEGORIA");
 	private Label lblDisponibilidade = new Label("DISPONIBILIDADE");
 	private Label lblCedula = new Label("R$");
-	private Label lblNovaReserva = new Label("NOVA RESERVA");
+	private Label lblNovoAluguel = new Label("NOVO ALUGUEL");
 	private TextField txtCPF = new TextField();
 	private TextField txtNumQuarto = new TextField();
 	private TextField txtPrecoDiaria = new TextField();
 	private TextField txtAndar = new TextField();
 	private ComboBox<String> cbCategoria = new ComboBox<String>(); 
 	private ComboBox<String> cbDisponibilidade = new ComboBox<String>();
-	private Button confirmarReserva = new Button("Confirmar Reserva");
+	private Button confirmarAluguel = new Button("Confirmar Aluguel");
 	private Button pesquisarCpf = new Button("Pesquisar");
 	private Button pesquisarNumQuarto = new Button("Pesquisar Quarto");
 	private String[] categorias = {"Premium","Presidencial","Comum"};
@@ -38,10 +38,10 @@ public class NovaReserva implements EventHandler<ActionEvent> {
 	private Alert alert = new Alert(AlertType.WARNING);
 
 	//@Override
-	public NovaReserva() {		
-		lblNovaReserva.setLayoutX(50);
-		lblNovaReserva.setLayoutY(30);
-		lblNovaReserva.setStyle("-fx-font-weight: bold");
+	public NovoAluguel() {		
+		lblNovoAluguel.setLayoutX(50);
+		lblNovoAluguel.setLayoutY(30);
+		lblNovoAluguel.setStyle("-fx-font-weight: bold");
 
 		lblCPF.setLayoutX(50);
 		lblCPF.setLayoutY(90);
@@ -51,7 +51,6 @@ public class NovaReserva implements EventHandler<ActionEvent> {
 
 		pesquisarCpf.setLayoutX(220);
 		pesquisarCpf.setLayoutY(120);
-		pesquisarCpf.setOnAction(this);
 
 		lblNumQuarto.setLayoutX(50);
 		lblNumQuarto.setLayoutY(190);
@@ -61,7 +60,6 @@ public class NovaReserva implements EventHandler<ActionEvent> {
 
 		pesquisarNumQuarto.setLayoutX(220);
 		pesquisarNumQuarto.setLayoutY(220);
-		pesquisarNumQuarto.setOnAction(this);
 
 		lblPrecoDiaria.setLayoutX(50);
 		lblPrecoDiaria.setLayoutY(290);
@@ -99,45 +97,45 @@ public class NovaReserva implements EventHandler<ActionEvent> {
 		cbDisponibilidade.getSelectionModel().select(disponibilidade[0]);
 		cbDisponibilidade.setPrefWidth(150);
 
-		confirmarReserva.setLayoutX(300);
-		confirmarReserva.setLayoutY(500);
-		confirmarReserva.setPrefWidth(170);
-		confirmarReserva.setOnAction(this);
+		confirmarAluguel.setLayoutX(300);
+		confirmarAluguel.setLayoutY(500);
+		confirmarAluguel.setPrefWidth(170);
+
+		pesquisarNumQuarto.setOnAction((event) -> {
+			if(txtNumQuarto.getText().isEmpty()) {			
+				alert.setHeaderText("Estão faltando campos a serem preenchidos");
+				alert.setContentText("Preencha o campo de Numero do Quarto para pesquisar!");
+				alert.showAndWait();
+			}
+		});
+
+		pesquisarCpf.setOnAction((event) -> {
+			if(txtCPF.getText().isEmpty()) {			
+				alert.setHeaderText("Estão faltando campos a serem preenchidos");
+				alert.setContentText("Preencha o campo do CPF para pesquisar!");
+				alert.showAndWait();
+			}
+		});
+
+		confirmarAluguel.setOnAction((event) -> {
+			if(txtCPF.getText().isEmpty() || txtNumQuarto.getText().isEmpty() ) {			
+				alert.setHeaderText("Estão faltando campos a serem preenchidos");
+				alert.setContentText("Preencha todos os campos para confirmar a Aluguel!");
+				alert.showAndWait();
+			}
+		});
+
 
 		alert.setTitle("Erro");
 
-
 		pane.getChildren().addAll(lblCPF,txtCPF,lblNumQuarto,txtNumQuarto,lblPrecoDiaria,lblCedula,txtPrecoDiaria,lblAndar,txtAndar,lblCategoria,cbCategoria,
-				lblDisponibilidade, cbDisponibilidade, confirmarReserva, lblNovaReserva, pesquisarCpf,pesquisarNumQuarto);
-
+				lblDisponibilidade, cbDisponibilidade, confirmarAluguel, lblNovoAluguel, pesquisarCpf,pesquisarNumQuarto);
 	}
 
 	public Pane getPane() {
 		return pane;
 	}
 
-	@Override
-	public void handle(ActionEvent e) {
-		if(e.getTarget() == pesquisarNumQuarto) {
-			if(txtNumQuarto.getText().isEmpty()) {			
-				alert.setHeaderText("Estão faltando campos a serem preenchidos");
-				alert.setContentText("Preencha o campo de Numero do Quarto para pesquisar!");
-				alert.showAndWait();
-			}
-			}
-		if(e.getTarget() == pesquisarCpf) {
-			if(txtCPF.getText().isEmpty()) {			
-				alert.setHeaderText("Estão faltando campos a serem preenchidos");
-				alert.setContentText("Preencha o campo do CPF para pesquisar!");
-				alert.showAndWait();
-			}
-		}
-		if(e.getTarget() == confirmarReserva) {
-			if(txtCPF.getText().isEmpty() || txtNumQuarto.getText().isEmpty() ) {			
-				alert.setHeaderText("Estão faltando campos a serem preenchidos");
-				alert.setContentText("Preencha todos os campos para confirmar a reserva!");
-				alert.showAndWait();
-			}
-		}
-	}
+
 }
+

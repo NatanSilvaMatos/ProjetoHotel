@@ -1,8 +1,5 @@
 package boundary;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 public class Pagamento {
 	private Pane pane = new Pane();
@@ -115,6 +110,14 @@ public class Pagamento {
 		rbCredito.setOnAction((event) -> {
 			txtCartao.setEditable(true);
 			txtCodSeguranca.setEditable(true);
+		});
+		
+		pesquisarCpf.setOnAction((event) -> {
+			if(txtCPF.getText().isEmpty()) {
+				alert.setHeaderText("O campo de CPF não foi preenchido");
+				alert.setContentText("Preencha o campo de CPF para pesquisar");
+				alert.showAndWait();
+			}
 		});
 
 		confirmarPagamento.setOnAction((event) -> {

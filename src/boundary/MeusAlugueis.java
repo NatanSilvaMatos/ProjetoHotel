@@ -1,25 +1,20 @@
 package boundary;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-public class TodasReservas implements EventHandler<ActionEvent> {
+public class MeusAlugueis {
 	private Pane pane = new Pane();
-	private Label lblTodasAsReservas = new Label("TODAS AS RESERVAS");
+	private Label lblAluguel = new Label("MEUS ALUGUEIS");
 	private TableView<String> table = new TableView<String>();
 	
-	
+
 	@SuppressWarnings("unchecked")
-	public TodasReservas() {
+	public MeusAlugueis() {
 		TableColumn<String,String> columnQuarto = new TableColumn<>("N.QUARTO");
 		columnQuarto.setMinWidth(120);
 		columnQuarto.setCellValueFactory(new PropertyValueFactory<>("numero"));
@@ -32,36 +27,32 @@ public class TodasReservas implements EventHandler<ActionEvent> {
 		columnCategoria.setMinWidth(120);
 		columnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		
-		TableColumn<String,String> columnDisponibilidade = new TableColumn<>("DISPONIBILIDADE");
-		columnDisponibilidade.setMinWidth(120);
-		columnDisponibilidade.setCellValueFactory(new PropertyValueFactory<>("disponibilidade"));
+		TableColumn<String,String> columnDataEstadia = new TableColumn<>("DATA ESTADIA");
+		columnDataEstadia.setMinWidth(120);
+		columnDataEstadia.setCellValueFactory(new PropertyValueFactory<>("dataEstadia"));
 		
 		TableColumn<String,String> columnPrecoDiaria = new TableColumn<>("PRECO(DIARIA)");
 		columnPrecoDiaria.setMinWidth(120);
 		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		
-		TableColumn<String,String> columnCPFHospede = new TableColumn<>("CPF HOSPEDE");
-		columnCPFHospede.setMinWidth(120);
-		columnCPFHospede.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		TableColumn<String,String> columnPago = new TableColumn<>("PAGO");
+		columnPago.setMinWidth(100);
+		columnPago.setCellValueFactory(new PropertyValueFactory<>("pago"));
 		
-		table.getColumns().addAll(columnQuarto,columnAndar,columnCategoria,columnDisponibilidade,columnPrecoDiaria,columnCPFHospede);
-		table.setLayoutX(40);
+		table.getColumns().addAll(columnQuarto,columnAndar,columnCategoria,columnDataEstadia,columnPrecoDiaria,columnPago);
+		table.setLayoutX(50);
 		table.setLayoutY(70);
 		
-		lblTodasAsReservas.setLayoutX(40);
-		lblTodasAsReservas.setLayoutY(30);
-		lblTodasAsReservas.setStyle("-fx-font-weight: bold");
-		
-		pane.getChildren().addAll(table,lblTodasAsReservas);
-		
-	}
-	public Pane getPane() {
-		return pane;
-	}
-	@Override
-	public void handle(ActionEvent arg0) {
-		
+		lblAluguel.setLayoutX(50);
+		lblAluguel.setLayoutY(30);
+		lblAluguel.setStyle("-fx-font-weight: bold");
+						
+		pane.getChildren().addAll(table,lblAluguel);
 		
 	}
 	
+	public Pane getPane() {
+		return pane;
+	}
+
 }
