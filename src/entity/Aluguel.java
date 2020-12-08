@@ -2,22 +2,32 @@ package entity;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 public class Aluguel {
 	private int cod;
 	private Hospede hospede;
 	private Funcionario funcionario;
 	private LocalDate data;
+	private List<Quarto> quarto;
 	
-	public Aluguel(Hospede hospede, Funcionario funcionario, LocalDate data) {
+	public Aluguel(Hospede hospede, Funcionario funcionario, LocalDate data, List<Quarto> quarto) {
 		this.hospede = hospede;
 		this.funcionario = funcionario;
 		this.data = data;
+		this.quarto = quarto;
 	}
 	
-
 	public Aluguel() {
 	}	
+	
+	public List<Quarto> getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(List<Quarto> quarto) {
+		this.quarto = quarto;
+	}
 
 	public int getCod() {
 		return cod;

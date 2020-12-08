@@ -1,14 +1,18 @@
 package boundary;
 
 import java.io.InputStream;
+
+import dao.LoginDao;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -25,6 +29,7 @@ public class Login extends Application {
 	private TextField txtLogin = new TextField();
 	private PasswordField txtSenha = new PasswordField();
 	private ToggleGroup groupCategoriaUsuario = new ToggleGroup();
+	private Alert alert = new Alert(AlertType.WARNING);
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -67,11 +72,34 @@ public class Login extends Application {
 
 		pane.getChildren().addAll(lblLogin,lblSenha,btnEntrar,txtLogin,txtSenha,rbHospede,rbFuncionario,imageView);
 		
+		
+		btnEntrar.setOnAction((event) -> {
+			if(txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+				alert.setHeaderText("Algum campo não foi preenchido");
+				alert.setContentText("Preencha todos os campos para fazer Login!");
+				alert.showAndWait();
+			}
+			if(rbFuncionario.isSelected()) {
+				LoginDao login = new LoginDao();
+				//if(login.LoginFuncionario(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())) {
+					MenuPrincipal menu = new MenuPrincipal(rbFuncionario.getText().toString(), Integer.parseInt(txtLogin.getText()));
+					Scene cena2 = new Scene(menu.chamaTela(),800,600);
+					stage.setScene(cena2);		
+				//}
+			}
+			else {
+				LoginDao login = new LoginDao();
+				//login.LoginFuncionario(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString());
+				MenuPrincipal menu = new MenuPrincipal(rbHospede.getText().toString(), Integer.parseInt(txtLogin.getText()));
+				Scene cena2 = new Scene(menu.chamaTela(),800,600);
+				stage.setScene(cena2);		
+			}
+		});
+		
 		stage.setScene(scn);
 		stage.setResizable(false);
 		stage.setTitle("BEM-VINDO AO HOTEL DO COLEVATÃO");
 		stage.show();
-
 	}
 
 	public static void main(String[] args) {

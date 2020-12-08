@@ -1,19 +1,15 @@
 package boundary;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
-public class MenuPrincipal extends Application {
-	private BorderPane pane = new BorderPane();
-	private Scene scene = new Scene(pane, 800, 600); 
+
+public class MenuPrincipal {
+	public static BorderPane pane = new BorderPane();
+	//private Scene scene = new Scene(pane, 800, 600); 
 	private MenuBar barraMenu = new MenuBar();
 	private Menu menu = new Menu("Menu");
 	private MenuItem novoAluguel = new MenuItem("Novo Aluguel");
@@ -29,16 +25,27 @@ public class MenuPrincipal extends Application {
 	private NovoAluguel telaNovoAluguel = new NovoAluguel();
 	private Pagamento telaPagamento = new Pagamento();
 	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
-	private Button b = new Button();
+	private String tipoUsuario;
+	private int cpf;
 	
-	@Override
-	public void start(Stage stage) throws Exception {
+	public MenuPrincipal(String tipoUsuario, int cpf) {
+		this.tipoUsuario = tipoUsuario;
+		this.cpf = cpf;
+	}
+	
+	public BorderPane chamaTela()  {
+		if(tipoUsuario == "Hóspede") {
+			menu.getItems().addAll(quartosDisponiveis,meusAlugueis,sair);
+		}
+		else {
+			menu.getItems().addAll(quartosDisponiveis,novoAluguel,novoCadastro,todosOsAlugueis,pagamentos,sair);
+		}
 		pane.setTop(barraMenu);
 		barraMenu.getMenus().addAll(menu);
 		pane.setStyle("-fx-background-color: white;");
-		menu.getItems().addAll(novoAluguel,novoCadastro,todosOsAlugueis,quartosDisponiveis,meusAlugueis,pagamentos,sair);
+		
 		pane.setCenter(telaQuartosDisponiveis.getPane());
-		stage.setScene(scene);
+		
 		
 		todosOsAlugueis.setOnAction((event) -> {
 			pane.setCenter(telaTodosAlugueis.getPane());
@@ -67,14 +74,6 @@ public class MenuPrincipal extends Application {
 		novoAluguel.setOnAction((event) -> {
 			pane.setCenter(telaNovoAluguel.getPane());
 		});
-				
-		stage.setResizable(false);
-		stage.setTitle("Menu Principal");
-		stage.show();
-	}
-	
-	
-	public static void main(String[] args) {
-		Application.launch(MenuPrincipal.class, args);
+		return pane;				
 	}
 }

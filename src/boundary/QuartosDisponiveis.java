@@ -1,6 +1,5 @@
 package boundary;
 
-import java.util.Comparator;
 
 import control.QuartoControl;
 import entity.Disponibilidade;
