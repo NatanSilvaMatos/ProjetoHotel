@@ -18,19 +18,26 @@ public class Teste {
 		CartaoDebito cartao = new CartaoDebito();
 		CartaoDebitoDao c = new CartaoDebitoDao();
 		List<Hospede> hospedes = new ArrayList<>();
+		QuartoDao quarto = new QuartoDao();
+		
+		for(Quarto s: quarto.Pesquisa()) {
+			System.out.println(s);
+		}
+		
+		
 
 		// funcionario.setCod("cod_func")));
 		// hospede.setCod(6);
-		hospede.setCpf(411111124);
-		hospede.setNome("teste3");
-		hospede.setEmail("teste3");
-		hospede.setEndereco("teste3");
-		hospede.setTelefone(11111111);
-		hospede.setSenha("teste3");
-		hospede.setStatus(1);
-		h.Insert(hospede);
-		LoginDao l = new LoginDao();
-		System.out.println(l.LoginHospede(411111124, "teste3"));
+		//hospede.setCpf(411111124);
+		//hospede.setNome("teste3");
+		//hospede.setEmail("teste3");
+		//hospede.setEndereco("teste3");
+		//hospede.setTelefone(11111111);
+		//hospede.setSenha("teste3");
+		//hospede.setStatus(1);
+		//h.Insert(hospede);
+		//LoginDao l = new LoginDao();
+		//System.out.println(l.LoginHospede(411111124, "teste3"));
 		// System.out.println(hospedes.);
 		// h.update(hospede);
 		// h.Insert(hospede);

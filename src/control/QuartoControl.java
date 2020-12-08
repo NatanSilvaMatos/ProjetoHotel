@@ -39,4 +39,5 @@ public class QuartoControl {
 	public void desocupar(Quarto quarto) {
 		quaDao.Update(quarto);
 	}
+	
 }
