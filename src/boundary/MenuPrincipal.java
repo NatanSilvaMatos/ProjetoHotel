@@ -19,7 +19,7 @@ public class MenuPrincipal extends Application {
 	private MenuItem novoCadastro = new MenuItem("Cadastro");
 	private MenuItem todosOsAlugueis = new MenuItem("Alugueis");
 	private MenuItem quartosDisponiveis = new MenuItem("Quartos Disponiveis");
-	private MenuItem minhasReservas = new MenuItem("Minhas Reservas");
+	private MenuItem meusAlugueis = new MenuItem("Meus Alugueis");
 	private MenuItem pagamentos = new MenuItem("Pagamentos");
 	private MenuItem sair = new MenuItem("Sair");
 	private QuartosDisponiveis telaQuartosDisponiveis = new QuartosDisponiveis();
@@ -34,7 +34,7 @@ public class MenuPrincipal extends Application {
 		pane.setTop(barraMenu);
 		barraMenu.getMenus().addAll(menu);
 		pane.setStyle("-fx-background-color: white;");
-		menu.getItems().addAll(novoAluguel,novoCadastro,todosOsAlugueis,quartosDisponiveis,minhasReservas,pagamentos,sair);
+		menu.getItems().addAll(novoAluguel,novoCadastro,todosOsAlugueis,quartosDisponiveis,meusAlugueis,pagamentos,sair);
 		pane.setCenter(telaQuartosDisponiveis.getPane());
 		stage.setScene(scene);
 		
@@ -58,7 +58,7 @@ public class MenuPrincipal extends Application {
 			pane.setCenter(telaQuartosDisponiveis.getPane());
 		});
 		
-		minhasReservas.setOnAction((event) -> {
+		meusAlugueis.setOnAction((event) -> {
 			pane.setCenter(telaMinhasReservas.getPane());
 		});
 		

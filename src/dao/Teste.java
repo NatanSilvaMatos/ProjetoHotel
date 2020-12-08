@@ -42,11 +42,11 @@ public class Teste {
 		con.close();*/
 		Quarto quarto = new Quarto();
 		QuartoDao q = new QuartoDao();
-		quarto.setNumero(1);
-		quarto.setAndar(1);
+		quarto.setNumero(2);
+		quarto.setAndar(2);
 		quarto.setDisponibilidade(Disponibilidade.DISPONIVEL);
 		quarto.setCategoria(Categoria.COMUM);
-		quarto.setPreco(100.0);
+		quarto.setPreco(120.0);
 		q.Insert(quarto);
 		
 		System.out.println("Conexão fechada");
