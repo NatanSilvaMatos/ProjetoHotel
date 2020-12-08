@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -28,6 +29,7 @@ public class MenuPrincipal extends Application {
 	private NovoAluguel telaNovoAluguel = new NovoAluguel();
 	private Pagamento telaPagamento = new Pagamento();
 	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
+	private Button b = new Button();
 	
 	@Override
 	public void start(Stage stage) throws Exception {

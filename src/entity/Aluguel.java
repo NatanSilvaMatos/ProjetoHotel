@@ -13,7 +13,6 @@ public class Aluguel {
 		this.hospede = hospede;
 		this.funcionario = funcionario;
 		this.data = data;
-
 	}
 	
 

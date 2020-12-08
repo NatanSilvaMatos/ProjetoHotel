@@ -1,5 +1,6 @@
 package boundary;
 
+import entity.Aluguel;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -9,32 +10,32 @@ import javafx.scene.layout.Pane;
 public class Alugueis {
 	private Pane pane = new Pane();
 	private Label lblAlugueis = new Label("ALUGUEIS");
-	private TableView<String> table = new TableView<String>();
+	private TableView<Aluguel> table = new TableView<Aluguel>();
 	
 	
 	@SuppressWarnings("unchecked")
 	public Alugueis() {
-		TableColumn<String,String> columnQuarto = new TableColumn<>("N.QUARTO");
+		TableColumn<Aluguel,String> columnQuarto = new TableColumn<>("N.QUARTO");
 		columnQuarto.setMinWidth(120);
 		columnQuarto.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		
-		TableColumn<String,String> columnAndar = new TableColumn<>("ANDAR");
+		TableColumn<Aluguel,String> columnAndar = new TableColumn<>("ANDAR");
 		columnAndar.setMinWidth(120);
 		columnAndar.setCellValueFactory(new PropertyValueFactory<>("andar"));
 		
-		TableColumn<String,String> columnCategoria = new TableColumn<>("CATEGORIA");
+		TableColumn<Aluguel,String> columnCategoria = new TableColumn<>("CATEGORIA");
 		columnCategoria.setMinWidth(120);
 		columnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		
-		TableColumn<String,String> columnDisponibilidade = new TableColumn<>("DISPONIBILIDADE");
+		TableColumn<Aluguel,String> columnDisponibilidade = new TableColumn<>("DISPONIBILIDADE");
 		columnDisponibilidade.setMinWidth(120);
 		columnDisponibilidade.setCellValueFactory(new PropertyValueFactory<>("disponibilidade"));
 		
-		TableColumn<String,String> columnPrecoDiaria = new TableColumn<>("PRECO(DIARIA)");
+		TableColumn<Aluguel,String> columnPrecoDiaria = new TableColumn<>("PRECO(DIARIA)");
 		columnPrecoDiaria.setMinWidth(120);
 		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		
-		TableColumn<String,String> columnCPFHospede = new TableColumn<>("CPF HOSPEDE");
+		TableColumn<Aluguel,String> columnCPFHospede = new TableColumn<>("CPF HOSPEDE");
 		columnCPFHospede.setMinWidth(120);
 		columnCPFHospede.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		
