@@ -12,7 +12,7 @@ import entity.Funcionario;
 import entity.Hospede;
 
 public class AluguelDao {
-	private ConexaoBanco c = new ConexaoBanco();	
+	private ConexaoBanco c = new ConexaoBanco();
 
 	public List<Aluguel> Pesquisa() {
 		List<Aluguel> Alugueis = new ArrayList<>();
@@ -24,7 +24,7 @@ public class AluguelDao {
 
 			while (resultSet.next()) {
 
-				Aluguel aluguel  = BancoEntity(resultSet);
+				Aluguel aluguel = BancoEntity(resultSet);
 
 				Alugueis.add(aluguel);
 			}
@@ -35,7 +35,7 @@ public class AluguelDao {
 		}
 		return null;
 	}
-	
+
 	public Aluguel PesquisaCod(int cod) {
 		Aluguel aluguel = new Aluguel();
 		Connection con = c.getConnection();
@@ -45,9 +45,8 @@ public class AluguelDao {
 			ps.setInt(1, cod);
 			ResultSet resultSet = ps.executeQuery();
 
-
 			aluguel = BancoEntity(resultSet);
-			
+
 			con.close();
 			return aluguel;
 		} catch (SQLException e) {
@@ -60,14 +59,12 @@ public class AluguelDao {
 		try {
 
 			Connection con = c.getConnection();
-			String queryhospede = "Insert Into funcionario(cod_hosp, cod_func, Data_aluguel) "
-					+ "VALUES( ?, ?, ?)";
+			String queryhospede = "Insert Into funcionario(cod_hosp, cod_func, Data_aluguel) " + "VALUES( ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
 
 			ps.setInt(1, aluguel.getHospede().getCod());
 			ps.setInt(2, aluguel.getFuncionario().getCod());
 			ps.setDate(3, java.sql.Date.valueOf(aluguel.getData()));
-
 
 			ps.executeQuery();
 			con.close();
@@ -86,9 +83,6 @@ public class AluguelDao {
 			ps.setDate(3, java.sql.Date.valueOf(aluguel.getData()));
 			ps.setInt(1, aluguel.getCod());
 
-
-
-
 			ps.execute();
 			con.close();
 		} catch (SQLException e) {
@@ -96,29 +90,25 @@ public class AluguelDao {
 		}
 	}
 
-	/*public void Delete(int cod) {
-		Connection con = c.getConnection();
-		String query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?";
-		try {
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, cod);
-			ps.execute();
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}-*/
-
+	/*
+	 * public void Delete(int cod) { Connection con = c.getConnection(); String
+	 * query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?"; try {
+	 * PreparedStatement ps = con.prepareStatement(query); ps.setInt(1, cod);
+	 * ps.execute(); con.close(); } catch (SQLException e) { e.printStackTrace(); }
+	 * }-
+	 */
 
 	private Aluguel BancoEntity(ResultSet resultSet) throws SQLException {
 		Aluguel aluguel = new Aluguel();
 		HospedeDao h = new HospedeDao();
 		FuncionarioDao f = new FuncionarioDao();
-		aluguel.setCod(resultSet.getInt("cod_alug"));
-		aluguel.setHospede(h.PesquisaCod(resultSet.getInt("cod_hosp")));
-		aluguel.setFuncionario(f.PesquisaCod(resultSet.getInt("cod_func")));
-		aluguel.setData(resultSet.getDate("Data_aluguel").toLocalDate());
-		
+
+		if (resultSet.next()) {
+			aluguel.setCod(resultSet.getInt(1));
+			aluguel.setHospede(h.PesquisaCod(resultSet.getInt(2)));
+			aluguel.setFuncionario(f.PesquisaCod(resultSet.getInt(3)));
+			aluguel.setData(resultSet.getDate(4).toLocalDate());
+		}
 
 		return aluguel;
 	}

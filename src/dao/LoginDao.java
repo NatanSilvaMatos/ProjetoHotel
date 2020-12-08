@@ -28,9 +28,7 @@ public class LoginDao {
 				}else {
 					return false;
 				}					
-			}
-			
-			
+			}			
 			con.close();
 			//return true;
 		} catch (SQLException e) {
@@ -56,10 +54,7 @@ public class LoginDao {
 				}else {
 					return false;
 				}					
-			}
-
-
-			
+			}			
 			con.close();
 			return false;
 		} catch (SQLException e) {

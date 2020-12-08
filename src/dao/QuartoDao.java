@@ -12,7 +12,7 @@ import entity.Disponibilidade;
 import entity.Quarto;
 
 public class QuartoDao {
-	private ConexaoBanco c = new ConexaoBanco();	
+	private ConexaoBanco c = new ConexaoBanco();
 
 	public List<Quarto> Pesquisa() {
 		List<Quarto> quartos = new ArrayList<>();
@@ -35,7 +35,7 @@ public class QuartoDao {
 		}
 		return null;
 	}
-	
+
 	public Quarto PesquisaNumQuarto(int num) {
 		Quarto quarto = new Quarto();
 		Connection con = c.getConnection();
@@ -45,9 +45,8 @@ public class QuartoDao {
 			ps.setInt(1, num);
 			ResultSet resultSet = ps.executeQuery();
 
+			quarto = BancoEntity(resultSet);
 
-				quarto = BancoEntity(resultSet);
-			
 			con.close();
 			return quarto;
 		} catch (SQLException e) {
@@ -55,7 +54,7 @@ public class QuartoDao {
 		}
 		return null;
 	}
-	
+
 	public Quarto PesquisaQuartoDisp() {
 		Quarto quarto = new Quarto();
 		Connection con = c.getConnection();
@@ -64,9 +63,8 @@ public class QuartoDao {
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet resultSet = ps.executeQuery();
 
+			quarto = BancoEntity(resultSet);
 
-				quarto = BancoEntity(resultSet);
-			
 			con.close();
 			return quarto;
 		} catch (SQLException e) {
@@ -80,24 +78,23 @@ public class QuartoDao {
 
 			Connection con = c.getConnection();
 			String queryhospede = "Insert Into quarto(numero_quar, andar, disponibilidade, categoria, preco) "
-					 + "VALUES( ?, ?, ?, ?, ?)";
+					+ "VALUES( ?, ?, ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
 			ps.setInt(1, quarto.getNumero());
 			ps.setInt(2, quarto.getAndar());
-			if(quarto.getDisponibilidade()==Disponibilidade.DISPONIVEL) {
+			if (quarto.getDisponibilidade() == Disponibilidade.DISPONIVEL) {
 				ps.setInt(3, 1);
-			}else if(quarto.getDisponibilidade()==Disponibilidade.LOCADO) {
+			} else if (quarto.getDisponibilidade() == Disponibilidade.LOCADO) {
 				ps.setInt(3, 2);
-			}		
-			if(quarto.getCategoria()==Categoria.COMUM) {
+			}
+			if (quarto.getCategoria() == Categoria.COMUM) {
 				ps.setInt(4, 1);
-			}else if(quarto.getCategoria()==Categoria.PREMIUM) {
+			} else if (quarto.getCategoria() == Categoria.PREMIUM) {
 				ps.setInt(4, 2);
-			}else if(quarto.getCategoria()==Categoria.PRESIDENCIAL) {
+			} else if (quarto.getCategoria() == Categoria.PRESIDENCIAL) {
 				ps.setInt(4, 3);
 			}
 			ps.setDouble(5, quarto.getPreco());
-
 
 			ps.executeQuery();
 			con.close();
@@ -113,22 +110,22 @@ public class QuartoDao {
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, quarto.getAndar());
-			if(quarto.getDisponibilidade()==Disponibilidade.DISPONIVEL) {
+			if (quarto.getDisponibilidade() == Disponibilidade.DISPONIVEL) {
 				ps.setInt(2, 1);
-			}else if(quarto.getDisponibilidade()==Disponibilidade.LOCADO) {
+			} else if (quarto.getDisponibilidade() == Disponibilidade.LOCADO) {
 				ps.setInt(2, 2);
-			}		
-			if(quarto.getCategoria()==Categoria.COMUM) {
+			}
+			if (quarto.getCategoria() == Categoria.COMUM) {
 				ps.setInt(3, 1);
-			}else if(quarto.getCategoria()==Categoria.PREMIUM) {
+			} else if (quarto.getCategoria() == Categoria.PREMIUM) {
 				ps.setInt(3, 2);
-			}else if(quarto.getCategoria()==Categoria.PRESIDENCIAL) {
+			} else if (quarto.getCategoria() == Categoria.PRESIDENCIAL) {
 				ps.setInt(3, 3);
 			}
 			ps.setDouble(4, quarto.getPreco());
 			ps.setInt(5, quarto.getStatus());
 			ps.setInt(6, quarto.getNumero());
-			
+
 			ps.execute();
 			con.close();
 		} catch (SQLException e) {
@@ -149,25 +146,25 @@ public class QuartoDao {
 		}
 	}
 
-
 	private Quarto BancoEntity(ResultSet resultSet) throws SQLException {
 		Quarto quarto = new Quarto();
-		quarto.setNumero((resultSet.getInt("numero_quar")));
-		quarto.setAndar(resultSet.getInt("andar"));
-		if(resultSet.getInt("disponibilidade")==1) {
-			quarto.setDisponibilidade(Disponibilidade.DISPONIVEL);
-		}else if(resultSet.getInt("disponibilidade")==2) {
-			quarto.setDisponibilidade(Disponibilidade.LOCADO);
-		}		
-		if(resultSet.getInt("categoria")==1) {
-			quarto.setCategoria(Categoria.COMUM);
-		}else if(resultSet.getInt("categoria")==2) {
-			quarto.setCategoria(Categoria.PREMIUM);
-		}else if(resultSet.getInt("categoria")==3) {
-			quarto.setCategoria(Categoria.PRESIDENCIAL);
+		if (resultSet.next()) {
+			quarto.setNumero((resultSet.getInt(1)));
+			quarto.setAndar(resultSet.getInt(2));
+			if (resultSet.getInt(3) == 1) {
+				quarto.setDisponibilidade(Disponibilidade.DISPONIVEL);
+			} else if (resultSet.getInt(3) == 2) {
+				quarto.setDisponibilidade(Disponibilidade.LOCADO);
+			}
+			if (resultSet.getInt(4) == 1) {
+				quarto.setCategoria(Categoria.COMUM);
+			} else if (resultSet.getInt(4) == 2) {
+				quarto.setCategoria(Categoria.PREMIUM);
+			} else if (resultSet.getInt(4) == 3) {
+				quarto.setCategoria(Categoria.PRESIDENCIAL);
+			}
+			quarto.setPreco(resultSet.getDouble(5));
 		}
-		quarto.setPreco(resultSet.getDouble("preco"));
-		
 
 		return quarto;
 	}
