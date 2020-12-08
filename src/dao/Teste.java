@@ -13,8 +13,8 @@ public class Teste {
 		/*
 		 * ConexaoBanco c = new ConexaoBanco(); Connection con = c.getConnection();
 		 */
-		HospedeDao h = new HospedeDao();
-		Hospede hospede = new Hospede();
+		FuncionarioDao h = new FuncionarioDao();
+		Funcionario funcionario = new Funcionario();
 		CartaoDebito cartao = new CartaoDebito();
 		CartaoDebitoDao c = new CartaoDebitoDao();
 		List<Hospede> hospedes = new ArrayList<>();
@@ -28,14 +28,14 @@ public class Teste {
 
 		// funcionario.setCod("cod_func")));
 		// hospede.setCod(6);
-		//hospede.setCpf(411111124);
-		//hospede.setNome("teste3");
-		//hospede.setEmail("teste3");
-		//hospede.setEndereco("teste3");
-		//hospede.setTelefone(11111111);
-		//hospede.setSenha("teste3");
-		//hospede.setStatus(1);
-		//h.Insert(hospede);
+		/*funcionario.setCpf(411111124);
+		funcionario.setNome("teste4");
+		funcionario.setEmail("teste4");
+		funcionario.setEndereco("teste4");
+		funcionario.setTelefone(11111111);
+		funcionario.setSenha("teste");
+		funcionario.setStatus(1);
+		h.Insert(funcionario);
 		//LoginDao l = new LoginDao();
 		//System.out.println(l.LoginHospede(411111124, "teste3"));
 		// System.out.println(hospedes.);
@@ -58,6 +58,10 @@ public class Teste {
 		// Pagamento pag = new Pagamento();
 		// PagamentoDao p = new PagamentoDao();
 		// pag.setAluguel(aluguel);
+		Aluguel aluguel = new Aluguel();
+		AluguelDao a= new AluguelDao();
+		System.out.println(a.PesquisaCod(1).getFuncionario().getNome());
+
 
 	}
 }
