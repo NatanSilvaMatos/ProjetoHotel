@@ -165,7 +165,7 @@ public class QuartoDao {
 			}
 			quarto.setPreco(resultSet.getDouble(5));
 		}
-
+//
 		return quarto;
 	}
 }
