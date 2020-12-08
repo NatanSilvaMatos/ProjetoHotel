@@ -12,6 +12,14 @@ public class FuncionarioControl {
 	public void adicionar(Funcionario funcionario) {
 		funcDao.Insert(funcionario);
 	}
+	
+	public void atualizar(Funcionario funcionario) {
+		funcDao.Update(funcionario);
+	}
+	
+	public void desativar(int cpf) {
+		funcDao.Delete(cpf);
+	}
 
 	public ObservableList<Funcionario> getListaAtivos() {
 		ObservableList<Funcionario> obsFuncionarios = FXCollections.observableArrayList();
@@ -24,4 +32,11 @@ public class FuncionarioControl {
 		obsFuncionarios.addAll(funcDao.Pesquisa());
 		return obsFuncionarios;
 	}
+
+	public ObservableList<Funcionario> getListaEspecifica(int cpf) {
+		ObservableList<Funcionario> obsFuncionarios = FXCollections.observableArrayList();
+		obsFuncionarios.addAll(funcDao.PesquisaCpf(cpf));
+		return obsFuncionarios;
+	}
+
 }

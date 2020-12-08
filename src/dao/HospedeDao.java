@@ -10,7 +10,6 @@ import entity.Hospede;;
 public class HospedeDao {
 	private ConexaoBanco c = new ConexaoBanco();
 
-	
 	public List<Hospede> Pesquisa() {
 		List<Hospede> hospedes = new ArrayList<>();
 		Connection con = c.getConnection();
@@ -32,7 +31,7 @@ public class HospedeDao {
 		}
 		return null;
 	}
-	
+
 	public Hospede PesquisaCpf(int cpf) {
 		Hospede hospede = new Hospede();
 		Connection con = c.getConnection();
@@ -41,9 +40,9 @@ public class HospedeDao {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
 			ps.setInt(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
-			
+
 			hospede = BancoEntity(resultSet);
-			
+
 			con.close();
 			return hospede;
 		} catch (SQLException e) {
@@ -51,7 +50,7 @@ public class HospedeDao {
 		}
 		return null;
 	}
-	
+
 	public Hospede PesquisaCod(int cod) {
 		Hospede hospede = new Hospede();
 		Connection con = c.getConnection();
@@ -60,9 +59,9 @@ public class HospedeDao {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
 			ps.setInt(1, cod);
 			ResultSet resultSet = ps.executeQuery();
-			
+
 			hospede = BancoEntity(resultSet);
-			
+
 			con.close();
 			return hospede;
 		} catch (SQLException e) {
@@ -70,7 +69,7 @@ public class HospedeDao {
 		}
 		return null;
 	}
-	
+
 	public void Insert(Hospede hospede) {
 		try {
 
@@ -107,7 +106,6 @@ public class HospedeDao {
 			ps.setString(6, hospede.getSenha());
 			ps.setInt(7, hospede.getCod());
 
-
 			ps.execute();
 			con.close();
 		} catch (SQLException e) {
@@ -141,14 +139,16 @@ public class HospedeDao {
 			hospede.setStatus(resultSet.getInt(8));
 
 		}
-		/*hospede.setCod(resultSet.getInt("cod_hosp"));
-		hospede.setCpf(resultSet.getInt("cpf"));
-		hospede.setNome(resultSet.getString("nome"));
-		hospede.setEmail(resultSet.getString("email"));
-		hospede.setEndereco(resultSet.getString("endereco"));
-		hospede.setTelefone(resultSet.getInt("telefone"));
-		hospede.setSenha(resultSet.getString("senha_hosp"));
-		hospede.setStatus(resultSet.getInt("status"));*/
+		/*
+		 * hospede.setCod(resultSet.getInt("cod_hosp"));
+		 * hospede.setCpf(resultSet.getInt("cpf"));
+		 * hospede.setNome(resultSet.getString("nome"));
+		 * hospede.setEmail(resultSet.getString("email"));
+		 * hospede.setEndereco(resultSet.getString("endereco"));
+		 * hospede.setTelefone(resultSet.getInt("telefone"));
+		 * hospede.setSenha(resultSet.getString("senha_hosp"));
+		 * hospede.setStatus(resultSet.getInt("status"));
+		 */
 
 		return hospede;
 	}
