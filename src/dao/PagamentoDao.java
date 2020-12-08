@@ -54,6 +54,32 @@ public class PagamentoDao {
 		}
 		return null;
 	}
+	
+	public Pagamento Pesquisahospede(int cpf) {
+		Pagamento pagamento = new Pagamento();
+		Connection con = c.getConnection();
+		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN\r\n" + 
+				"	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, cpf);
+			ResultSet resultSet = ps.executeQuery();
+			
+			if(resultSet.next()) {
+				pagamento = BancoEntity(resultSet);
+
+			}else {
+				return null;
+			}			
+			con.close();
+			return pagamento;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 
 	public void Insert(Pagamento pagamento) {
 		try {

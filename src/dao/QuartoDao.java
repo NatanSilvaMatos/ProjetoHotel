@@ -55,6 +55,25 @@ public class QuartoDao {
 		}
 		return null;
 	}
+	
+	public Quarto PesquisaQuartoDisp() {
+		Quarto quarto = new Quarto();
+		Connection con = c.getConnection();
+		String query = "SELECT * FROM quarto WHERE disponibilidade = 1;";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet resultSet = ps.executeQuery();
+
+
+				quarto = BancoEntity(resultSet);
+			
+			con.close();
+			return quarto;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void Insert(Quarto quarto) {
 		try {

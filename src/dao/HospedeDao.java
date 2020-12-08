@@ -75,7 +75,7 @@ public class HospedeDao {
 
 			Connection con = c.getConnection();
 			String queryhospede = "Insert Into hospede(cpf, nome, email, endereco, telefone, senha_hosp) "
-					+ "VALUES( ?, ?, ?, ?, ?, ?)";
+					+ "VALUES( ?, ?, ?, ?, ?, AES_ENCRYPT(?, 'chave'))";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
 
 			ps.setInt(1, hospede.getCpf());
@@ -94,7 +94,7 @@ public class HospedeDao {
 
 	public void update(Hospede hospede) {
 		Connection con = c.getConnection();
-		String query = "UPDATE hospede SET cpf = ?, nome = ?, email = ?, endereco = ?, telefone = ?, senha_hosp = ?"
+		String query = "UPDATE hospede SET cpf = ?, nome = ?, email = ?, endereco = ?, telefone = ?, senha_hosp = AES_ENCRYPT(?, 'chave')"
 				+ " WHERE cod_hosp = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
