@@ -39,7 +39,7 @@ public class LoginDao {
 		return false;
 	}
 	
-	public boolean PesquisaCpf(int cpf, String senha) {
+	public boolean LoginFuncionario(int cpf, String senha) {
 		int cpf2;
 		String senha2;
 		Connection con = c.getConnection();
