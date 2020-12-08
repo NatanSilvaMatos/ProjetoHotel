@@ -72,6 +72,40 @@ public class QuartoDao {
 		}
 		return null;
 	}
+	
+	public Quarto PesquisaQuartoGener(String pes) {
+		Quarto quarto = new Quarto();
+		Connection con = c.getConnection();
+		String query = "SELECT * FROM quarto WHERE andar = '?' or disponibilidade like '?' or categoria like '?' or "
+				+ "preco like '?';";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet resultSet = ps.executeQuery();
+			ps.setString(1, pes);
+			if(pes.compareTo("disponivel")== 0) {
+				ps.setInt(2, 1);
+			}else if(pes.compareTo("locado")== 0) {
+				ps.setInt(2, 2);
+			}
+			
+			if(pes.compareTo("premium")== 0) {
+				ps.setInt(3, 1);
+			}else if(pes.compareTo("comum")== 0) {
+				ps.setInt(3, 2);
+			}else if(pes.compareTo("presidencial")== 0) {
+				ps.setInt(3, 3);
+			}
+			ps.setString(3, pes);
+			ps.setString(4, pes);
+			quarto = BancoEntity(resultSet);
+
+			con.close();
+			return quarto;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void Insert(Quarto quarto) {
 		try {
