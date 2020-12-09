@@ -131,6 +131,11 @@ public class PagamentoDao {
 			pagamento.setAluguel(a.PesquisaCod(resultSet.getInt(3)));
 			pagamento.setNumDias(resultSet.getInt(4));
 		}
+		
+		/*pagamento.setCod(resultSet.getInt("cod_pag"));
+		pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt(""numero_quar)));
+		pagamento.setAluguel(a.PesquisaCod(resultSet.getInt("cod_alug")));
+		pagamento.setNumDias(resultSet.getInt("num_Dias"));*/
 
 		return pagamento;
 	}

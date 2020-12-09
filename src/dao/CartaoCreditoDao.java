@@ -97,6 +97,10 @@ public class CartaoCreditoDao {
 			cartao.setCvv(resultSet.getInt(3));
 			cartao.setStatus(resultSet.getInt(4));
 		}
+		/*cartao.setCod_card((resultSet.getInt(1)));
+			cartao.setNumero(resultSet.getInt(2));
+			cartao.setCvv(resultSet.getInt(3));
+			cartao.setStatus(resultSet.getInt(4));*/
 
 		return cartao;
 	}

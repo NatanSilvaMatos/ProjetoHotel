@@ -165,7 +165,6 @@ public class QuartoDao {
 			}
 			quarto.setPreco(resultSet.getDouble("preco"));
 			quarto.setStatus(resultSet.getInt("status"));
-		
 
 		return quarto;
 	}

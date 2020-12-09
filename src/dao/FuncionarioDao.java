@@ -145,6 +145,14 @@ public class FuncionarioDao {
 		funcionario.setSenha(resultSet.getString(7));
 		funcionario.setStatus(resultSet.getInt(8));
 	}
+		/*funcionario.setCod((resultSet.getInt("cod_hosp")));
+		funcionario.setCpf(resultSet.getInt("cpf_Func"));
+		funcionario.setNome(resultSet.getString("nome_func"));
+		funcionario.setEmail(resultSet.getString("email_func"));
+		funcionario.setEndereco(resultSet.getString("endereco_func"));
+		funcionario.setTelefone(resultSet.getInt("telefone_func"));
+		funcionario.setSenha(resultSet.getString("senha_Func"));
+		funcionario.setStatus(resultSet.getInt("status"));*/
 		return funcionario;
 	}
 	
