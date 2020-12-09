@@ -10,7 +10,6 @@ public abstract class Cartao {
 	private String tipo;
 
 	public Cartao() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getCod_card() {

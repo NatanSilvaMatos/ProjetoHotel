@@ -10,17 +10,17 @@ public class Aluguel {
 	private Funcionario funcionario;
 	private LocalDate data;
 	private List<Quarto> quarto;
-	
+
+	public Aluguel() {
+	}
+
 	public Aluguel(Hospede hospede, Funcionario funcionario, LocalDate data, List<Quarto> quarto) {
 		this.hospede = hospede;
 		this.funcionario = funcionario;
 		this.data = data;
 		this.quarto = quarto;
 	}
-	
-	public Aluguel() {
-	}	
-	
+
 	public List<Quarto> getQuarto() {
 		return quarto;
 	}
@@ -32,6 +32,7 @@ public class Aluguel {
 	public int getCod() {
 		return cod;
 	}
+
 	public void setCod(int cod) {
 		this.cod = cod;
 	}
@@ -59,6 +60,5 @@ public class Aluguel {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
-	
+
 }

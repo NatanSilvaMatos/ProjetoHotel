@@ -8,11 +8,17 @@ public class Quarto {
 	private double preco;
 	private int status;
 
-	public Quarto(int numero) {
-		this.numero = numero;
-	}
-	
 	public Quarto() {
+	}
+
+	public Quarto(int numero, int andar, Disponibilidade disponibilidade, Categoria categoria, double preco,
+			int status) {
+		this.numero = numero;
+		this.andar = andar;
+		this.disponibilidade = disponibilidade;
+		this.categoria = categoria;
+		this.preco = preco;
+		this.status = status;
 	}
 
 	public int getNumero() {
@@ -62,6 +68,5 @@ public class Quarto {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
 
 }

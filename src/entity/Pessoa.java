@@ -11,19 +11,8 @@ public class Pessoa {
 	private int status;
 
 	public Pessoa() {
-		// TODO Auto-generated constructor stub
 	}
 
-	Pessoa(int cpf, String email, String nome, String endereco, int telefone, String senha, int status) {
-		this.cpf = cpf;
-		this.email = email;
-		this.nome = nome;
-		this.endereco = endereco;
-		this.telefone = telefone;
-		this.senha = senha;
-		this.status = status;
-	}
-	
 	public int getCod() {
 		return cod;
 	}
