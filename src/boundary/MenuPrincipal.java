@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 
 public class MenuPrincipal {
 	public static BorderPane pane = new BorderPane();
-	//private Scene scene = new Scene(pane, 800, 600); 
 	private MenuBar barraMenu = new MenuBar();
 	private Menu menu = new Menu("Menu");
 	private MenuItem novoAluguel = new MenuItem("Novo Aluguel");

@@ -2,7 +2,6 @@ package boundary;
 
 import java.time.LocalDate;
 
-import control.AluguelControl;
 import control.PagamentoControl;
 import entity.Aluguel;
 import entity.Categoria;
@@ -70,6 +69,16 @@ public class Alugueis {
 		botaoPesquisar.setLayoutX(210);
 		botaoPesquisar.setLayoutY(500);
 		botaoPesquisar.setPrefWidth(100);
+		botaoPesquisar.setOnAction((event) -> {{
+			int num = Integer.parseInt(txtPesquisar.getText());
+				if(listaAluguel.getListaCpf(num) != null) {
+					System.out.println("certinho");
+				}
+				else {
+					System.out.println("deu ruim");
+				}
+			}
+		});
 		
 		pane.getChildren().addAll(table,lblAlugueis,txtPesquisar,botaoPesquisar);
 		
