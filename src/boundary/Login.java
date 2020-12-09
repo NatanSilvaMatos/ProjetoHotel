@@ -69,6 +69,7 @@ public class Login extends Application {
 
 		rbFuncionario.setLayoutX(250);
 		rbFuncionario.setLayoutY(390);
+
 		
 		
 		InputStream input = this.getClass().getResourceAsStream("/img/icon.png");
