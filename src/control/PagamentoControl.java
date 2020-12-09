@@ -20,7 +20,13 @@ public class PagamentoControl {
 		obsPagamentos.addAll(pagDao.Pesquisa());
 		return obsPagamentos;
 	}
-	
+
+	public ObservableList<Pagamento> getListaCpf(int cpf) {
+		ObservableList<Pagamento> obsPagamentos = FXCollections.observableArrayList();
+		obsPagamentos.addAll(pagDao.PesquisaporCpf(cpf));
+		return obsPagamentos;
+	}
+
 	public Hospede getHospede(String cpf) {
 		return null;
 	}
