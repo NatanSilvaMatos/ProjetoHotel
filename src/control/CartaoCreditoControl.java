@@ -28,12 +28,4 @@ public class CartaoCreditoControl {
 		return obsCartoesCredito;
 	}
 
-	public void ativarCredito(Hospede hospede, CartaoCredito credito) {
-		creditoDao.Update(hospede, credito);
-	}
-
-	public void desativarCredito(Hospede hospede, CartaoCredito credito) {
-		creditoDao.Update(hospede, credito);
-	}
-
 }

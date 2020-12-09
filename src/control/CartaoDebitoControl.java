@@ -30,12 +30,4 @@ public class CartaoDebitoControl {
 		return obsCartoesDebito;
 	}
 
-	public void ativarDebito(Hospede hospede, CartaoDebito debito) {
-		debitoDao.Update(hospede, debito);
-	}
-
-	public void desativarDebito(Hospede hospede, CartaoDebito debito) {
-		debitoDao.Update(hospede, debito);
-	}
-
 }
