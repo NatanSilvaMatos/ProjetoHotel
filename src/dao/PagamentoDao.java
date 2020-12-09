@@ -77,6 +77,31 @@ public class PagamentoDao {
 		}
 		return null;
 	}
+	
+	public List<String> Tabela(int cpf) {
+		ArrayList<String> pagamentos = new ArrayList<>();
+		Connection con = c.getConnection();
+		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
+				+ "	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, cpf);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+
+				Pagamento pagamento = BancoEntity(resultSet);
+				
+				pagamentos.add(pagamento.getQuarto().getNumero()+";"+pagamento.getQuarto().getAndar()+";"+pagamento.getQuarto().getCategoria()+
+						";"+pagamento.getAluguel().getData()+";"+pagamento.getQuarto().getPreco());
+			}
+			con.close();
+			return pagamentos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void Insert(Pagamento pagamento) {
 		try {
@@ -134,7 +159,7 @@ public class PagamentoDao {
 		
 		/*colocar dentro do if se der erro
 		pagamento.setCod(resultSet.getInt("cod_pag"));
-		pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt(""numero_quar)));
+		pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt("numero_quar")));
 		pagamento.setAluguel(a.PesquisaCod(resultSet.getInt("cod_alug")));
 		pagamento.setNumDias(resultSet.getInt("num_Dias"));*/
 
