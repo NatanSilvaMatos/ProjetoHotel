@@ -23,7 +23,7 @@ public class MenuPrincipal {
 	private Alugueis telaTodosAlugueis = new Alugueis();
 	private Cadastro telaCadastro = new Cadastro();
 	private NovoAluguel telaNovoAluguel = new NovoAluguel();
-	private Pagamento telaPagamento = new Pagamento();
+	private Pagamentos telaPagamento = new Pagamentos();
 	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
 	private String tipoUsuario;
 	private int cpf;

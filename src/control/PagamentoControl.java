@@ -20,7 +20,7 @@ public class PagamentoControl {
 		obsPagamentos.addAll(pagDao.Pesquisa());
 		return obsPagamentos;
 	}
-
+	
 	public Hospede getHospede(String cpf) {
 		return null;
 	}

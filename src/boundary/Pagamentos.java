@@ -11,7 +11,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
-public class Pagamento {
+public class Pagamentos {
 	private Pane pane = new Pane();
 
 	private Label lblCPF = new Label("CPF HOSPEDE:");
@@ -36,7 +36,7 @@ public class Pagamento {
 	private HospedeDao hospedeDao = new HospedeDao();
 	private Hospede hospede = new Hospede();
 
-	public Pagamento() {
+	public Pagamentos() {
 		lblPagamento.setLayoutX(50);
 		lblPagamento.setLayoutY(40);
 		lblPagamento.setStyle("-fx-font-weight: bold");

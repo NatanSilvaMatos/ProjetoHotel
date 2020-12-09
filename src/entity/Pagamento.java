@@ -1,16 +1,16 @@
 package entity;
 
-public class PagamentoEntity {
+public class Pagamento {
 	private int cod;
 	private Quarto quarto;
 	private Aluguel aluguel;
 	private int numDias;
 
-	public PagamentoEntity() {
+	public Pagamento() {
 
 	}
 
-	public PagamentoEntity(Quarto quarto, Aluguel aluguel, int numDias) {
+	public Pagamento(Quarto quarto, Aluguel aluguel, int numDias) {
 		this.quarto = quarto;
 		this.aluguel = aluguel;
 		this.numDias = numDias;
