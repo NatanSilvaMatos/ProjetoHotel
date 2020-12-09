@@ -40,8 +40,12 @@ public class HospedeDao {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
 			ps.setInt(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
-
-			hospede = BancoEntity(resultSet);
+			if (resultSet.next()) {
+				hospede = BancoEntity(resultSet);
+			}else {
+				hospede = null;
+			}
+				
 
 			con.close();
 			return hospede;
@@ -59,7 +63,6 @@ public class HospedeDao {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
 			ps.setInt(1, cod);
 			ResultSet resultSet = ps.executeQuery();
-
 			hospede = BancoEntity(resultSet);
 
 			con.close();
