@@ -70,6 +70,7 @@ public class Login extends Application {
 		rbFuncionario.setLayoutX(250);
 		rbFuncionario.setLayoutY(390);
 
+
 		pane.getChildren().addAll(lblLogin,lblSenha,btnEntrar,txtLogin,txtSenha,rbHospede,rbFuncionario,imageView);
 		
 		
