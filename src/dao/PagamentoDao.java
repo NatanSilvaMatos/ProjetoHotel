@@ -54,24 +54,24 @@ public class PagamentoDao {
 		return null;
 	}
 
-	public Pagamento Pesquisahospede(int cpf) {
-		Pagamento pagamento = new Pagamento();
+	public List<Pagamento> Pesquisahospede(int cpf) {
+		List<Pagamento> pagamentos = new ArrayList<>();
 		Connection con = c.getConnection();
-		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN\r\n"
+		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
 				+ "	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
 
-			if (resultSet.next()) {
-				pagamento = BancoEntity(resultSet);
+			while (resultSet.next()) {
 
-			} else {
-				return null;
+				Pagamento pagamento = BancoEntity(resultSet);
+
+				pagamentos.add(pagamento);
 			}
 			con.close();
-			return pagamento;
+			return pagamentos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

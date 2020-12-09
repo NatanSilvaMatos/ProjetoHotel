@@ -17,9 +17,9 @@ public class AluguelDao {
 	public List<Aluguel> Pesquisa() {
 		List<Aluguel> Alugueis = new ArrayList<>();
 		Connection con = c.getConnection();
-		String queryPessoa = "SELECT * FROM aluguel;";
+		String query = "SELECT * FROM aluguel;";
 		try {
-			PreparedStatement ps = con.prepareStatement(queryPessoa);
+			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -49,6 +49,30 @@ public class AluguelDao {
 
 			con.close();
 			return aluguel;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<Aluguel> PesquisaCpf(int cpf) {
+		List<Aluguel> Alugueis = new ArrayList<>();
+		Connection con = c.getConnection();
+		String query = "SELECT a.cod_alug, a.cod_hosp, a.cod_func, a.Data_aluguel FROM aluguel p INNER JOIN "
+				+ "hospede h on a.cod_hosp = h.cod_hosp where h.cod_hosp = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, cpf);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+
+				Aluguel aluguel = BancoEntity(resultSet);
+
+				Alugueis.add(aluguel);
+			}
+			con.close();
+			return Alugueis;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
