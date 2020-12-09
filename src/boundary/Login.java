@@ -30,7 +30,7 @@ public class Login extends Application {
 	private PasswordField txtSenha = new PasswordField();
 	private ToggleGroup groupCategoriaUsuario = new ToggleGroup();
 	private Alert alert = new Alert(AlertType.WARNING);
-
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		InputStream is = getClass().getResourceAsStream("/img/logo.png");
@@ -70,9 +70,17 @@ public class Login extends Application {
 		rbFuncionario.setLayoutX(250);
 		rbFuncionario.setLayoutY(390);
 		
+		
+		//Image icon = new Image();
+		InputStream input = this.getClass().getResourceAsStream("/img/icon.png");
+		Image icon = new Image(input);
+		stage.getIcons().add(icon);
+		//ImageView iconView = new ImageView(icon);
+		
 		pane.getChildren().addAll(lblLogin,lblSenha,btnEntrar,txtLogin,txtSenha,rbHospede,rbFuncionario,imageView);
 		
-		
+		alert.setTitle("Erro");
+			
 		btnEntrar.setOnAction((event) -> {
 			if(txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty()) {
 				alert.setHeaderText("Algum campo não foi preenchido");
@@ -87,15 +95,24 @@ public class Login extends Application {
 					Scene cena2 = new Scene(menu.chamaTela(),800,600);
 					stage.setScene(cena2);		
 				}
-			}
-			
+				else {
+					alert.setHeaderText("Login ou Senha incorretos");
+					alert.setContentText("Preencha os dados corretamente pra fazer Login!");
+					alert.showAndWait();
+				}
+			}			
 			else {
 				LoginDao login = new LoginDao();
 				if(login.LoginHospede(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())){
 					MenuPrincipal menu = new MenuPrincipal(rbHospede.getText().toString(), Integer.parseInt(txtLogin.getText()));
 					Scene cena2 = new Scene(menu.chamaTela(),800,600);
 					stage.setScene(cena2);		
-				}			
+				}
+				else {
+					alert.setHeaderText("Login ou Senha incorretos");
+					alert.setContentText("Preencha os dados corretamente pra fazer Login!");
+					alert.showAndWait();
+				}
 			}
 		});
 		
