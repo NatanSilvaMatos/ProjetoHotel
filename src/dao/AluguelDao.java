@@ -83,12 +83,11 @@ public class AluguelDao {
 		try {
 
 			Connection con = c.getConnection();
-			String queryhospede = "Insert Into aluguel(cod_hosp, cod_func, Data_aluguel) " + "VALUES( ?, ?, ?)";
+			String queryhospede = "Insert Into aluguel(cod_hosp, cod_func, Data_aluguel) VALUES( ?, ?)";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
 
 			ps.setInt(1, aluguel.getHospede().getCod());
 			ps.setInt(2, aluguel.getFuncionario().getCod());
-			ps.setDate(3, java.sql.Date.valueOf(aluguel.getData()));
 
 			ps.executeQuery();
 			con.close();
