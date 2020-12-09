@@ -1,5 +1,7 @@
 package boundary;
 
+import dao.HospedeDao;
+import entity.Hospede;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,6 +32,9 @@ public class Pagamento {
 	private Button pesquisarCpf = new Button("Pesquisar");
 	private ToggleGroup groupTipoPagamento = new ToggleGroup();
 	private Alert alert = new Alert(AlertType.WARNING);
+	private Alert alert2 = new Alert(AlertType.INFORMATION);
+	private HospedeDao hospedeDao = new HospedeDao();
+	private Hospede hospede = new Hospede();
 
 	public Pagamento() {
 		lblPagamento.setLayoutX(50);
@@ -118,6 +123,22 @@ public class Pagamento {
 				alert.setContentText("Preencha o campo de CPF para pesquisar");
 				alert.showAndWait();
 			}
+			else {
+				int num = Integer.parseInt(txtCPF.getText());
+				if(hospedeDao.PesquisaCpf(num) != null) {
+					hospede = hospedeDao.PesquisaCpf(num);
+					alert2.setHeaderText("Sucesso");
+					alert2.setContentText("Cliente encontrado! + " + "Nome do Cliente = " + hospede.getNome());
+					alert2.showAndWait();
+					txtCPF.setEditable(false);
+				}
+				else {
+					alert.setHeaderText("CPF Inválido");
+					alert.setContentText("Não existem clientes com esse CPF");
+					alert.showAndWait();
+					txtCPF.clear();
+				}
+			}
 		});
 
 		confirmarPagamento.setOnAction((event) -> {
@@ -126,6 +147,19 @@ public class Pagamento {
 				alert.setContentText("Preencha o campo de CPF para prosseguir");
 				alert.showAndWait();
 			}
+			if(rbCredito.isSelected()) {
+				if(txtCartao.getText().isEmpty() || txtCodSeguranca.getText().isEmpty()) {
+					alert.setHeaderText("Erro");
+					alert.setContentText("Preencha os campos de Cartao e Codigo de Seguranca");
+					alert.showAndWait();
+				}
+				else{
+					alert2.setHeaderText("Sucesso");
+					alert2.setContentText("Pagamento efetuado com cartao de credito!");
+					alert2.showAndWait();
+				}
+			}
+		
 		});
 
 	}

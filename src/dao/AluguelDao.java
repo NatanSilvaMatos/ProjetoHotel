@@ -126,7 +126,7 @@ public class AluguelDao {
 		HospedeDao h = new HospedeDao();
 		FuncionarioDao f = new FuncionarioDao();
 
-		if (resultSet.next()) {
+		//if (resultSet.next()) {
 			/*aluguel.setCod(resultSet.getInt(1));
 			aluguel.setHospede(h.PesquisaCod(resultSet.getInt(2)));
 			aluguel.setFuncionario(f.PesquisaCod(resultSet.getInt(3)));
@@ -136,7 +136,7 @@ public class AluguelDao {
 			aluguel.setHospede(h.PesquisaCod(resultSet.getInt("cod_hosp")));
 			aluguel.setFuncionario(f.PesquisaCod(resultSet.getInt("cod_func")));
 			aluguel.setData(resultSet.getDate("Data_aluguel").toLocalDate());
-		}
+		//}
 
 		return aluguel;
 	}

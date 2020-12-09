@@ -120,7 +120,7 @@ public class NovoAluguel {
 		confirmarAluguel.setOnAction((event) -> {
 			if(txtCPF.getText().isEmpty() || txtNumQuarto.getText().isEmpty() ) {			
 				alert.setHeaderText("Estão faltando campos a serem preenchidos");
-				alert.setContentText("Preencha todos os campos para confirmar a Aluguel!");
+				alert.setContentText("Preencha todos os campos para confirmar o Aluguel!");
 				alert.showAndWait();
 			}
 		});

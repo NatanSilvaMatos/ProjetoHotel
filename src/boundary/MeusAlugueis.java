@@ -1,9 +1,11 @@
 package boundary;
 
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
@@ -11,6 +13,8 @@ public class MeusAlugueis {
 	private Pane pane = new Pane();
 	private Label lblAluguel = new Label("MEUS ALUGUEIS");
 	private TableView<String> table = new TableView<String>();
+	private Button botaoPesquisar = new Button("Pesquisar");
+	private TextField txtPesquisar = new TextField();
 	
 
 	@SuppressWarnings("unchecked")
@@ -46,8 +50,18 @@ public class MeusAlugueis {
 		lblAluguel.setLayoutX(50);
 		lblAluguel.setLayoutY(30);
 		lblAluguel.setStyle("-fx-font-weight: bold");
+		
+		txtPesquisar.setLayoutX(50);
+		txtPesquisar.setLayoutY(500);
+		txtPesquisar.setPrefWidth(150);
+		txtPesquisar.setPromptText("Pesquisa");
+		
+		botaoPesquisar.setLayoutX(220);
+		botaoPesquisar.setLayoutY(500);
+		botaoPesquisar.setPrefWidth(100);
+				
 						
-		pane.getChildren().addAll(table,lblAluguel);
+		pane.getChildren().addAll(table,lblAluguel,botaoPesquisar,txtPesquisar);
 		
 	}
 	

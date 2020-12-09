@@ -49,13 +49,12 @@ public class QuartosDisponiveis {
 		lblQuartos.setLayoutY(30);
 		lblQuartos.setStyle("-fx-font-weight: bold");
 		
-		
-		
 		txtPesquisar.setLayoutX(90);
 		txtPesquisar.setLayoutY(500);
-		txtPesquisar.setPrefWidth(100);
+		txtPesquisar.setPrefWidth(150);
+		txtPesquisar.setPromptText("Pesquisa");
 		
-		botaoPesquisar.setLayoutX(210);
+		botaoPesquisar.setLayoutX(260);
 		botaoPesquisar.setLayoutY(500);
 		botaoPesquisar.setPrefWidth(100);
 				
