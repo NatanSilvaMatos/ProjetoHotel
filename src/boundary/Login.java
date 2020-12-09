@@ -71,11 +71,9 @@ public class Login extends Application {
 		rbFuncionario.setLayoutY(390);
 		
 		
-		//Image icon = new Image();
 		InputStream input = this.getClass().getResourceAsStream("/img/icon.png");
 		Image icon = new Image(input);
 		stage.getIcons().add(icon);
-		//ImageView iconView = new ImageView(icon);
 		
 		pane.getChildren().addAll(lblLogin,lblSenha,btnEntrar,txtLogin,txtSenha,rbHospede,rbFuncionario,imageView);
 		
