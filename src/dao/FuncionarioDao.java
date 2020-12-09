@@ -152,7 +152,7 @@ public class FuncionarioDao {
 		funcionario.setEndereco(resultSet.getString("endereco_func"));
 		funcionario.setTelefone(resultSet.getInt("telefone_func"));
 		funcionario.setSenha(resultSet.getString("senha_Func"));
-		funcionario.setStatus(resultSet.getInt("status"));*/
+		funcionario.setStatus(resultSet.getInt("status"));-*/
 		return funcionario;
 	}
 	
