@@ -6,16 +6,15 @@ public class Pagamento {
 	private Aluguel aluguel;
 	private int numDias;
 
-	public Pagamento(Quarto quarto, Aluguel aluguel, int numDias) {		
+	public Pagamento() {
+
+	}
+
+	public Pagamento(Quarto quarto, Aluguel aluguel, int numDias) {
 		this.quarto = quarto;
 		this.aluguel = aluguel;
 		this.numDias = numDias;
 	}
-	
-	public Pagamento() {
-		
-	}	
-	
 
 	public int getCod() {
 		return cod;
@@ -47,8 +46,6 @@ public class Pagamento {
 
 	public void setNumDias(int numDias) {
 		this.numDias = numDias;
-	}	
+	}
 
-	
-	
 }
