@@ -81,18 +81,21 @@ public class Login extends Application {
 			}
 			if(rbFuncionario.isSelected()) {
 				LoginDao login = new LoginDao();
-				//if(login.LoginFuncionario(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())) {
+				if(login.LoginFuncionario(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())) {
+					System.out.println(Integer.parseInt(txtLogin.getText().toString()));
 					MenuPrincipal menu = new MenuPrincipal(rbFuncionario.getText().toString(), Integer.parseInt(txtLogin.getText()));
 					Scene cena2 = new Scene(menu.chamaTela(),800,600);
 					stage.setScene(cena2);		
-				//}
+				}
 			}
+			
 			else {
 				LoginDao login = new LoginDao();
-				//login.LoginFuncionario(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString());
-				MenuPrincipal menu = new MenuPrincipal(rbHospede.getText().toString(), Integer.parseInt(txtLogin.getText()));
-				Scene cena2 = new Scene(menu.chamaTela(),800,600);
-				stage.setScene(cena2);		
+				if(login.LoginHospede(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())){
+					MenuPrincipal menu = new MenuPrincipal(rbHospede.getText().toString(), Integer.parseInt(txtLogin.getText()));
+					Scene cena2 = new Scene(menu.chamaTela(),800,600);
+					stage.setScene(cena2);		
+				}			
 			}
 		});
 		

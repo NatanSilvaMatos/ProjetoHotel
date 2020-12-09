@@ -4,9 +4,11 @@ package boundary;
 import control.QuartoControl;
 import entity.Disponibilidade;
 import entity.Quarto;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
@@ -16,6 +18,8 @@ public class QuartosDisponiveis {
 	private Label lblQuartos = new Label("QUARTOS DISPONIVEIS");
 	private TableView<Quarto> table = new TableView<Quarto>();
 	private QuartoControl quartosDisponiveis = new QuartoControl();
+	private Button botaoPesquisar = new Button("Pesquisar");
+	private TextField txtPesquisar = new TextField();
 
 	@SuppressWarnings("unchecked")
 	public QuartosDisponiveis() {
@@ -44,8 +48,16 @@ public class QuartosDisponiveis {
 		lblQuartos.setLayoutX(90);
 		lblQuartos.setLayoutY(30);
 		lblQuartos.setStyle("-fx-font-weight: bold");
+		
+		txtPesquisar.setLayoutX(90);
+		txtPesquisar.setLayoutY(500);
+		txtPesquisar.setPrefWidth(100);
+		
+		botaoPesquisar.setLayoutX(210);
+		botaoPesquisar.setLayoutY(500);
+		botaoPesquisar.setPrefWidth(100);
 				
-		pane.getChildren().addAll(table, lblQuartos);
+		pane.getChildren().addAll(table, lblQuartos, txtPesquisar, botaoPesquisar);
 		
 	}
 
