@@ -118,7 +118,7 @@ public class PagamentoDao {
 	 * query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?"; try {
 	 * PreparedStatement ps = con.prepareStatement(query); ps.setInt(1, cod);
 	 * ps.execute(); con.close(); } catch (SQLException e) { e.printStackTrace(); }
-	 * }-
+	 * }
 	 */
 
 	private Pagamento BancoEntity(ResultSet resultSet) throws SQLException {
@@ -132,7 +132,8 @@ public class PagamentoDao {
 			pagamento.setNumDias(resultSet.getInt(4));
 		}
 		
-		/*pagamento.setCod(resultSet.getInt("cod_pag"));
+		/*colocar dentro do if se der erro
+		pagamento.setCod(resultSet.getInt("cod_pag"));
 		pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt(""numero_quar)));
 		pagamento.setAluguel(a.PesquisaCod(resultSet.getInt("cod_alug")));
 		pagamento.setNumDias(resultSet.getInt("num_Dias"));*/

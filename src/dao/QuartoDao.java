@@ -182,7 +182,6 @@ public class QuartoDao {
 
 	private Quarto BancoEntity(ResultSet resultSet) throws SQLException {
 		Quarto quarto = new Quarto();
-		//if (resultSet.next()) {
 			quarto.setNumero((resultSet.getInt("numero_quar")));
 			quarto.setAndar(resultSet.getInt("andar"));
 			if (resultSet.getInt("disponibilidade") == 1) {

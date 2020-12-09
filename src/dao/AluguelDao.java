@@ -118,7 +118,7 @@ public class AluguelDao {
 	 * query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?"; try {
 	 * PreparedStatement ps = con.prepareStatement(query); ps.setInt(1, cod);
 	 * ps.execute(); con.close(); } catch (SQLException e) { e.printStackTrace(); }
-	 * }-
+	 * }
 	 */
 
 	private Aluguel BancoEntity(ResultSet resultSet) throws SQLException {
