@@ -54,7 +54,7 @@ public class PagamentoDao {
 		return null;
 	}
 
-	public List<Pagamento> Pesquisahospede(int cpf) {
+	public List<Pagamento> PesquisaporCpf(int cpf) {
 		List<Pagamento> pagamentos = new ArrayList<>();
 		Connection con = c.getConnection();
 		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
