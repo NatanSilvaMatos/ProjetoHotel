@@ -54,9 +54,7 @@ public class Alugueis {
 		table.setLayoutX(40);
 		table.setLayoutY(70);
 		table.setItems(listaAluguel.getLista());
-		
-		
-		
+			
 		lblAlugueis.setLayoutX(40);
 		lblAlugueis.setLayoutY(30);
 		lblAlugueis.setStyle("-fx-font-weight: bold");

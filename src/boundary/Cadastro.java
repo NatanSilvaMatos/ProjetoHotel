@@ -1,6 +1,8 @@
 package boundary;
 
-import javafx.event.ActionEvent;
+import control.HospedeControl;
+import dao.HospedeDao;
+import entity.Hospede;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -11,7 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Cadastro implements EventHandler<ActionEvent> {
+public class Cadastro {
 	private TextField txtNome = new TextField();
 	private TextField txtEmail = new TextField();
 	private TextField txtEndereco = new TextField();
@@ -30,6 +32,9 @@ public class Cadastro implements EventHandler<ActionEvent> {
 	private Pane pane = new Pane();
 	private Button cadastrar = new Button("Cadastrar");
 	private Button gerarSenha = new Button("Gerar Senha");
+	private HospedeControl hospedeControl = new HospedeControl();
+	private HospedeDao hospedeDao = new HospedeDao();
+	private Alert alert = new Alert(AlertType.WARNING);
 	
 	
 	public Cadastro() {		
@@ -90,8 +95,35 @@ public class Cadastro implements EventHandler<ActionEvent> {
 		cadastrar.setLayoutX(350);
 		cadastrar.setLayoutY(500);
 		cadastrar.setPrefWidth(120);
-		cadastrar.setOnAction(this);
-										
+		
+		cadastrar.setOnAction((event) -> {
+			if(txtNome.getText().isEmpty() || txtEmail.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumeroResidencia.getText().isEmpty() ||
+					txtTelefone.getText().isEmpty() || txtCPF.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+						alert.setTitle("Erro");
+						alert.setHeaderText("Estão faltando campos a serem preenchidos");
+						alert.setContentText("Preencha todos os campos");
+						alert.showAndWait();
+					}
+			else {
+				int cpf = Integer.parseInt(txtCPF.getText());
+				int telefone = Integer.parseInt(txtTelefone.getText()); 
+				Hospede hospede = new Hospede(cpf, txtEmail.getText(),txtNome.getText(),txtEndereco.getText(),telefone,txtSenha.getText(),1);
+				if(hospedeDao.PesquisaCpf(cpf) == null) {
+					alert.setTitle("Erro");
+					alert.setHeaderText("Esse cpf já existe em nossa base, cadastre com outro CPF");
+				}
+				else {
+					hospedeControl.adicionar(hospede);
+					alert.setTitle("Sucesso");
+					alert.setHeaderText("O cadastro foi efetuado com sucesso!");
+				}		
+			}
+		});
+			
+		gerarSenha.setOnAction((event) -> {
+			txtSenha.setText(gerarNovaSenha(10));
+		});
+								
 		pane.setStyle("-fx-background-color: white;");
 		pane.getChildren().addAll(lblCadastro, lblNome,txtNome, lblEmail, txtEmail, lblEndereco, txtEndereco,lblNumeroResidencia,txtNumeroResidencia,
 		lblTelefone,txtTelefone,lblCPF, txtCPF, lblSenha, txtSenha,cadastrar,gerarSenha);
@@ -101,20 +133,20 @@ public class Cadastro implements EventHandler<ActionEvent> {
 		return pane;
 	}
 	
-	@Override
-	public void handle(ActionEvent e) {
-		if(e.getTarget() == cadastrar) {
-			if(txtNome.getText().isEmpty() || txtEmail.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtNumeroResidencia.getText().isEmpty() ||
-			txtTelefone.getText().isEmpty() || txtCPF.getText().isEmpty() || txtSenha.getText().isEmpty()) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Erro");
-				alert.setHeaderText("Estão faltando campos a serem preenchidos");
-				alert.setContentText("Preencha todos os campos");
-				alert.showAndWait();
-			}
-			
-		}
+	public String gerarNovaSenha(int qtdeMaximaCaracteres){
 		
+	    String[] caracteres = { "0", "1", "b", "2", "4", "5", "6", "7", "8",
+	                "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+	                "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+	                "x", "y", "z"};
+	    
+		StringBuilder senha = new StringBuilder();
+
+        for (int i = 0; i < qtdeMaximaCaracteres; i++) {
+            int posicao = (int) (Math.random() * caracteres.length);
+            senha.append(caracteres[posicao]);
+        }
+        return senha.toString();
 	}
 
 }
