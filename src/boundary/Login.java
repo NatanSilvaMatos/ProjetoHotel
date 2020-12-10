@@ -78,7 +78,7 @@ public class Login extends Application {
 		pane.getChildren().addAll(lblLogin, lblSenha, btnEntrar, txtLogin, txtSenha, rbHospede, rbFuncionario,
 				imageView);
 
-		alert.setTitle("Erro");
+		alert.setTitle("Erro2");
 
 		btnEntrar.setOnAction((event) -> {
 			if (txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty()) {
