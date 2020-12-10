@@ -123,8 +123,8 @@ public class Cadastro {
 				alert.showAndWait();
 			}
 			else {
-				long cpf = Long.parseLong(txtCPF.getText());	
-				int telefone = Integer.parseInt(txtTelefone.getText()); 			
+				long cpf = Long.parseLong(txtCPF.getText().trim());	
+				int telefone = Integer.parseInt(txtTelefone.getText().trim()); 			
 				if(rbHospede.isSelected()) {
 					if(hospedeDao.PesquisaCpf(cpf) != null) {
 						alert.setTitle("Erro");
@@ -132,7 +132,8 @@ public class Cadastro {
 						alert.showAndWait();
 					}
 					else {						
-						Hospede hospede = new Hospede(cpf, txtEmail.getText(),txtNome.getText(),txtEndereco.getText(),telefone,txtSenha.getText(),1);
+						Hospede hospede = new Hospede(cpf, txtEmail.getText().trim(),txtNome.getText().trim(),txtEndereco.getText()
+						,telefone,txtSenha.getText().trim(),1);
 						hospedeControl.adicionar(hospede);
 						alert.setTitle("Sucesso");
 						alert.setHeaderText("O cadastro de Hóspede foi efetuado com sucesso!");
@@ -146,7 +147,8 @@ public class Cadastro {
 						alert.showAndWait();				
 					}
 					else {
-						Funcionario funcionario = new Funcionario(cpf, txtEmail.getText(),txtNome.getText(),txtEndereco.getText(),telefone,txtSenha.getText(),1);
+						Funcionario funcionario = new Funcionario(cpf, txtEmail.getText().trim(),txtNome.getText().trim(),
+								txtEndereco.getText().trim(),telefone,txtSenha.getText().trim(),1);
 						funcionarioControl.adicionar(funcionario);
 						alert.setTitle("Sucesso");
 						alert.setHeaderText("O cadastro de Funcionário foi efetuado com sucesso!");
