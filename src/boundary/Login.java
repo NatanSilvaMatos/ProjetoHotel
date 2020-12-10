@@ -16,12 +16,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Login extends Application {
 	private Pane pane = new Pane();
 	private Scene scn = new Scene(pane, 800, 600);
-	private Label lblLogin = new Label("LOGIN:");
+	private Label lblBemVindo = new Label("SEJA BEM VINDO AO HOTEL DO COLEVATÃO!");
+	private Label lblLogin = new Label("LOGIN: (UTILIZE SEU CPF PARA ENTRAR)");
 	private Label lblSenha = new Label("SENHA:");
 	private Button btnEntrar = new Button("Entrar");
 	private RadioButton rbHospede = new RadioButton("Hóspede");
@@ -46,12 +49,18 @@ public class Login extends Application {
 		btnEntrar.setPrefWidth(75);
 		btnEntrar.prefHeight(50);
 		pane.setStyle("-fx-background-color: white;");
-
+		
+		lblBemVindo.setLayoutX(90);
+		lblBemVindo.setLayoutY(100);
+		lblBemVindo.setStyle("-fx-font-weight: bold");
+		lblBemVindo.setFont(new Font(25));
+		lblBemVindo.setTextFill(Color.DODGERBLUE);
+		
 		lblLogin.setLayoutX(90);
-		lblLogin.setLayoutY(220);
+		lblLogin.setLayoutY(210);
 
 		lblSenha.setLayoutX(90);
-		lblSenha.setLayoutY(300);
+		lblSenha.setLayoutY(290);
 
 		txtLogin.setLayoutX(90);
 		txtLogin.setLayoutY(240);
@@ -75,7 +84,7 @@ public class Login extends Application {
 		Image icon = new Image(input);
 		stage.getIcons().add(icon);
 
-		pane.getChildren().addAll(lblLogin, lblSenha, btnEntrar, txtLogin, txtSenha, rbHospede, rbFuncionario,
+		pane.getChildren().addAll(lblBemVindo, lblLogin, lblSenha, btnEntrar, txtLogin, txtSenha, rbHospede, rbFuncionario,
 				imageView);
 
 		alert.setTitle("Erro");
@@ -125,7 +134,7 @@ public class Login extends Application {
 
 		stage.setScene(scn);
 		stage.setResizable(false);
-		stage.setTitle("SEJA BEM-VINDO AO HOTEL DO COLEVATÃO");
+		stage.setTitle("HOTEL DO COLEVATÃO");
 		stage.show();
 	}
 
