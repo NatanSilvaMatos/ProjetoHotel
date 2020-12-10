@@ -1,6 +1,5 @@
 package boundary;
 
-import java.sql.SQLDataException;
 
 import control.FuncionarioControl;
 import control.HospedeControl;
@@ -8,8 +7,6 @@ import dao.FuncionarioDao;
 import dao.HospedeDao;
 import entity.Funcionario;
 import entity.Hospede;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+
 
 public class Cadastro {
 	private TextField txtNome = new TextField();
@@ -126,7 +123,7 @@ public class Cadastro {
 				alert.showAndWait();
 			}
 			else {
-				int cpf = Integer.parseInt(txtCPF.getText());	
+				long cpf = Long.parseLong(txtCPF.getText());	
 				int telefone = Integer.parseInt(txtTelefone.getText()); 			
 				if(rbHospede.isSelected()) {
 					if(hospedeDao.PesquisaCpf(cpf) != null) {

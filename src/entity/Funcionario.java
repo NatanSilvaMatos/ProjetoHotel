@@ -6,7 +6,7 @@ public class Funcionario extends Pessoa {
 
 	}
 
-	public Funcionario(int cpf, String email, String nome, String endereco, int telefone, String senha, int status) {
+	public Funcionario(long cpf, String email, String nome, String endereco, int telefone, String senha, int status) {
 		this.setCpf(cpf);
 		this.setEmail(email);
 		this.setNome(nome);
