@@ -66,12 +66,10 @@ public class PagamentoDao {
 			ps.setLong(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
 
-			// while (resultSet.next()) {
 
 			Pagamento pagamento = BancoEntity(resultSet);
 
 			pagamentos.add(pagamento);
-			// }
 			con.close();
 			return pagamentos;
 		} catch (SQLException e) {

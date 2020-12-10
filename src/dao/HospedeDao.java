@@ -136,29 +136,13 @@ public class HospedeDao {
 			hospede.setSenha(resultSet.getString(7));
 			hospede.setStatus(resultSet.getInt(8));
 
-			/*
-			 * hospede.setCod(resultSet.getInt("cod_hosp"));
-			 * hospede.setCpf(resultSet.getInt("cpf"));
-			 * hospede.setNome(resultSet.getString("nome"));
-			 * hospede.setEmail(resultSet.getString("email"));
-			 * hospede.setEndereco(resultSet.getString("endereco"));
-			 * hospede.setTelefone(resultSet.getInt("telefone"));
-			 * hospede.setSenha(resultSet.getString("senha_hosp"));
-			 * hospede.setStatus(resultSet.getInt("status"));
-			 */
+			
 
 		} else {
 			hospede = null;
 		}
 
-		// hospede.setCod(resultSet.getInt("cod_hosp"));
-		// hospede.setCpf(resultSet.getInt("cpf"));
-		// hospede.setNome(resultSet.getString("nome"));
-		// hospede.setEmail(resultSet.getString("email"));
-		// hospede.setEndereco(resultSet.getString("endereco"));
-		// hospede.setTelefone(resultSet.getInt("telefone"));
-		// hospede.setSenha(resultSet.getString("senha_hosp"));
-		// hospede.setStatus(resultSet.getInt("status"));
+		
 
 		return hospede;
 	}

@@ -6,32 +6,12 @@ import java.sql.SQLException;
 
 public class ConexaoBanco {
 
-	//private static volatile ConexaoBanco instance;
 	private Connection connection;
 
-	private final String SUB_PROTOCOLO = "mariadb";
-	private final String HOSTNAME = "52.188.48.87";
-	private final String PORT = "3306";
-	private final String DATABASE_NAME = "bdclube";
-	private final String USER = "projetobdclube";
-	private final String PASSWORD = "senhaclube";
+	
 
 	ConexaoBanco() {
-	};
-
-	/*public static ConexaoBanco getInstance() {
-		if (instance == null) {
-
-			synchronized (ConexaoBanco.class) {
-
-				if (instance == null) {
-
-					instance = new ConexaoBanco();
-				}
-			}
-		}
-		return instance;
-	}*/
+	};	
 
 	public Connection getConnection() {
 		try {
