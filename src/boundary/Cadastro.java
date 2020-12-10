@@ -2,8 +2,11 @@ package boundary;
 
 import java.sql.SQLDataException;
 
+import control.FuncionarioControl;
 import control.HospedeControl;
+import dao.FuncionarioDao;
 import dao.HospedeDao;
+import entity.Funcionario;
 import entity.Hospede;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -38,6 +41,8 @@ public class Cadastro {
 	private Button cadastrar = new Button("Cadastrar");
 	private Button gerarSenha = new Button("Gerar Senha");
 	private HospedeControl hospedeControl = new HospedeControl();
+	private FuncionarioControl funcionarioControl = new FuncionarioControl();
+	private FuncionarioDao funcionarioDao = new FuncionarioDao();
 	private HospedeDao hospedeDao = new HospedeDao();
 	private RadioButton rbHospede = new RadioButton("Hóspede");
 	private RadioButton rbFuncionario = new RadioButton("Funcionário");
@@ -121,26 +126,39 @@ public class Cadastro {
 				alert.showAndWait();
 			}
 			else {
-				int cpf = Integer.parseInt(txtCPF.getText());
-				alert.setTitle("Erro");
-				alert.setHeaderText("Esse cpf já existe em nossa base, cadastre com outro CPF");
-				int telefone = Integer.parseInt(txtTelefone.getText()); 
-				Hospede hospede = new Hospede(cpf, txtEmail.getText(),txtNome.getText(),txtEndereco.getText(),telefone,txtSenha.getText(),1);
-				if(hospedeDao.PesquisaCpf(cpf) != null) {
-					alert.setTitle("Erro");
-					alert.setHeaderText("Esse CPF ja existe, cadastre os outros");
-					alert.showAndWait();
-					System.out.println(hospedeDao.PesquisaCpf(cpf));
+				int cpf = Integer.parseInt(txtCPF.getText());	
+				int telefone = Integer.parseInt(txtTelefone.getText()); 			
+				if(rbHospede.isSelected()) {
+					if(hospedeDao.PesquisaCpf(cpf) != null) {
+						alert.setTitle("Erro");
+						alert.setHeaderText("Esse cpf já existe em nossa base, cadastre com outro CPF");
+						alert.showAndWait();
+					}
+					else {						
+						Hospede hospede = new Hospede(cpf, txtEmail.getText(),txtNome.getText(),txtEndereco.getText(),telefone,txtSenha.getText(),1);
+						hospedeControl.adicionar(hospede);
+						alert.setTitle("Sucesso");
+						alert.setHeaderText("O cadastro de Hóspede foi efetuado com sucesso!");
+						alert.showAndWait();
+					}
 				}
-				else {
-					System.out.println("Pode cadastrar");
+				else if(rbFuncionario.isSelected()) {
+					if(funcionarioDao.PesquisaCpf(cpf) != null) {
+						alert.setTitle("Erro");
+						alert.setHeaderText("Esse cpf já existe em nossa base, cadastre com outro CPF");
+						alert.showAndWait();				
+					}
+					else {
+						Funcionario funcionario = new Funcionario(cpf, txtEmail.getText(),txtNome.getText(),txtEndereco.getText(),telefone,txtSenha.getText(),1);
+						funcionarioControl.adicionar(funcionario);
+						alert.setTitle("Sucesso");
+						alert.setHeaderText("O cadastro de Funcionário foi efetuado com sucesso!");
+						alert.showAndWait();
+					}
 				}
 			}
 		});
-		//else {
-		//hospedeControl.adicionar(hospede);
-		//alert.setTitle("Sucesso");
-		//alert.setHeaderText("O cadastro foi efetuado com sucesso!");
+
 
 		gerarSenha.setOnAction((event) -> {
 			txtSenha.setText(gerarNovaSenha(10));

@@ -50,8 +50,8 @@ public class FuncionarioDao {
 			return funcionario;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	public Funcionario PesquisaCod(int cod) {
@@ -145,6 +145,9 @@ public class FuncionarioDao {
 		funcionario.setSenha(resultSet.getString(7));
 		funcionario.setStatus(resultSet.getInt(8));
 	}
+		else {
+			funcionario = null;
+		}
 		/*funcionario.setCod((resultSet.getInt("cod_hosp")));
 		funcionario.setCpf(resultSet.getInt("cpf_Func"));
 		funcionario.setNome(resultSet.getString("nome_func"));
