@@ -77,7 +77,7 @@ public class AluguelDao {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}	
 
 	public void Insert(Aluguel aluguel) {
 		try {

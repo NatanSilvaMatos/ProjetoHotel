@@ -35,6 +35,14 @@ CREATE TABLE `aluguel` (
   `Data_aluguel` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `aluguel`
+--
+
+INSERT INTO `aluguel` (`cod_alug`, `cod_hosp`, `cod_func`, `Data_aluguel`) VALUES
+(1, 1, 2, '2020-12-08'),
+(2, 2, 2, '2020-12-09'),
+(3, 4, 3, '2020-12-09');
 -- --------------------------------------------------------
 
 --
@@ -55,9 +63,8 @@ CREATE TABLE `cartao` (
 --
 
 INSERT INTO `cartao` (`cod_cart`, `cod_hosp`, `numero_cart`, `cvv`, `tipo`, `status`) VALUES
-(1, 1, 12345, 123, '0', 1),
-(2, 6, 12345, 123, 'Debito', 1),
-(3, 6, 12345, 123, 'Debito', 1);
+(2, 2, 12345, 123, 'Debito', 1),
+(3, 3, 54321, 321, 'Credito', 1);
 
 -- --------------------------------------------------------
 
@@ -67,7 +74,7 @@ INSERT INTO `cartao` (`cod_cart`, `cod_hosp`, `numero_cart`, `cvv`, `tipo`, `sta
 
 CREATE TABLE `funcionario` (
   `cod_func` int(11) NOT NULL,
-  `cpf_func` int(11) NOT NULL,
+  `cpf_func` bigint(11) NOT NULL,
   `nome_func` varchar(40) NOT NULL,
   `email_func` varchar(40) NOT NULL,
   `endereco_func` varchar(40) NOT NULL,
@@ -81,7 +88,9 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`cod_func`, `cpf_func`, `nome_func`, `email_func`, `endereco_func`, `telefone_func`, `senha_func`, `status`) VALUES
-(1, 2111111112, 'teste', 'teste', 'teste', 11111111, 'teste', 1);
+(1, 11111111111, 'admin', 'admin@admin', 'admin', 11111111, AES_ENCRYPT('admin', 'chave'), 1),
+(2, 54384379222, 'Esther Campos', 'esther_campos@terra.com.br', 'Rua Doutor João Emílio Falcão', 991669177, AES_ENCRYPT('campos666', 'chave'), 1),
+(3, 31348377289, 'Guilherme Miguel', 'gguilhermemigue@email.com.br', 'Av. Bruno Martini', 998718393, AES_ENCRYPT('guimi15', 'chave'), 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +100,7 @@ INSERT INTO `funcionario` (`cod_func`, `cpf_func`, `nome_func`, `email_func`, `e
 
 CREATE TABLE `hospede` (
   `cod_hosp` int(11) NOT NULL,
-  `cpf` int(11) NOT NULL,
+  `cpf` bigint(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   `endereco` varchar(40) NOT NULL,
@@ -103,13 +112,11 @@ CREATE TABLE `hospede` (
 --
 -- Extraindo dados da tabela `hospede`
 --
-
 INSERT INTO `hospede` (`cod_hosp`, `cpf`, `nome`, `email`, `endereco`, `telefone`, `senha_hosp`, `status`) VALUES
-(1, 2147483647, 'teste', 'teste', 'teste', 11111111, '698dc19d489c4e4db73e', 1),
-(2, 1111111112, 'teste', 'teste', 'teste', 11111111, 'teste', 1),
-(3, 2111111112, 'teste', 'teste', 'teste', 11111111, '6ïYƒÈ½Aîí8ßýK', 1),
-(4, 2111111122, 'teste', 'teste', 'teste', 11111111, 'teste', 1),
-(6, 311111122, 'teste2', 'teste2', 'teste2', 11111111, 'teste', 1);
+(1, 11111111111, 'admin', 'admn@admin', 'admin', 11111111, AES_ENCRYPT('admin', 'chave'), 1),
+(2, 87161331211, 'Eduardo Gomes', 'eduardogomes@gmail.com.br', 'Rua Sérgio A. Pinto', 95741236, AES_ENCRYPT('agomes123', 'chave'), 1),
+(3, 43832333240, 'Vinicius Bruno', 'viniciusbruno@otlokk.com', 'Parque Esplanada II', 20254678, AES_ENCRYPT('vbruno', 'chave'), 1),
+(4, 25335624061, 'Betina Caroline', 'betinacarol@yahoo.com.br', 'Rua Francisco de Souza', 94758123, AES_ENCRYPT('tina321', 'chave'), 1);
 
 -- --------------------------------------------------------
 
@@ -118,11 +125,20 @@ INSERT INTO `hospede` (`cod_hosp`, `cpf`, `nome`, `email`, `endereco`, `telefone
 --
 
 CREATE TABLE `pagamento` (
+  `cod_pag` int(11) NOT NULL,
   `numero_quar` int(11) NOT NULL,
   `cod_alug` int(11) NOT NULL,
   `num_Dias` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `pagamento`
+--
+
+INSERT INTO `pagamento` (`cod_pag`, `numero_quar`, `cod_alug`, `num_Dias`) VALUES
+(1, 5, 1, 3),
+(2, 4, 3, 5),
+(3, 1, 2, 2);
 -- --------------------------------------------------------
 
 --
@@ -143,7 +159,11 @@ CREATE TABLE `quarto` (
 --
 
 INSERT INTO `quarto` (`numero_quar`, `andar`, `disponibilidade`, `categoria`, `preco`, `status`) VALUES
-(1, 1, 1, 1, '100.00', 1);
+(1, 1, 2, 2, '500.00', 1),
+(2, 1, 1, 2, '500.00', 1),
+(3, 2, 1, 1, '100.00', 1),
+(4, 2, 2, 1, '100.00', 1),
+(5, 3, 2, 3, '1000.00', 1);
 
 --
 -- Índices para tabelas despejadas
