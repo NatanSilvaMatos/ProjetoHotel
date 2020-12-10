@@ -49,13 +49,13 @@ public class Login extends Application {
 		btnEntrar.setPrefWidth(75);
 		btnEntrar.prefHeight(50);
 		pane.setStyle("-fx-background-color: white;");
-		
+
 		lblBemVindo.setLayoutX(90);
 		lblBemVindo.setLayoutY(100);
 		lblBemVindo.setStyle("-fx-font-weight: bold");
 		lblBemVindo.setFont(new Font(25));
 		lblBemVindo.setTextFill(Color.DODGERBLUE);
-		
+
 		lblLogin.setLayoutX(90);
 		lblLogin.setLayoutY(210);
 
@@ -84,8 +84,8 @@ public class Login extends Application {
 		Image icon = new Image(input);
 		stage.getIcons().add(icon);
 
-		pane.getChildren().addAll(lblBemVindo, lblLogin, lblSenha, btnEntrar, txtLogin, txtSenha, rbHospede, rbFuncionario,
-				imageView);
+		pane.getChildren().addAll(lblBemVindo, lblLogin, lblSenha, btnEntrar, txtLogin, txtSenha, rbHospede,
+				rbFuncionario, imageView);
 
 		alert.setTitle("Erro");
 

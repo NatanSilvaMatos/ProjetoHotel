@@ -80,38 +80,7 @@ public class PagamentoDao {
 		return null;
 	}
 
-	public List<String> Tabela(long cpf) {
-		ArrayList<String> pagamentos = new ArrayList<>();
-		Connection con = c.getConnection();
-		QuartoDao q = new QuartoDao();
-		AluguelDao a = new AluguelDao();
-		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
-				+ "	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
-		try {
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setLong(1, cpf);
-			ResultSet resultSet = ps.executeQuery();
-
-			while (resultSet.next()) {
-				Pagamento pagamento = new Pagamento();
-				pagamento.setCod(resultSet.getInt(1));
-				pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt(2)));
-				pagamento.setAluguel(a.PesquisaCod(resultSet.getInt(3)));
-				pagamento.setNumDias(resultSet.getInt(4));
-				System.out.println(pagamento.getQuarto());
-				pagamentos.add(pagamento.getQuarto().getNumero() + ";" + pagamento.getQuarto().getAndar() + ";"
-						+ pagamento.getQuarto().getCategoria() + ";" + pagamento.getAluguel().getData() + ";"
-						+ pagamento.getQuarto().getPreco());
-			}
-			con.close();
-			return pagamentos;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public List<AluguelQuarto> Tabelatodas() {
+	public List<AluguelQuarto> pesquisaAlugueis() {
 		ArrayList<AluguelQuarto> pagamentos = new ArrayList<>();
 		Connection con = c.getConnection();
 		String query = "SELECT * FROM pagamento;";
@@ -134,12 +103,41 @@ public class PagamentoDao {
 						pagamento.getAluguel().getData().toString(), pagamento.getQuarto().getPreco(),
 						pagamento.getAluguel().getHospede().getCpf(), pagamento.getAluguel().getHospede().getNome());
 
-				// pagamentos.add(""+pagamento.getQuarto().getNumero());
-				// pagamentos.add(""+pagamento.getQuarto().getAndar());
-				// pagamentos.add(""+pagamento.getQuarto().getCategoria());
-				// pagamentos.add(""+pagamento.getAluguel().getData());
-				// pagamentos.add(""+pagamento.getQuarto().getPreco());
-				// pagamentos.add(""+pagamento.getAluguel().getHospede().getCpf());
+				pagamentos.add(aluQuaEntidade);
+			}
+			con.close();
+			return pagamentos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<AluguelQuarto> pesquisaAlugueisCPF(long cpf) {
+		ArrayList<AluguelQuarto> pagamentos = new ArrayList<>();
+		Connection con = c.getConnection();
+		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
+				+ "	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
+		AluguelDao a = new AluguelDao();
+		QuartoDao q = new QuartoDao();
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setLong(1, cpf);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+
+				Pagamento pagamento = new Pagamento();
+				pagamento.setCod(resultSet.getInt(1));
+				pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt(2)));
+				pagamento.setAluguel(a.PesquisaCod(resultSet.getInt(3)));
+				pagamento.setNumDias(resultSet.getInt(4));
+
+				AluguelQuarto aluQuaEntidade = new AluguelQuarto(pagamento.getQuarto().getNumero(),
+						pagamento.getQuarto().getAndar(), pagamento.getQuarto().getCategoria(),
+						pagamento.getAluguel().getData().toString(), pagamento.getQuarto().getPreco(),
+						pagamento.getAluguel().getHospede().getCpf(), pagamento.getAluguel().getHospede().getNome());
+
 				pagamentos.add(aluQuaEntidade);
 			}
 			con.close();
@@ -185,13 +183,18 @@ public class PagamentoDao {
 		}
 	}
 
-	/*
-	 * public void Delete(int cod) { Connection con = c.getConnection(); String
-	 * query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?"; try {
-	 * PreparedStatement ps = con.prepareStatement(query); ps.setInt(1, cod);
-	 * ps.execute(); con.close(); } catch (SQLException e) { e.printStackTrace(); }
-	 * }
-	 */
+	public void Delete(int cod) {
+		Connection con = c.getConnection();
+		String query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, cod);
+			ps.execute();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private Pagamento BancoEntity(ResultSet resultSet) throws SQLException {
 		Pagamento pagamento = new Pagamento();
@@ -206,11 +209,6 @@ public class PagamentoDao {
 		} else {
 			pagamento = null;
 		}
-
-		// pagamento.setCod(resultSet.getInt("cod_pag"));
-		// pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt("numero_quar")));
-		// pagamento.setAluguel(a.PesquisaCod(resultSet.getInt("cod_alug")));
-		// pagamento.setNumDias(resultSet.getInt("num_Dias"));
 
 		return pagamento;
 	}

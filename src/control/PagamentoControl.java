@@ -30,7 +30,13 @@ public class PagamentoControl {
 	
 	public ObservableList<AluguelQuarto> getListaListaAlugueis() {
 		ObservableList<AluguelQuarto> obsPagamentos = FXCollections.observableArrayList();
-		obsPagamentos.addAll(pagDao.Tabelatodas());
+		obsPagamentos.addAll(pagDao.pesquisaAlugueis());
+		return obsPagamentos;
+	}
+	
+	public ObservableList<AluguelQuarto> getListaListaAlugueisCPF(long cpf) {
+		ObservableList<AluguelQuarto> obsPagamentos = FXCollections.observableArrayList();
+		obsPagamentos.addAll(pagDao.pesquisaAlugueisCPF(cpf));
 		return obsPagamentos;
 	}
 	

@@ -24,7 +24,7 @@ public class MenuPrincipal {
 	private Cadastro telaCadastro = new Cadastro();
 	private NovoAluguel telaNovoAluguel = new NovoAluguel(cpf);
 	private Pagamentos telaPagamento = new Pagamentos();
-	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
+	private MeusAlugueis telaMinhasReservas;
 	private String tipoUsuario;
 	
 	
@@ -68,6 +68,7 @@ public class MenuPrincipal {
 		});
 		
 		meusAlugueis.setOnAction((event) -> {
+			telaMinhasReservas = new MeusAlugueis(cpf);
 			pane.setCenter(telaMinhasReservas.getPane());
 		});
 		
