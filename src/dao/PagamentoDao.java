@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Aluguel;
+import entity.AluguelQuarto;
 import entity.Hospede;
 import entity.Pagamento;
 
@@ -110,8 +111,8 @@ public class PagamentoDao {
 		return null;
 	}
 
-	public List<String> Tabelatodas() {
-		ArrayList<String> pagamentos = new ArrayList<>();
+	public List<AluguelQuarto> Tabelatodas() {
+		ArrayList<AluguelQuarto> pagamentos = new ArrayList<>();
 		Connection con = c.getConnection();
 		String query = "SELECT * FROM pagamento;";
 		AluguelDao a = new AluguelDao();
@@ -128,10 +129,19 @@ public class PagamentoDao {
 				pagamento.setAluguel(a.PesquisaCod(resultSet.getInt(3)));
 				pagamento.setNumDias(resultSet.getInt(4));
 
-				pagamentos.add(pagamento.getQuarto().getNumero() + ";" + pagamento.getQuarto().getAndar() + ";"
-						+ pagamento.getQuarto().getCategoria() + ";" + pagamento.getAluguel().getData() + ";"
-						+ pagamento.getQuarto().getPreco() + ";" + pagamento.getAluguel().getHospede().getCpf());
-				System.out.println(pagamento.getAluguel().getHospede().getCpf());
+				AluguelQuarto aluQuaEntidade = new AluguelQuarto(pagamento.getQuarto().getNumero(),
+						pagamento.getQuarto().getAndar(), pagamento.getQuarto().getCategoria(),
+						pagamento.getAluguel().getData().toString(), pagamento.getQuarto().getPreco(),
+						pagamento.getAluguel().getHospede().getCpf());
+				
+				
+				// pagamentos.add(""+pagamento.getQuarto().getNumero());
+				// pagamentos.add(""+pagamento.getQuarto().getAndar());
+				// pagamentos.add(""+pagamento.getQuarto().getCategoria());
+				// pagamentos.add(""+pagamento.getAluguel().getData());
+				// pagamentos.add(""+pagamento.getQuarto().getPreco());
+				// pagamentos.add(""+pagamento.getAluguel().getHospede().getCpf());
+				pagamentos.add(aluQuaEntidade);
 			}
 			con.close();
 			return pagamentos;

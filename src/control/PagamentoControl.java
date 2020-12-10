@@ -1,6 +1,7 @@
 package control;
 
 import dao.PagamentoDao;
+import entity.AluguelQuarto;
 import entity.Hospede;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,17 +16,24 @@ public class PagamentoControl {
 
 	}
 
-	public ObservableList<Pagamento> getLista() {
+	public ObservableList<Pagamento> getListaPagamentos() {
 		ObservableList<Pagamento> obsPagamentos = FXCollections.observableArrayList();
 		obsPagamentos.addAll(pagDao.Pesquisa());
 		return obsPagamentos;
 	}
 
-	public ObservableList<Pagamento> getListaCpf(long cpf) {
+	public ObservableList<Pagamento> getListaPagamentosCpf(long cpf) {
 		ObservableList<Pagamento> obsPagamentos = FXCollections.observableArrayList();
 		obsPagamentos.addAll(pagDao.PesquisaporCpf(cpf));
 		return obsPagamentos;
 	}
+	
+	public ObservableList<AluguelQuarto> getListaListaAlugueis() {
+		ObservableList<AluguelQuarto> obsPagamentos = FXCollections.observableArrayList();
+		obsPagamentos.addAll(pagDao.Tabelatodas());
+		return obsPagamentos;
+	}
+	
 
 	public Hospede getHospede(long cpf) {
 		return null;
