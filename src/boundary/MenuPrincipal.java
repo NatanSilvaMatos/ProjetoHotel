@@ -25,9 +25,9 @@ public class MenuPrincipal {
 	private Pagamentos telaPagamento = new Pagamentos();
 	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
 	private String tipoUsuario;
-	private int cpf;
+	private long cpf;
 	
-	public MenuPrincipal(String tipoUsuario, int cpf) {
+	public MenuPrincipal(String tipoUsuario, long cpf) {
 		this.tipoUsuario = tipoUsuario;
 		this.cpf = cpf;
 	}

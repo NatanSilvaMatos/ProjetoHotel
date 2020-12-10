@@ -88,13 +88,12 @@ public class Login extends Application {
 			}
 			if (rbFuncionario.isSelected()) {
 				try {
-					if (login.LoginFuncionario(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())) {
+					if (login.LoginFuncionario(Long.parseLong(txtLogin.getText()), txtSenha.getText().toString())) {
 						MenuPrincipal menu = new MenuPrincipal(rbFuncionario.getText().toString(),
-								Integer.parseInt(txtLogin.getText()));
+								Long.parseLong(txtLogin.getText()));
 						Scene cena2 = new Scene(menu.chamaTela(), 800, 600);
 						stage.setScene(cena2);
-					}
-					else {
+					} else {
 						alert.setHeaderText("Login ou Senha incorretos");
 						alert.setContentText("Preencha os dados corretamente pra fazer Login!");
 						alert.showAndWait();
@@ -106,13 +105,12 @@ public class Login extends Application {
 				}
 			} else {
 				try {
-					if (login.LoginHospede(Integer.parseInt(txtLogin.getText()), txtSenha.getText().toString())) {
+					if (login.LoginHospede(Long.parseLong(txtLogin.getText()), txtSenha.getText().toString())) {
 						MenuPrincipal menu = new MenuPrincipal(rbHospede.getText().toString(),
-								Integer.parseInt(txtLogin.getText()));
+								Long.parseLong(txtLogin.getText()));
 						Scene cena2 = new Scene(menu.chamaTela(), 800, 600);
 						stage.setScene(cena2);
-					}
-					else {
+					} else {
 						alert.setHeaderText("Login ou Senha incorretos");
 						alert.setContentText("Preencha os dados corretamente pra fazer Login!");
 						alert.showAndWait();
