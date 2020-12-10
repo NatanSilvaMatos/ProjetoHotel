@@ -2,7 +2,7 @@ package entity;
 
 public class Pessoa {
 	private int cod;
-	private int cpf;
+	private long cpf;
 	private String email;
 	private String nome;
 	private String endereco;
@@ -21,11 +21,11 @@ public class Pessoa {
 		this.cod = cod;
 	}
 
-	public int getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
 

@@ -82,7 +82,7 @@ public class FuncionarioDao {
 					+ "telefone_func, senha_func) " + "VALUES( ?, ?, ?, ?, ?, AES_ENCRYPT(?, 'chave'))";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
 
-			ps.setInt(1, funcionario.getCpf());
+			ps.setLong(1, funcionario.getCpf());
 			ps.setString(2, funcionario.getNome());
 			ps.setString(3, funcionario.getEmail());
 			ps.setString(4, funcionario.getEndereco());
@@ -103,7 +103,7 @@ public class FuncionarioDao {
 				+ " telefone_func = ?, senha_func_func = AES_ENCRYPT(?, 'chave') WHERE cod_func = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, funcionario.getCpf());
+			ps.setLong(1, funcionario.getCpf());
 			ps.setString(2, funcionario.getNome());
 			ps.setString(3, funcionario.getEmail());
 			ps.setString(4, funcionario.getEndereco());

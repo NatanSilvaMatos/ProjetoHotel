@@ -76,7 +76,7 @@ public class HospedeDao {
 					+ "VALUES( ?, ?, ?, ?, ?, AES_ENCRYPT(?, 'chave'))";
 			PreparedStatement ps = con.prepareStatement(queryhospede);
 
-			ps.setInt(1, hospede.getCpf());
+			ps.setLong(1, hospede.getCpf());
 			ps.setString(2, hospede.getNome());
 			ps.setString(3, hospede.getEmail());
 			ps.setString(4, hospede.getEndereco());
@@ -96,13 +96,13 @@ public class HospedeDao {
 				+ " WHERE cod_hosp = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, hospede.getCpf());
+			ps.setLong(1, hospede.getCpf());
 			ps.setString(2, hospede.getNome());
 			ps.setString(3, hospede.getEmail());
 			ps.setString(4, hospede.getEndereco());
 			ps.setInt(5, hospede.getTelefone());
 			ps.setString(6, hospede.getSenha());
-			ps.setInt(7, hospede.getCod());
+			ps.setLong(7, hospede.getCod());
 
 			ps.execute();
 			con.close();
@@ -128,7 +128,7 @@ public class HospedeDao {
 		Hospede hospede = new Hospede();
 		if (resultSet.next()) {
 			hospede.setCod(resultSet.getInt(1));
-			hospede.setCpf(resultSet.getInt(2));
+			hospede.setCpf(resultSet.getLong(2));
 			hospede.setNome(resultSet.getString(3));
 			hospede.setEmail(resultSet.getString(4));
 			hospede.setEndereco(resultSet.getString(5));

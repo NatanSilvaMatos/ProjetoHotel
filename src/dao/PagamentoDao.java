@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Aluguel;
+import entity.Hospede;
 import entity.Pagamento;
 
 public class PagamentoDao {
@@ -43,9 +44,9 @@ public class PagamentoDao {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, cod);
 			ResultSet resultSet = ps.executeQuery();
-
-			pagamento = BancoEntity(resultSet);
-
+			if (resultSet.next()) {
+				pagamento = BancoEntity(resultSet);
+			}
 			con.close();
 			return pagamento;
 		} catch (SQLException e) {
@@ -54,22 +55,22 @@ public class PagamentoDao {
 		return null;
 	}
 
-	public List<Pagamento> PesquisaporCpf(int cpf) {
+	public List<Pagamento> PesquisaporCpf(long cpf) {
 		List<Pagamento> pagamentos = new ArrayList<>();
 		Connection con = c.getConnection();
 		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
 				+ "	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, cpf);
+			ps.setLong(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
 
-			while (resultSet.next()) {
+			//while (resultSet.next()) {
 
 				Pagamento pagamento = BancoEntity(resultSet);
 
 				pagamentos.add(pagamento);
-			}
+			//}
 			con.close();
 			return pagamentos;
 		} catch (SQLException e) {
@@ -77,23 +78,51 @@ public class PagamentoDao {
 		}
 		return null;
 	}
-	
-	public List<String> Tabela(int cpf) {
+
+	public List<String> Tabela(long cpf) {
 		ArrayList<String> pagamentos = new ArrayList<>();
 		Connection con = c.getConnection();
 		String query = "SELECT p.cod_pag, p.numero_quar, p.cod_alug, p.num_Dias FROM pagamento p INNER JOIN"
 				+ "	aluguel a on p.cod_alug = a.cod_alug where a.cod_hosp = (SELECT cod_hosp FROM hospede where cpf = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, cpf);
+			ps.setLong(1, cpf);
+			ResultSet resultSet = ps.executeQuery();
+
+			//while (resultSet.next()) {
+
+				Pagamento pagamento = BancoEntity(resultSet);
+				System.out.println(pagamento);
+				// System.out.println(pagamento.getQuarto().getNumero());
+				// pagamentos.add(pagamento.getQuarto().getNumero()+";"+pagamento.getQuarto().getAndar()+";"+pagamento.getQuarto().getCategoria()+
+				// ";"+pagamento.getAluguel().getData()+";"+pagamento.getQuarto().getPreco());
+			//}
+			con.close();
+			return pagamentos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<String> Tabelatodas() {
+		ArrayList<String> pagamentos = new ArrayList<>();
+		Connection con = c.getConnection();
+		String query = "SELECT * FROM pagamento;";
+		AluguelDao a = new AluguelDao();
+		HospedeDao h = new HospedeDao();
+		QuartoDao q = new QuartoDao();
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 
 				Pagamento pagamento = BancoEntity(resultSet);
 				
-				pagamentos.add(pagamento.getQuarto().getNumero()+";"+pagamento.getQuarto().getAndar()+";"+pagamento.getQuarto().getCategoria()+
-						";"+pagamento.getAluguel().getData()+";"+pagamento.getQuarto().getPreco());
+				 pagamentos.add(pagamento.getQuarto().getNumero()+";"+pagamento.getQuarto().getAndar()+";"+pagamento.getQuarto().getCategoria()+
+				 ";"+pagamento.getAluguel().getData()+";"+pagamento.getQuarto().getPreco()+";"+pagamento.getAluguel().getHospede().getCpf());
+				//System.out.println(pagamento.getQuarto().getNumero());
 			}
 			con.close();
 			return pagamentos;
@@ -150,18 +179,22 @@ public class PagamentoDao {
 		Pagamento pagamento = new Pagamento();
 		QuartoDao q = new QuartoDao();
 		AluguelDao a = new AluguelDao();
+
 		if (resultSet.next()) {
 			pagamento.setCod(resultSet.getInt(1));
 			pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt(2)));
 			pagamento.setAluguel(a.PesquisaCod(resultSet.getInt(3)));
 			pagamento.setNumDias(resultSet.getInt(4));
+		} else {
+			pagamento = null;
 		}
+
 		
-		/*colocar dentro do if se der erro
-		pagamento.setCod(resultSet.getInt("cod_pag"));
-		pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt("numero_quar")));
-		pagamento.setAluguel(a.PesquisaCod(resultSet.getInt("cod_alug")));
-		pagamento.setNumDias(resultSet.getInt("num_Dias"));*/
+		  //pagamento.setCod(resultSet.getInt("cod_pag"));
+		  //pagamento.setQuarto(q.PesquisaNumQuarto(resultSet.getInt("numero_quar")));
+		 //pagamento.setAluguel(a.PesquisaCod(resultSet.getInt("cod_alug")));
+		  //pagamento.setNumDias(resultSet.getInt("num_Dias"));
+		 
 
 		return pagamento;
 	}

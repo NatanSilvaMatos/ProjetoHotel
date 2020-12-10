@@ -101,8 +101,8 @@ public class AluguelDao {
 		String query = "UPDATE aluguel SET cod_hosp = ?, cod_func = ?, Data_aluguel = ? WHERE cod_alug = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, aluguel.getHospede().getCod());
-			ps.setInt(2, aluguel.getFuncionario().getCod());
+			ps.setLong(1, aluguel.getHospede().getCod());
+			ps.setLong(2, aluguel.getFuncionario().getCod());
 			ps.setDate(3, java.sql.Date.valueOf(aluguel.getData()));
 			ps.setInt(1, aluguel.getCod());
 
