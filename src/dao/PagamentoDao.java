@@ -90,7 +90,6 @@ public class PagamentoDao {
 			ResultSet resultSet = ps.executeQuery();
 
 			//while (resultSet.next()) {
-
 				Pagamento pagamento = BancoEntity(resultSet);
 				System.out.println(pagamento);
 				// System.out.println(pagamento.getQuarto().getNumero());

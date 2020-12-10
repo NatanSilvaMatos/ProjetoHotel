@@ -182,7 +182,28 @@ public class QuartoDao {
 
 	private Quarto BancoEntity(ResultSet resultSet) throws SQLException {
 		Quarto quarto = new Quarto();
-			quarto.setNumero((resultSet.getInt("numero_quar")));
+		if (resultSet.next()) {
+			quarto.setNumero((resultSet.getInt(1)));
+			quarto.setAndar(resultSet.getInt(2));
+			if (resultSet.getInt(3) == 1) {
+				quarto.setDisponibilidade(Disponibilidade.DISPONIVEL);
+			} else if (resultSet.getInt(3) == 2) {
+				quarto.setDisponibilidade(Disponibilidade.LOCADO);
+			}
+			if (resultSet.getInt(4) == 1) {
+				quarto.setCategoria(Categoria.COMUM);
+			} else if (resultSet.getInt(4) == 2) {
+				quarto.setCategoria(Categoria.PREMIUM);
+			} else if (resultSet.getInt(4) == 3) {
+				quarto.setCategoria(Categoria.PRESIDENCIAL);
+			}
+			quarto.setPreco(resultSet.getDouble(5));
+			quarto.setStatus(resultSet.getInt(6));
+		}else {
+			quarto=null;
+		}
+	
+			/*quarto.setNumero((resultSet.getInt("numero_quar")));
 			quarto.setAndar(resultSet.getInt("andar"));
 			if (resultSet.getInt("disponibilidade") == 1) {
 				quarto.setDisponibilidade(Disponibilidade.DISPONIVEL);
@@ -197,7 +218,7 @@ public class QuartoDao {
 				quarto.setCategoria(Categoria.PRESIDENCIAL);
 			}
 			quarto.setPreco(resultSet.getDouble("preco"));
-			quarto.setStatus(resultSet.getInt("status"));
+			quarto.setStatus(resultSet.getInt("status"));*/
 
 		return quarto;
 	}

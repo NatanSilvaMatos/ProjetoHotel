@@ -137,7 +137,7 @@ public class FuncionarioDao {
 		Funcionario funcionario = new Funcionario();
 		if (resultSet.next()) {
 		funcionario.setCod((resultSet.getInt(1)));
-		funcionario.setCpf(resultSet.getInt(2));
+		funcionario.setCpf(resultSet.getLong(2));
 		funcionario.setNome(resultSet.getString(3));
 		funcionario.setEmail(resultSet.getString(4));
 		funcionario.setEndereco(resultSet.getString(5));
