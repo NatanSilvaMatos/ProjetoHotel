@@ -132,9 +132,8 @@ public class PagamentoDao {
 				AluguelQuarto aluQuaEntidade = new AluguelQuarto(pagamento.getQuarto().getNumero(),
 						pagamento.getQuarto().getAndar(), pagamento.getQuarto().getCategoria(),
 						pagamento.getAluguel().getData().toString(), pagamento.getQuarto().getPreco(),
-						pagamento.getAluguel().getHospede().getCpf());
-				
-				
+						pagamento.getAluguel().getHospede().getCpf(), pagamento.getAluguel().getHospede().getNome());
+
 				// pagamentos.add(""+pagamento.getQuarto().getNumero());
 				// pagamentos.add(""+pagamento.getQuarto().getAndar());
 				// pagamentos.add(""+pagamento.getQuarto().getCategoria());

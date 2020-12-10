@@ -7,15 +7,17 @@ public class AluguelQuarto {
 	private String dataAluguel;
 	private double precoQuarto;
 	private long cpfHospede;
-
+	private String nomeHospede;
+	
 	public AluguelQuarto(int numQuarto, int andarQuarto, Categoria categoriaQuarto, String dataAluguel,
-			double precoQuarto, long cpfHospede) {
+			double precoQuarto, long cpfHospede, String nomeHospede) {
 		this.numQuarto = numQuarto;
 		this.andarQuarto = andarQuarto;
 		this.categoriaQuarto = categoriaQuarto;
 		this.dataAluguel = dataAluguel;
 		this.precoQuarto = precoQuarto;
 		this.cpfHospede = cpfHospede;
+		this.nomeHospede = nomeHospede;
 	}
 
 	public int getNumQuarto() {
@@ -64,6 +66,14 @@ public class AluguelQuarto {
 
 	public void setCpfHospede(long cpfHospede) {
 		this.cpfHospede = cpfHospede;
+	}
+
+	public String getNomeHospede() {
+		return nomeHospede;
+	}
+
+	public void setNomeHospede(String nomeHospede) {
+		this.nomeHospede = nomeHospede;
 	}
 	
 

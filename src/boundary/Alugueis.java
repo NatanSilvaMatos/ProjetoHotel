@@ -30,15 +30,15 @@ public class Alugueis {
 	@SuppressWarnings("unchecked")
 	public Alugueis() {
 		TableColumn<AluguelQuarto, Integer> columnQuarto = new TableColumn<>("QUARTO");
-		columnQuarto.setMinWidth(120);
+		columnQuarto.setMinWidth(60);
 		columnQuarto.setCellValueFactory(new PropertyValueFactory<>("numQuarto"));
 
 		TableColumn<AluguelQuarto, Integer> columnAndar = new TableColumn<>("ANDAR");
-		columnAndar.setMinWidth(120);
+		columnAndar.setMinWidth(60);
 		columnAndar.setCellValueFactory(new PropertyValueFactory<>("andarQuarto"));
 
 		TableColumn<AluguelQuarto, Categoria> columnCategoria = new TableColumn<>("CATEGORIA");
-		columnCategoria.setMinWidth(120);
+		columnCategoria.setMinWidth(100);
 		columnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaQuarto"));
 
 		TableColumn<AluguelQuarto, String> columnData = new TableColumn<>("DATA DE ALUGUEL");
@@ -46,19 +46,24 @@ public class Alugueis {
 		columnData.setCellValueFactory(new PropertyValueFactory<>("dataAluguel"));
 
 		TableColumn<AluguelQuarto, Double> columnPrecoDiaria = new TableColumn<>("PRECO(DIARIA)");
-		columnPrecoDiaria.setMinWidth(120);
+		columnPrecoDiaria.setMinWidth(80);
 		columnPrecoDiaria.setCellValueFactory(new PropertyValueFactory<>("precoQuarto"));
 
 		TableColumn<AluguelQuarto, Long> columnCPFHospede = new TableColumn<>("CPF HOSPEDE");
 		columnCPFHospede.setMinWidth(120);
 		columnCPFHospede.setCellValueFactory(new PropertyValueFactory<>("cpfHospede"));
+		
+		TableColumn<AluguelQuarto, String> columnNomeHospede = new TableColumn<>("NOME HOSPEDE");
+		columnNomeHospede.setMinWidth(130);
+		columnNomeHospede.setCellValueFactory(new PropertyValueFactory<>("nomeHospede"));
 
 		table.getColumns().addAll(columnQuarto, columnAndar, columnCategoria, columnData, columnPrecoDiaria,
-				columnCPFHospede);
+				columnCPFHospede, columnNomeHospede);
 		table.setLayoutX(40);
 		table.setLayoutY(70);
 		
 		table.setItems(listaAluguel.getListaListaAlugueis());
+		
 		/*
 		 * for (String o : listaAluguel.getListaListaAlugueis()) {
 		 * 
