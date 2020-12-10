@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 
 public class MenuPrincipal {
 	public static BorderPane pane = new BorderPane();
+	private long cpf;
 	private MenuBar barraMenu = new MenuBar();
 	private Menu menu = new Menu("Menu");
 	private MenuItem novoAluguel = new MenuItem("Novo Aluguel");
@@ -21,11 +22,11 @@ public class MenuPrincipal {
 	private QuartosDisponiveis telaQuartosDisponiveis = new QuartosDisponiveis();
 	private Alugueis telaTodosAlugueis = new Alugueis();
 	private Cadastro telaCadastro = new Cadastro();
-	private NovoAluguel telaNovoAluguel = new NovoAluguel();
+	private NovoAluguel telaNovoAluguel = new NovoAluguel(cpf);
 	private Pagamentos telaPagamento = new Pagamentos();
 	private MeusAlugueis telaMinhasReservas = new MeusAlugueis();
 	private String tipoUsuario;
-	private long cpf;
+	
 	
 	public MenuPrincipal(String tipoUsuario, long cpf) {
 		this.tipoUsuario = tipoUsuario;

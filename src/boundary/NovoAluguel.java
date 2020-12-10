@@ -1,10 +1,19 @@
 package boundary;
 
 
+import java.time.LocalDate;
+import java.util.List;
+
+import control.AluguelControl;
+import control.QuartoControl;
+import dao.FuncionarioDao;
+import dao.HospedeDao;
+import dao.QuartoDao;
+import entity.Aluguel;
+import entity.Funcionario;
+import entity.Hospede;
+import entity.Quarto;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -12,7 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+
 
 public class NovoAluguel {
 	private Pane pane = new Pane();
@@ -35,10 +44,18 @@ public class NovoAluguel {
 	private Button pesquisarNumQuarto = new Button("Pesquisar Quarto");
 	private String[] categorias = {"Premium","Presidencial","Comum"};
 	private String[] disponibilidade = {"Locado","Disponivel"};
+	private HospedeDao hospedeDao = new HospedeDao();
+	private QuartoDao quartoDao = new QuartoDao();
+	private LocalDate date = LocalDate.now();
+	private QuartoControl quartoControl = new QuartoControl();
+	private AluguelControl aluguelControl = new AluguelControl();
+	private FuncionarioDao funcionarioDao = new FuncionarioDao();
+	private long cpf;
 	private Alert alert = new Alert(AlertType.WARNING);
 
-	//@Override
-	public NovoAluguel() {		
+	@SuppressWarnings("null")
+	public NovoAluguel(long cpf) {		
+		this.cpf = cpf;
 		lblNovoAluguel.setLayoutX(50);
 		lblNovoAluguel.setLayoutY(30);
 		lblNovoAluguel.setStyle("-fx-font-weight: bold");
@@ -85,7 +102,8 @@ public class NovoAluguel {
 		cbCategoria.setLayoutX(500);
 		cbCategoria.setLayoutY(220);
 		cbCategoria.setItems(FXCollections.observableArrayList(categorias));
-		cbCategoria.getSelectionModel().select(categorias[0]);
+		cbCategoria.getSelectionModel().select(categorias[2]);
+		cbCategoria.setDisable(true);
 		cbCategoria.setPrefWidth(150);	
 
 		lblDisponibilidade.setLayoutX(500);
@@ -94,7 +112,8 @@ public class NovoAluguel {
 		cbDisponibilidade.setLayoutX(500);
 		cbDisponibilidade.setLayoutY(320);
 		cbDisponibilidade.setItems(FXCollections.observableArrayList(disponibilidade));
-		cbDisponibilidade.getSelectionModel().select(disponibilidade[0]);
+		cbDisponibilidade.getSelectionModel().select(disponibilidade[1]);
+		cbDisponibilidade.setDisable(true);
 		cbDisponibilidade.setPrefWidth(150);
 
 		confirmarAluguel.setLayoutX(300);
@@ -107,6 +126,25 @@ public class NovoAluguel {
 				alert.setContentText("Preencha o campo de Numero do Quarto para pesquisar!");
 				alert.showAndWait();
 			}
+			else {
+				int num = Integer.parseInt(txtNumQuarto.getText());
+				if(quartoDao.PesquisaNumQuarto(num) != null) {
+					Quarto quarto = quartoDao.PesquisaNumQuarto(num);
+					txtNumQuarto.setEditable(false);
+					txtPrecoDiaria.setText(Double.toString(quarto.getPreco()));	
+					txtAndar.setText(Integer.toString(quarto.getAndar()));
+				}
+				else {
+					alert.setHeaderText("Erro");
+					alert.setContentText("Não existe quarto com esse número");		
+					alert.showAndWait();
+					txtNumQuarto.clear();
+					if(!txtPrecoDiaria.getText().isEmpty() && !txtAndar.getText().isEmpty()) {
+						txtPrecoDiaria.clear();
+						txtAndar.clear();
+					}
+				}
+			}
 		});
 
 		pesquisarCpf.setOnAction((event) -> {
@@ -115,12 +153,39 @@ public class NovoAluguel {
 				alert.setContentText("Preencha o campo do CPF para pesquisar!");
 				alert.showAndWait();
 			}
+			else {
+				Long cpfHospede = Long.parseLong(txtCPF.getText());
+				if(hospedeDao.PesquisaCpf(cpfHospede) != null) {
+					alert.setHeaderText("Sucesso");
+					alert.setContentText("O CPF é válido!");
+					alert.showAndWait();
+					txtCPF.setEditable(false);
+				}
+				else {
+					alert.setHeaderText("Erro");
+					alert.setContentText("O CPF não consta na nossa base, faça a pesquisa novamente");		
+					alert.showAndWait();
+					txtCPF.clear();
+				}
+			}
 		});
 
 		confirmarAluguel.setOnAction((event) -> {
 			if(txtCPF.getText().isEmpty() || txtNumQuarto.getText().isEmpty() ) {			
 				alert.setHeaderText("Estão faltando campos a serem preenchidos");
 				alert.setContentText("Preencha todos os campos para confirmar o Aluguel!");
+				alert.showAndWait();
+			}
+			else {
+				Hospede hospede = hospedeDao.PesquisaCpf(Long.parseLong(txtCPF.getText()));
+				Funcionario funcionario = funcionarioDao.PesquisaCpf(cpf);
+				Quarto quarto = quartoDao.PesquisaNumQuarto(Integer.parseInt(txtNumQuarto.getText()));
+				List<Quarto> listaQuarto = null;
+				listaQuarto.add(quarto);
+				Aluguel aluguel = new Aluguel(hospede,funcionario,date,listaQuarto);
+				aluguelControl.adicionar(aluguel);
+				alert.setHeaderText("Sucesso");
+				alert.setContentText("O Aluguel foi confirmado com êxito!");		
 				alert.showAndWait();
 			}
 		});

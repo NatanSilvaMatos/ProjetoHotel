@@ -22,7 +22,6 @@ public class AluguelControl {
 		aluDao.Update(aluguel);
 	}
 	
-
 	public ObservableList<Aluguel> getLista() {
 		ObservableList<Aluguel> obsAluguel = FXCollections.observableArrayList();
 		obsAluguel.addAll(aluDao.Pesquisa());
