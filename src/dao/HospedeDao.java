@@ -46,8 +46,8 @@ public class HospedeDao {
 			return hospede;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public Hospede PesquisaCod(int cod) {
@@ -149,14 +149,14 @@ public class HospedeDao {
 			hospede = null;
 		}
 
-		hospede.setCod(resultSet.getInt("cod_hosp"));
-		hospede.setCpf(resultSet.getInt("cpf"));
-		hospede.setNome(resultSet.getString("nome"));
-		hospede.setEmail(resultSet.getString("email"));
-		hospede.setEndereco(resultSet.getString("endereco"));
-		hospede.setTelefone(resultSet.getInt("telefone"));
-		hospede.setSenha(resultSet.getString("senha_hosp"));
-		hospede.setStatus(resultSet.getInt("status"));
+		//hospede.setCod(resultSet.getInt("cod_hosp"));
+		//hospede.setCpf(resultSet.getInt("cpf"));
+		//hospede.setNome(resultSet.getString("nome"));
+		//hospede.setEmail(resultSet.getString("email"));
+		//hospede.setEndereco(resultSet.getString("endereco"));
+		//hospede.setTelefone(resultSet.getInt("telefone"));
+		//hospede.setSenha(resultSet.getString("senha_hosp"));
+		//hospede.setStatus(resultSet.getInt("status"));
 
 		return hospede;
 	}

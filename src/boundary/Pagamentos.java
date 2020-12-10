@@ -158,10 +158,8 @@ public class Pagamentos {
 					alert2.setContentText("Pagamento efetuado com cartao de credito!");
 					alert2.showAndWait();
 				}
-			}
-		
+			}		
 		});
-
 	}
 
 	public Pane getPane() {
