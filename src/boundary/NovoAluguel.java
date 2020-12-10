@@ -45,6 +45,7 @@ public class NovoAluguel {
 	private Button confirmarAluguel = new Button("Confirmar Aluguel");
 	private Button pesquisarCpf = new Button("Pesquisar");
 	private Button pesquisarNumQuarto = new Button("Pesquisar Quarto");
+	private Button limpar = new Button("Limpar");
 	private String[] categorias = { "Premium", "Presidencial", "Comum" };
 	private String[] disponibilidade = { "Locado", "Disponivel" };
 	private HospedeDao hospedeDao = new HospedeDao();
@@ -120,6 +121,10 @@ public class NovoAluguel {
 		cbDisponibilidade.getSelectionModel().select(disponibilidade[1]);
 		cbDisponibilidade.setDisable(true);
 		cbDisponibilidade.setPrefWidth(150);
+		
+		limpar.setLayoutX(530);
+		limpar.setLayoutY(500);
+		limpar.setPrefWidth(120);
 
 		confirmarAluguel.setLayoutX(300);
 		confirmarAluguel.setLayoutY(500);
@@ -207,12 +212,19 @@ public class NovoAluguel {
 
 			}
 		});
+		
+		limpar.setOnAction((event) -> {
+			txtCPF.clear();
+			txtNumQuarto.clear();
+			txtAndar.clear();
+			txtPrecoDiaria.clear();
+			});
 
 		alert.setTitle("Erro");
 
 		pane.getChildren().addAll(lblCPF, txtCPF, lblNumQuarto, txtNumQuarto, lblPrecoDiaria, lblCedula, txtPrecoDiaria,
 				lblAndar, txtAndar, lblCategoria, cbCategoria, lblDisponibilidade, cbDisponibilidade, confirmarAluguel,
-				lblNovoAluguel, pesquisarCpf, pesquisarNumQuarto);
+				lblNovoAluguel, pesquisarCpf, pesquisarNumQuarto, limpar);
 	}
 
 	public Pane getPane() {

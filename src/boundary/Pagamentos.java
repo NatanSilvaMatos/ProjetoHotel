@@ -1,6 +1,10 @@
 package boundary;
 
+import java.util.List;
+
+import dao.AluguelDao;
 import dao.HospedeDao;
+import entity.Aluguel;
 import entity.Hospede;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -30,10 +34,12 @@ public class Pagamentos {
 	private RadioButton rbDinheiro = new RadioButton("Dinheiro");
 	private Button confirmarPagamento = new Button("Confirmar Pagamento");
 	private Button pesquisarCpf = new Button("Pesquisar");
+	private Button limpar = new Button("Limpar");
 	private ToggleGroup groupTipoPagamento = new ToggleGroup();
 	private Alert alert = new Alert(AlertType.WARNING);
 	private Alert alert2 = new Alert(AlertType.INFORMATION);
 	private HospedeDao hospedeDao = new HospedeDao();
+	private AluguelDao aluguelDao = new AluguelDao();
 	private Hospede hospede = new Hospede();
 
 	public Pagamentos() {
@@ -93,12 +99,25 @@ public class Pagamentos {
 		confirmarPagamento.setLayoutX(300);
 		confirmarPagamento.setLayoutY(500);
 		confirmarPagamento.setPrefWidth(170);
+		
+		limpar.setLayoutX(500);
+		limpar.setLayoutY(300);
+		limpar.setPrefWidth(110);
 
 		alert.setTitle("Erro");
 
 		pane.getChildren().addAll(lblPagamento, lblCPF, txtCPF, pesquisarCpf, lblCartao, txtCartao, lblCodSeguranca,
 				txtCodSeguranca, lblPrecoTotal, lblCedula, txtPrecoTotal, lblTipoPagamento, rbDebito, rbCredito,
-				rbDinheiro, confirmarPagamento);
+				rbDinheiro, confirmarPagamento,limpar);
+		
+		limpar.setOnAction((event) -> {
+			txtCartao.clear();
+			txtCodSeguranca.clear();
+			txtCPF.clear();
+			txtCPF.setEditable(true);
+			txtCartao.setEditable(true);
+			txtCodSeguranca.setEditable(true);
+		});
 
 		rbDinheiro.setOnAction((event) -> {
 			txtCartao.clear();
@@ -124,13 +143,17 @@ public class Pagamentos {
 				alert.showAndWait();
 			}
 			else {
-				int num = Integer.parseInt(txtCPF.getText());
-				if(hospedeDao.PesquisaCpf(num) != null) {
-					hospede = hospedeDao.PesquisaCpf(num);
+				Long cpf = Long.parseLong(txtCPF.getText());
+				if(hospedeDao.PesquisaCpf(cpf) != null) {
+					hospede = hospedeDao.PesquisaCpf(cpf);
 					alert2.setHeaderText("Sucesso");
-					alert2.setContentText("Cliente encontrado! + " + "Nome do Cliente = " + hospede.getNome());
+					alert2.setContentText("Cliente encontrado!");
 					alert2.showAndWait();
 					txtCPF.setEditable(false);
+					hospede = hospedeDao.PesquisaCpf(cpf);
+					//System.out.println(hospede.getCartao());
+					List<Aluguel> lista = aluguelDao.PesquisaCpf(cpf);
+					System.out.println(lista.get(0).getQuarto().get(0).getPreco());
 				}
 				else {
 					alert.setHeaderText("CPF Inválido");
