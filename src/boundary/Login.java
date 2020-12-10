@@ -125,7 +125,7 @@ public class Login extends Application {
 
 		stage.setScene(scn);
 		stage.setResizable(false);
-		stage.setTitle("BEM-VINDO AO HOTEL DO COLEVATÃO");
+		stage.setTitle("SEJA BEM-VINDO AO HOTEL DO COLEVATÃO");
 		stage.show();
 	}
 
