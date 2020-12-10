@@ -34,13 +34,13 @@ public class FuncionarioDao {
 		return null;
 	}
 	
-	public Funcionario PesquisaCpf(int cpf) {
+	public Funcionario PesquisaCpf(long cpf) {
 		Funcionario funcionario = new Funcionario();
 		Connection con = c.getConnection();
 		String queryPessoa = "SELECT * FROM funcionario WHERE cpf_func = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
-			ps.setInt(1, cpf);
+			ps.setLong(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
 
 
@@ -119,12 +119,12 @@ public class FuncionarioDao {
 		}
 	}
 
-	public void Delete(int cod) {
+	public void Delete(long cpf) {
 		Connection con = c.getConnection();
-		String query = "UPDATE funcionario SET ativo = 0 WHERE cod_func = ?";
+		String query = "UPDATE funcionario SET ativo = 0 WHERE cpf_func = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, cod);
+			ps.setLong(1, cpf);
 			ps.execute();
 			con.close();
 		} catch (SQLException e) {

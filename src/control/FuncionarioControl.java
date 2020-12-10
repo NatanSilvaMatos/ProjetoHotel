@@ -17,7 +17,7 @@ public class FuncionarioControl {
 		funcDao.Update(funcionario);
 	}
 	
-	public void desativar(int cpf) {
+	public void desativar(long cpf) {
 		funcDao.Delete(cpf);
 	}
 
@@ -33,7 +33,7 @@ public class FuncionarioControl {
 		return obsFuncionarios;
 	}
 
-	public ObservableList<Funcionario> getListaEspecifica(int cpf) {
+	public ObservableList<Funcionario> getListaEspecifica(long cpf) {
 		ObservableList<Funcionario> obsFuncionarios = FXCollections.observableArrayList();
 		obsFuncionarios.addAll(funcDao.PesquisaCpf(cpf));
 		return obsFuncionarios;

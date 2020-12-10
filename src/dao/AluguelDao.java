@@ -55,14 +55,14 @@ public class AluguelDao {
 		return null;
 	}
 	
-	public List<Aluguel> PesquisaCpf(int cpf) {
+	public List<Aluguel> PesquisaCpf(long cpf) {
 		List<Aluguel> Alugueis = new ArrayList<>();
 		Connection con = c.getConnection();
 		String query = "SELECT a.cod_alug, a.cod_hosp, a.cod_func, a.Data_aluguel FROM aluguel p INNER JOIN "
 				+ "hospede h on a.cod_hosp = h.cod_hosp where h.cod_hosp = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, cpf);
+			ps.setLong(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {

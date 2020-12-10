@@ -31,16 +31,16 @@ public class HospedeDao {
 		return null;
 	}
 
-	public Hospede PesquisaCpf(int cpf) {
+	public Hospede PesquisaCpf(long cpf) {
 		Hospede hospede = new Hospede();
 		Connection con = c.getConnection();
 		String queryPessoa = "SELECT * FROM hospede WHERE cpf = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(queryPessoa);
-			ps.setInt(1, cpf);
+			ps.setLong(1, cpf);
 			ResultSet resultSet = ps.executeQuery();
-			
-				hospede = BancoEntity(resultSet);			
+
+			hospede = BancoEntity(resultSet);
 
 			con.close();
 			return hospede;
@@ -111,12 +111,12 @@ public class HospedeDao {
 		}
 	}
 
-	public void delete(int cod) {
+	public void delete(long cpf) {
 		Connection con = c.getConnection();
-		String query = "UPDATE hospede SET ativo = 0 WHERE cod_hosp = ?";
+		String query = "UPDATE hospede SET ativo = 0 WHERE cpf = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, cod);
+			ps.setLong(1, cpf);
 			ps.execute();
 			con.close();
 		} catch (SQLException e) {
@@ -136,27 +136,29 @@ public class HospedeDao {
 			hospede.setSenha(resultSet.getString(7));
 			hospede.setStatus(resultSet.getInt(8));
 
-			/*hospede.setCod(resultSet.getInt("cod_hosp"));
-			hospede.setCpf(resultSet.getInt("cpf"));
-			hospede.setNome(resultSet.getString("nome"));
-			hospede.setEmail(resultSet.getString("email"));
-			hospede.setEndereco(resultSet.getString("endereco"));
-			hospede.setTelefone(resultSet.getInt("telefone"));
-			hospede.setSenha(resultSet.getString("senha_hosp"));
-			hospede.setStatus(resultSet.getInt("status"));*/
+			/*
+			 * hospede.setCod(resultSet.getInt("cod_hosp"));
+			 * hospede.setCpf(resultSet.getInt("cpf"));
+			 * hospede.setNome(resultSet.getString("nome"));
+			 * hospede.setEmail(resultSet.getString("email"));
+			 * hospede.setEndereco(resultSet.getString("endereco"));
+			 * hospede.setTelefone(resultSet.getInt("telefone"));
+			 * hospede.setSenha(resultSet.getString("senha_hosp"));
+			 * hospede.setStatus(resultSet.getInt("status"));
+			 */
 
-		}else {
+		} else {
 			hospede = null;
 		}
 
-		//hospede.setCod(resultSet.getInt("cod_hosp"));
-		//hospede.setCpf(resultSet.getInt("cpf"));
-		//hospede.setNome(resultSet.getString("nome"));
-		//hospede.setEmail(resultSet.getString("email"));
-		//hospede.setEndereco(resultSet.getString("endereco"));
-		//hospede.setTelefone(resultSet.getInt("telefone"));
-		//hospede.setSenha(resultSet.getString("senha_hosp"));
-		//hospede.setStatus(resultSet.getInt("status"));
+		// hospede.setCod(resultSet.getInt("cod_hosp"));
+		// hospede.setCpf(resultSet.getInt("cpf"));
+		// hospede.setNome(resultSet.getString("nome"));
+		// hospede.setEmail(resultSet.getString("email"));
+		// hospede.setEndereco(resultSet.getString("endereco"));
+		// hospede.setTelefone(resultSet.getInt("telefone"));
+		// hospede.setSenha(resultSet.getString("senha_hosp"));
+		// hospede.setStatus(resultSet.getInt("status"));
 
 		return hospede;
 	}

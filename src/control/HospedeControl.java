@@ -17,7 +17,7 @@ public class HospedeControl {
 		hospDao.update(hospede);
 	}
 
-	public void desativar(int cpf) {
+	public void desativar(long cpf) {
 		hospDao.delete(cpf);
 	}
 
@@ -27,7 +27,7 @@ public class HospedeControl {
 		return obsHospedes;
 	}
 
-	public ObservableList<Hospede> getListaEspecifica(int cpf) {
+	public ObservableList<Hospede> getListaEspecifica(long cpf) {
 		ObservableList<Hospede> obsHospedes = FXCollections.observableArrayList();
 		obsHospedes.addAll(hospDao.PesquisaCpf(cpf));
 		return obsHospedes;
